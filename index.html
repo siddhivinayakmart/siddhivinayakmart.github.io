@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Siddhi Vinayak A-Z Saving Mart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #00bcd4;
+      --secondary: #1de9b6;
+      --bg-dark: #121212;
+      --bg-light: #1f1f1f;
+      --text-light: #e0e0e0;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      padding: 2rem 1rem;
+      text-align: center;
+      color: #111; /* Dark text color */
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #000;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav a:hover,
+    nav a.active {
+      background: var(--primary);
+      color: #000;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+    }
+    section.features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary);
+    }
+    .feature-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .feature-card p {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    .social-links {
+      margin: 1rem 0 0.5rem;
+    }
+    .social-links a {
+      color: #aaa;
+      margin: 0 0.75rem;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+    .social-links a:hover {
+      color: var(--primary);
+    }
+    @media (max-width: 480px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Siddhi Vinayak A-Z Saving Mart</h1>
+    <p class="subtitle">Your one-stop shop for Grocery, Bakery, Stationery & Daily Essentials</p>
+  </header>
+
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="store.html">Store Detail</a>
+  </nav>
+
+  <main>
+    <section class="features">
+      <div class="feature-card">
+        <h3>Wide Product Range</h3>
+        <p>From fresh groceries to stationery, bakery items, and crockery – everything under one roof.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Quality & Freshness</h3>
+        <p>We ensure fresh products sourced daily to serve our customers with the best.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Friendly Service</h3>
+        <p>Our team is dedicated to providing a pleasant shopping experience with personalized care.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Convenient Location</h3>
+        <p>Located in Village Telia Kalan, Barhaj, Deoria, easily accessible for your daily needs.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://goo.gl/maps/your-google-map-link" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+      <a href="mailto:siddhimart@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria, Uttar Pradesh, India</p>
+  </footer>
+</body>
+</html>
