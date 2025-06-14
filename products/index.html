@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products | Siddhi Vinayak Mart</title>
+  <style>
+    :root {
+      --primary: #00bcd4;
+      --secondary: #1de9b6;
+      --bg-dark: #121212;
+      --bg-card: #1e1e1e;
+      --text-light: #e0e0e0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header, footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .product-item {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #2c2c2c;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+    }
+
+    .product-item a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .product-item a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Product Categories</h1>
+    <p>Explore quality essentials at Siddhi Vinayak Mart</p>
+  </header>
+
+  <main>
+    <div class="product-grid">
+      <div class="product-item">
+        <a href="grocery.html">Grocery Items</a>
+      </div>
+      <div class="product-item">
+        <a href="bakery.html">Bakery Products</a>
+      </div>
+      <div class="product-item">
+        <a href="stationary.html">Stationery Supplies</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria</p>
+  </footer>
+
+</body>
+</html>
