@@ -1,66 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us | Siddhi Vinayak Mart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
+    :root {
+      --primary: #d32f2f;
+      --secondary: #fdd835;
+      --bg-dark: #fff8e1;
+      --text-dark: #212121;
+      --text-light: #ffffff;
+    }
+
     body {
-      background: #121212;
-      color: #e0e0e0;
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
     }
-    header, footer {
-      background: linear-gradient(to right, #00bcd4, #1de9b6);
-      color: white;
+
+    nav {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--text-light);
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      display: none;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        margin-top: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
       text-align: center;
-      padding: 1rem;
+      padding: 2rem 1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
     main {
-      padding: 2rem;
-      max-width: 800px;
+      padding: 2rem 1rem;
+      max-width: 1000px;
       margin: auto;
     }
-    h1 {
-      color: #00bcd4;
+
+    .about-section {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
-    p {
-      line-height: 1.6;
+
+    .about-section h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .about-section p {
+      line-height: 1.7;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .image-frame {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 0.5rem;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 1s ease;
+    }
+
+    .image-frame.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .image-frame img {
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-height: 200px;
+    }
+
+    .intro-video {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      display: block;
+      border: 4px solid var(--primary);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .intro-video.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .social-links {
+      margin-bottom: 0.8rem;
+    }
+
+    .social-links a {
+      margin: 0 0.6rem;
+      color: var(--text-light);
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      text-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
   </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      const targets = document.querySelectorAll('.image-frame, .intro-video');
+      targets.forEach(el => observer.observe(el));
+    });
+  </script>
 </head>
 <body>
+
+  <!-- Navigation Menu -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">SVM Mart</div>
+      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products/">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
   <header>
-    <h1>About Siddhi Vinayak A-Z Saving Mart</h1>
-    <p>Telia Kalan, Barhaj, Deoria, Uttar Pradesh, India</p>
+    <h1>About Siddhi Vinayak Mart</h1>
+    <p>Serving Trust & Value Since 2021</p>
   </header>
 
+  <!-- Main Content -->
   <main>
-    <h2>Our Mission</h2>
-    <p>At Siddhi Vinayak A-Z Saving Mart, we are committed to offering quality daily essentials at affordable prices to our rural community. We bring together Grocery, Bakery, Stationery, Crockery, and all household needs under one roof.</p>
+    <div class="about-section">
+      <h2>Who We Are</h2>
+      <p>Siddhi Vinayak A-Z बचत बाजार is your neighborhood mart delivering savings with every product. Located at Telia Kalan, Barhaj, we serve our local community with grocery, stationery, and household essentials at affordable prices.</p>
 
-    <h2>Why Choose Us?</h2>
-    <ul>
-      <li>Wide variety of daily essentials</li>
-      <li>Fresh products and trusted brands</li>
-      <li>Friendly customer service</li>
-      <li>Convenient location in your village</li>
-    </ul>
+      <h2>Our Vision</h2>
+      <p>To make everyday shopping budget-friendly, joyful, and convenient for every household. We believe in community, trust, and honesty — and that reflects in everything we do.</p>
 
-    <h2>Our Vision</h2>
-    <p>To become the most trusted and loved mart in rural Uttar Pradesh, ensuring that quality products are never far from home.</p>
+      <h2>Our Values</h2>
+      <p>✅ Affordable pricing<br>✅ Fresh and local products<br>✅ Friendly service<br>✅ Weekly deals<br>✅ Easy digital payment options</p>
+    </div>
+
+    <h2 style="text-align:center; color: var(--primary);">📸 Life at Our Store</h2>
+
+    <!-- Image Frame -->
+    <div class="image-frame">
+      <img src="https://source.unsplash.com/300x200/?retail-store" alt="Storefront">
+      <img src="https://source.unsplash.com/300x200/?grocery-store" alt="Grocery">
+      <img src="https://source.unsplash.com/300x200/?stationery-shop" alt="Stationery">
+      <img src="https://source.unsplash.com/300x200/?customers-shopping" alt="Customers">
+    </div>
+
+    <!-- Intro Video -->
+    <video class="intro-video" controls poster="https://source.unsplash.com/600x300/?mart">
+      <source src="your-intro-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </main>
 
+  <!-- Footer -->
   <footer>
-    
-  </footer><div class="social-links">
+    <div class="social-links">
       <a href="https://wa.me/919453678641" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
       <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
       <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria, Uttar Pradesh, India</p>
+    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
   </footer>
+
 </body>
 </html>
