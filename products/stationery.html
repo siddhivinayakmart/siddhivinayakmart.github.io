@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Products - SVM Mart</title>
+  <title>Stationery - SVM Mart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     :root {
       --primary: #d32f2f;
       --secondary: #fdd835;
-      --bg-dark: #fff8e1;
+      --bg-dark: #fffef7;
       --text-dark: #212121;
       --text-light: #ffffff;
     }
@@ -89,6 +89,14 @@
       }
     }
 
+    .notification {
+      background-color: #e3f2fd;
+      color: #0d47a1;
+      padding: 0.7rem 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: var(--text-light);
@@ -109,24 +117,32 @@
       margin: auto;
     }
 
-    .plackard-option {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      padding: 1.5rem;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      text-align: center;
-      font-weight: 600;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      margin-bottom: 1.5rem;
-      text-decoration: none;
-      display: block;
+    .product-card {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
     }
 
-    .plackard-option:hover {
-      transform: scale(1.05);
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-card img {
+      width: 120px;
+      border-radius: 8px;
+    }
+
+    .product-info h3 {
+      color: var(--primary);
+      margin: 0 0 0.5rem;
     }
 
     footer {
@@ -158,44 +174,90 @@
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('active');
     }
-  </script>
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(el => observer.observe(el));
+    });
+  </script>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation Menu -->
   <nav>
     <div class="nav-container">
       <div class="logo">SVM Mart</div>
       <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
       <div class="nav-links">
-        
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="/products/">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
 
+  <!-- Notification -->
+  <div class="notification">
+    ✏️ School & Office Supplies Available! Bulk Discounts on Notebooks & Pens!
+  </div>
+
   <!-- Header -->
   <header>
-    <h1>Explore Our Product Categories</h1>
-    <p>Choose from a wide range of essentials, all under one roof.</p>
+    <h1>Stationery Essentials</h1>
+    <p>Smart tools for smarter work and study</p>
   </header>
 
   <!-- Main Content -->
   <main>
-    <a href="grocery.html" class="plackard-option">🛒 Grocery Essentials</a>
-    <a href="stationery.html" class="plackard-option">✏️ Stationery & School Supplies</a>
-    <a href="bakery.html" class="plackard-option">🍞 Fresh Bakery Items</a>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?notebook,stationery" alt="Notebook">
+      <div class="product-info">
+        <h3>Classmate Notebook</h3>
+        <p>200 Pages | ₹35</p>
+        <p>High-quality ruled paper for school and college students.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?pen" alt="Pen">
+      <div class="product-info">
+        <h3>Reynolds Ball Pen (Pack of 5)</h3>
+        <p>Blue Ink | ₹25</p>
+        <p>Smooth writing with comfortable grip for daily use.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?stapler,office" alt="Stapler">
+      <div class="product-info">
+        <h3>Kangaro Mini Stapler</h3>
+        <p>With Pins | ₹45</p>
+        <p>Compact stapler perfect for office or school documents.</p>
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
   <footer>
     <div class="social-links">
-      <a href="https://wa.me/919453678641" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
-      <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/919453678641" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+      <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://instagram.com/yourinstagramhandle" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | All product categories available in-store.</p>
+    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश</p>
   </footer>
 
 </body>

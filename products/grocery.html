@@ -2,89 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grocery | Siddhi Vinayak Mart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Groceries - SVM Mart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
+    :root {
+      --primary: #d32f2f;
+      --secondary: #fdd835;
+      --bg-dark: #fff8e1;
+      --text-dark: #212121;
+      --text-light: #ffffff;
+    }
+
     body {
-      background: #121212;
-      color: #e0e0e0;
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
     }
-    header, footer {
-      background: linear-gradient(to right, #00bcd4, #1de9b6);
-      color: white;
-      text-align: center;
-      padding: 1rem;
+
+    nav {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    main {
-      padding: 2rem;
-    }
-    h1 {
-      color: #00bcd4;
-    }
-    .product {
-      background: #1f1f1f;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 2rem;
+
+    .nav-container {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.8rem 1rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--text-light);
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      display: none;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    .nav-links {
+      display: flex;
       gap: 1rem;
     }
-    .product img {
-      width: 300px;
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        margin-top: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 1rem 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: #fdf7e2;
+      padding: 1rem;
       border-radius: 10px;
+      margin: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      align-items: center;
+      transition: transform 0.3s ease;
     }
-    .info {
-      max-width: 500px;
+
+    .product-card:hover {
+      transform: scale(1.02);
     }
-    .info h2 {
-      color: #1de9b6;
+
+    .product-card img {
+      width: 120px;
+      border-radius: 8px;
     }
-    .info p {
-      margin: 0.5rem 0;
+
+    .product-info h3 {
+      color: var(--primary);
+      margin: 0 0 0.5rem;
+    }
+
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .social-links {
+      margin-bottom: 0.8rem;
+    }
+
+    .social-links a {
+      margin: 0 0.6rem;
+      color: var(--text-light);
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      text-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
   </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
 </head>
 <body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">SVM Mart</div>
+      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products/index.html">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
   <header>
-    <h1>Grocery Products</h1>
-    <p>Siddhi Vinayak A-Z Saving Mart - Telia Kalan, Barhaj, Deoria, UP</p>
+    <h1>Groceries</h1>
+    <p>Everyday essentials at unbeatable prices</p>
   </header>
 
+  <!-- Product Listing -->
   <main>
-    <div class="product">
-      <img src="https://source.unsplash.com/300x200/?rice" alt="Basmati Rice">
-      <div class="info">
-        <h2>Basmati Rice</h2>
-        <p>Nutrition: Rich in carbohydrates, low in fat.</p>
-        <p>Price: ₹70/kg</p>
-        <p>Premium quality aged basmati rice perfect for daily cooking.</p>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?rice" alt="Basmati Rice">
+      <div class="product-info">
+        <h3>Basmati Rice</h3>
+        <p>5kg Pack | ₹350</p>
+        <p>Aromatic and long-grained premium rice.</p>
       </div>
     </div>
 
-    <div class="product">
-      <img src="https://source.unsplash.com/300x200/?lentils" alt="Lentils">
-      <div class="info">
-        <h2>Mixed Lentils (Dal)</h2>
-        <p>Nutrition: High in protein and fiber.</p>
-        <p>Price: ₹90/kg</p>
-        <p>Organic mix of moong, masoor, and toor dal for healthy meals.</p>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?wheat" alt="Wheat Flour">
+      <div class="product-info">
+        <h3>Wheat Flour</h3>
+        <p>10kg Pack | ₹420</p>
+        <p>Stone-ground, fresh chakki atta.</p>
       </div>
     </div>
 
-    <div class="product">
-      <img src="https://source.unsplash.com/300x200/?wheat" alt="Wheat Flour">
-      <div class="info">
-        <h2>Wheat Flour (Atta)</h2>
-        <p>Nutrition: Rich in carbs, protein, and B vitamins.</p>
-        <p>Price: ₹35/kg</p>
-        <p>Stone-ground whole wheat flour ideal for chapatis and rotis.</p>
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?oil" alt="Sunflower Oil">
+      <div class="product-info">
+        <h3>Sunflower Oil</h3>
+        <p>1L Bottle | ₹110</p>
+        <p>Healthy, light refined oil for everyday use.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://source.unsplash.com/120x120/?sugar" alt="Sugar">
+      <div class="product-info">
+        <h3>Refined Sugar</h3>
+        <p>1kg Pack | ₹45</p>
+        <p>Pure and crystal-clear sugar for kitchen needs.</p>
       </div>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="social-links">
       <a href="https://wa.me/919453678641" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -92,7 +236,8 @@
       <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
       <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria, Uttar Pradesh, India</p>
+    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
   </footer>
+
 </body>
 </html>
