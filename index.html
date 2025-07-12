@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="Ox-crQA7njlhs9c0A0wjL4pV6LYojUCYvX-T0qntpcQ" />
+  <!-- favicon image -->
+  <link rel="icon" href="logo.png" type="image/png">
   <title>Siddhi Vinayak Mart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -129,6 +131,16 @@
   transform: translateX(-50px);
   transition: all 1s ease;
 }
+
+.image-frame img {
+  width: 200px;           /* Set a consistent width */
+  height: 200px;          /* Set a consistent height */
+  object-fit: cover;      /* Crop and fit the image nicely */
+  flex-shrink: 0;         /* Prevent shrinking in flexbox */
+  border-radius: 8px;     /* Optional: Rounded corners for better look */
+}
+
+
 
 .image-frame.visible {
   opacity: 1;
