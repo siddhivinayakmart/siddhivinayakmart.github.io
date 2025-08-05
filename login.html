@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="design.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>MEMBER LOGIN</h2>
+    <input type="email" id="email" placeholder="Email Address" />
+    <label><input type="checkbox" disabled checked /> One-time Login via Email</label>
+    <button onclick="sendLoginLink()">SEND OTP</button>
+    <p id="message"></p>
+  </div>
+
+  <script type="module">
+    import { sendEmailOTP } from './app.js';
+    window.sendLoginLink = () => sendEmailOTP("login");
+  </script>
+</body>
+</html>
