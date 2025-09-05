@@ -138,12 +138,15 @@
     }
 
     .catalog-track img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      flex-shrink: 0;
-      border-radius: 12px;
-      object-fit: cover;
-    }
+  width: 100%;
+  max-height: 400px;     /* keeps big images in check */
+  flex-shrink: 0;
+  border-radius: 12px;
+  object-fit: contain;   /* shows full image without cutting */
+  background: #fff8e1;      /* adds padding background for square images */
+  padding: 5px;          /* small gap around */
+}
+
 
     .catalog-btn {
       position: absolute;
@@ -300,22 +303,21 @@
 
     <h2 style="text-align:center; color: var(--primary);">Explore Our Mart</h2>
 
-    <!-- Catalog Slider -->
-    <div class="catalog">
-      <div class="catalog-track">
-        <img src="/image/grocery.png" alt="Grocery">
-        <img src="/image/" alt="Stationery">
-        <img src="bakery.avif" alt="Bakery">
-        <img src="crockery.jpg" alt="Crockery">
-        <img src="electronics.jpg" alt="Electronics">
-        <img src="fruits.jpg" alt="Fruits">
-        <img src="/image/grocery.png" alt="Grocery">
-        <img src="/image/" alt="Stationery">
-        <img src="bakery.avif" alt="Bakery">
-        <img src="crockery.jpg" alt="Crockery">
-        <img src="electronics.jpg" alt="Electronics">
-        <img src="fruits.jpg" alt="Fruits">
-      </div>
+   <!-- Catalog Slider -->
+<div class="catalog">
+  <div class="catalog-track">
+    <img src="/image/grocery.png" alt="Grocery">
+    <img src="/image/stationery.png" alt="Stationery">
+    <img src="/image/stationery1.png" alt="Stationery Items">
+    <img src="/image/stationery2.png" alt="Stationery Supplies">
+    <img src="/image/bakery.avif" alt="Bakery">
+    <img src="/image/crockery.jpg" alt="Crockery">
+    <img src="/image/electronics.jpg" alt="Electronics">
+    <img src="/image/fruits.jpg" alt="Fruits">
+    <img src="/image/store1.jpg" alt="Store Interior">
+    <img src="/image/store2.jpg" alt="Store Aisle">
+    <img src="/image/store3.webp" alt="Store View">
+  </div>
       <button class="catalog-btn left">&#10094;</button>
       <button class="catalog-btn right">&#10095;</button>
     </div>
