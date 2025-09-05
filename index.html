@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="Ox-crQA7njlhs9c0A0wjL4pV6LYojUCYvX-T0qntpcQ" />
   <!-- favicon image -->
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" href="/image/favicon.png" type="image/png">
   <title>Siddhi Vinayak Mart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -121,59 +121,80 @@
       margin: auto;
     }
 
-.image-frame {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 0.5rem;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: all 1s ease;
-}
-
-.image-frame img {
-  width: 360px;           /* Set a consistent width */
-  height: 210px;          /* Set a consistent height */
-  object-fit: cover;      /* Crop and fit the image nicely */
-  flex-shrink: 0;         /* Prevent shrinking in flexbox */
-  border-radius: 8px;     /* Optional: Rounded corners for better look */
-}
-
-
-
-.image-frame.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.intro-video {
-  width: 100%;
-  max-width: 600px;
-  margin: 2rem auto;
-  display: block;
-  border: 4px solid var(--primary);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
-}
-
-.intro-video.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-    @keyframes riseUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Catalog Slider */
+    .catalog {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
 
-    /* Plackard */
+    .catalog-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .catalog-track img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      flex-shrink: 0;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .catalog-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .catalog-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    .catalog-btn.left { left: 10px; }
+    .catalog-btn.right { right: 10px; }
+
+    /* YouTube Video with Gradient Frame */
+    .video-frame {
+      display: flex;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-radius: 14px;
+      padding: 6px;
+      background: linear-gradient(135deg, #ff512f, #f09819);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
     .plackard {
       margin: 2rem 0;
       background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -221,25 +242,25 @@
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('active');
     }
-  function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('active');
-  }
 
-  // Observer for animations
-  document.addEventListener("DOMContentLoaded", function () {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, {
-      threshold: 0.1
+    document.addEventListener("DOMContentLoaded", function () {
+      const track = document.querySelector(".catalog-track");
+      const images = document.querySelectorAll(".catalog-track img");
+      const prevBtn = document.querySelector(".catalog-btn.left");
+      const nextBtn = document.querySelector(".catalog-btn.right");
+      let index = 0;
+
+      function showSlide(i) {
+        index = (i + images.length) % images.length;
+        let slideWidth = document.querySelector(".catalog").clientWidth;
+        track.style.transform = `translateX(${-index * slideWidth}px)`;
+      }
+
+      prevBtn.addEventListener("click", () => showSlide(index - 1));
+      nextBtn.addEventListener("click", () => showSlide(index + 1));
+      setInterval(() => showSlide(index + 1), 4000);
+      window.addEventListener("resize", () => showSlide(index));
     });
-
-    const targets = document.querySelectorAll('.image-frame, .intro-video');
-    targets.forEach(el => observer.observe(el));
-  });
   </script>
 </head>
 <body>
@@ -273,36 +294,41 @@
 
   <!-- Main Content -->
   <main>
-    <!-- Plackard -->
     <div class="plackard">
       📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!
     </div>
 
     <h2 style="text-align:center; color: var(--primary);">Explore Our Mart</h2>
 
-    <!-- Image Frame -->
-    <div class="image-frame">
-      <img src="grocery.png" alt="Grocery">
-      <img src="stationery.png" alt="Stationery">
-      <img src="bakery.avif" alt="Bakery">
-      <img src="crockery.jpg" alt="Crockery">
+    <!-- Catalog Slider -->
+    <div class="catalog">
+      <div class="catalog-track">
+        <img src="/image/grocery.png" alt="Grocery">
+        <img src="/image/" alt="Stationery">
+        <img src="bakery.avif" alt="Bakery">
+        <img src="crockery.jpg" alt="Crockery">
+        <img src="electronics.jpg" alt="Electronics">
+        <img src="fruits.jpg" alt="Fruits">
+        <img src="/image/grocery.png" alt="Grocery">
+        <img src="/image/" alt="Stationery">
+        <img src="bakery.avif" alt="Bakery">
+        <img src="crockery.jpg" alt="Crockery">
+        <img src="electronics.jpg" alt="Electronics">
+        <img src="fruits.jpg" alt="Fruits">
+      </div>
+      <button class="catalog-btn left">&#10094;</button>
+      <button class="catalog-btn right">&#10095;</button>
     </div>
 
-<!-- Intro Video -->
-<iframe class="intro-video" 
-        width="100%" 
-        height="315" 
-        src="https://www.youtube.com/embed/kyIMJ0H34jM"
-        title="Intro Video" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
-
-<div style="text-align: center;">[ This video is for representational purpose only ]</div>
-
+    <!-- Video with Gradient Frame -->
+    <div class="video-frame">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="text-align: center;">[ This video is for representational purpose only ]</div>
   </main>
-
 
   <!-- Footer -->
   <footer>
@@ -313,17 +339,15 @@
       <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
     <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
-    <!-- Developer Credit -->
-<div style="text-align: center; font-size: 0.9rem; color: #444; padding: 1rem;">
-  This site has been developed by 
-  <strong style="color: #d32f2f;">Suryansh TechClub</strong>. 
-  Visit 
-  <a href="https://suryanshtechclub.github.io" target="_blank" style="color: #d32f2f; text-decoration: underline;">
-    suryanshtechclub.github.io
-  </a> 
-  to learn more.
-</div>
+    <div style="text-align: center; font-size: 0.9rem; color: #444; padding: 1rem;">
+      This site has been developed by 
+      <strong style="color: #d32f2f;">Suryansh TechClub</strong>. 
+      Visit 
+      <a href="https://suryanshtechclub.github.io" target="_blank" style="color: #d32f2f; text-decoration: underline;">
+        suryanshtechclub.github.io
+      </a> 
+      to learn more.
+    </div>
   </footer>
-
 </body>
 </html>
