@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="Ox-crQA7njlhs9c0A0wjL4pV6LYojUCYvX-T0qntpcQ" />
-  <!-- favicon image -->
   <link rel="icon" href="/image/favicon.png" type="image/png">
   <title>Siddhi Vinayak Mart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -44,10 +43,31 @@
       padding: 0.8rem 1rem;
     }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--text-light);
+    /* Logo & Brand */
+    .brand-logo {
+      height: 55px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    /* Tablet (≤768px) */
+    @media (max-width: 768px) {
+      .brand-logo { height: 45px; }
+      .brand-name { font-size: 1.2rem; }
+    }
+
+    /* Mobile (≤480px) */
+    @media (max-width: 480px) {
+      .brand-logo { height: 38px; }
+      .brand-name { font-size: 1rem; font-weight: 700; }
     }
 
     .menu-toggle {
@@ -82,14 +102,8 @@
         display: none;
         margin-top: 1rem;
       }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
     }
 
     .notification {
@@ -138,15 +152,14 @@
     }
 
     .catalog-track img {
-  width: 100%;
-  max-height: 400px;     /* keeps big images in check */
-  flex-shrink: 0;
-  border-radius: 12px;
-  object-fit: contain;   /* shows full image without cutting */
-  background: #fff8e1;      /* adds padding background for square images */
-  padding: 5px;          /* small gap around */
-}
-
+      width: 100%;
+      max-height: 400px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #fff8e1;
+      padding: 5px;
+    }
 
     .catalog-btn {
       position: absolute;
@@ -163,10 +176,7 @@
       transition: background 0.3s;
     }
 
-    .catalog-btn:hover {
-      background: rgba(0,0,0,0.7);
-    }
-
+    .catalog-btn:hover { background: rgba(0,0,0,0.7); }
     .catalog-btn.left { left: 10px; }
     .catalog-btn.right { right: 10px; }
 
@@ -212,9 +222,7 @@
       transition: transform 0.3s ease;
     }
 
-    .plackard:hover {
-      transform: scale(1.05);
-    }
+    .plackard:hover { transform: scale(1.05); }
 
     footer {
       background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -225,20 +233,14 @@
       font-weight: 500;
     }
 
-    .social-links {
-      margin-bottom: 0.8rem;
-    }
-
+    .social-links { margin-bottom: 0.8rem; }
     .social-links a {
       margin: 0 0.6rem;
       color: var(--text-light);
       font-size: 1.4rem;
       text-decoration: none;
     }
-
-    .social-links a:hover {
-      text-shadow: 0 0 8px rgba(0,0,0,0.4);
-    }
+    .social-links a:hover { text-shadow: 0 0 8px rgba(0,0,0,0.4); }
   </style>
 
   <script>
@@ -268,24 +270,14 @@
 </head>
 <body>
 
-    <!-- Navigation Menu -->
+  <!-- Navigation Menu -->
   <nav>
     <div class="nav-container">
-      <!-- Logo + Brand -->
       <div class="logo" style="display:flex; align-items:center; gap:12px; flex-wrap:nowrap;">
-        <img src="/image/favicon.png" alt="Siddhi Vinayak A-Z Saving Mart"
-          style="height:55px; width:auto; flex-shrink:0; border-radius:8px;">
-        <span style="font-size:1.5rem; font-weight:800; white-space:nowrap; color:#fff;">
-          Siddhi Vinayak A-Z Saving Mart
-        </span>
+        <img src="/image/favicon.png" alt="Siddhi Vinayak A-Z Saving Mart" class="brand-logo">
+        <span class="brand-name">Siddhi Vinayak A-Z Saving Mart</span>
       </div>
-
-      <!-- Menu Toggle (Mobile) -->
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
-
-      <!-- Navigation Links -->
+      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -297,11 +289,8 @@
     </div>
   </nav>
 
-
   <!-- Notification -->
-  <div class="notification">
-    🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!
-  </div>
+  <div class="notification">🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
 
   <!-- Header -->
   <header>
@@ -311,45 +300,36 @@
 
   <!-- Main Content -->
   <main>
-    <div class="plackard">
-      📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!
-    </div>
-
+    <div class="plackard">📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!</div>
     <h2 style="text-align:center; color: var(--primary);">Explore Our Mart</h2>
 
-   <!-- Catalog Slider -->
-<div class="catalog">
-  <div class="catalog-track">
-    <img src="/image/grocery.png" alt="Grocery">
-    <img src="/image/stationery.png" alt="Stationery">
-    <img src="/image/stationery1.png" alt="Stationery Items">
-    <img src="/image/stationery2.png" alt="Stationery Supplies">
-    <img src="/image/bakery.avif" alt="Bakery">
-    <img src="/image/crockery.jpg" alt="Crockery">
-    <img src="/image/electronics.jpg" alt="Electronics">
-    <img src="/image/fruits.jpg" alt="Fruits">
-    <img src="/image/store1.jpg" alt="Store Interior">
-    <img src="/image/store2.jpg" alt="Store Aisle">
-    <img src="/image/store3.webp" alt="Store View">
-  </div>
+    <!-- Catalog Slider -->
+    <div class="catalog">
+      <div class="catalog-track">
+        <img src="/image/grocery.png" alt="Grocery">
+        <img src="/image/stationery.png" alt="Stationery">
+        <img src="/image/stationery1.png" alt="Stationery Items">
+        <img src="/image/stationery2.png" alt="Stationery Supplies">
+        <img src="/image/bakery.avif" alt="Bakery">
+        <img src="/image/crockery.jpg" alt="Crockery">
+        <img src="/image/electronics.jpg" alt="Electronics">
+        <img src="/image/fruits.jpg" alt="Fruits">
+        <img src="/image/store1.jpg" alt="Store Interior">
+        <img src="/image/store2.jpg" alt="Store Aisle">
+        <img src="/image/store3.webp" alt="Store View">
+      </div>
       <button class="catalog-btn left">&#10094;</button>
       <button class="catalog-btn right">&#10095;</button>
     </div>
 
-    <!-- Video with Gradient Frame -->
-   <div class="video-frame">
-   <div class="video-wrapper">
-    <iframe 
-      src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1" 
-      allowfullscreen>
-    </iframe>
-   </div>
-   </div>
-
+    <!-- Video -->
+    <div class="video-frame">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1" allowfullscreen></iframe>
+      </div>
     </div>
     <div style="text-align: center;">[ This video is for representational purpose only ]</div>
   </main>
-
 
   <!-- Footer -->
   <footer>
@@ -360,14 +340,9 @@
       <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
     <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
-    <div style="text-align: center; font-size: 0.9rem; color: #444; padding: 1rem;">
-      This site has been developed by 
-      <strong style="color: #d32f2f;">Suryansh TechClub</strong>. 
-      Visit 
-      <a href="https://suryanshtechclub.github.io" target="_blank" style="color: #d32f2f; text-decoration: underline;">
-        suryanshtechclub.github.io
-      </a> 
-      to learn more.
+    <div style="font-size: 0.9rem; color: #444; padding: 1rem;">
+      This site has been developed by <strong style="color: #d32f2f;">Suryansh TechClub</strong>. 
+      Visit <a href="https://suryanshtechclub.github.io" target="_blank" style="color: #d32f2f; text-decoration: underline;">suryanshtechclub.github.io</a> to learn more.
     </div>
   </footer>
 </body>
