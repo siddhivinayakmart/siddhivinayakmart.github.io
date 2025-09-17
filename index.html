@@ -266,6 +266,47 @@
       text-decoration: none;
     }
     .social-links a:hover { text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+
+   header {
+  position: relative; /* ✅ so garlands stay with header */
+}
+
+.garland-left, .garland-right {
+  position: absolute;
+  top: 20px; /* adjust vertically */
+  z-index: 5;
+}
+
+.garland-left { left: 0; }
+.garland-right { right: 0; }
+
+.garland-left img, .garland-right img {
+  max-height: 250px; /* adjust size */
+  width: auto;
+}
+
+
+    /* 🎉 Confetti */
+    .confetti {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      opacity: 0.9;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
   </style>
 
   <script>
@@ -291,6 +332,23 @@
       setInterval(() => showSlide(index + 1), 4000);
       window.addEventListener("resize", () => showSlide(index));
     });
+
+    /* 🎉 Confetti Burst */
+    function launchConfetti() {
+      const confetti = document.getElementById("confetti");
+      const colors = ["#ff9800", "#ffc107", "#f44336", "#4caf50", "#2196f3"]; 
+      for (let i = 0; i < 60; i++) {
+        let div = document.createElement("div");
+        div.classList.add("confetti-piece");
+        div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        div.style.left = Math.random() * window.innerWidth + "px";
+        div.style.top = "-10px";
+        div.style.animationDuration = (2 + Math.random() * 3) + "s";
+        confetti.appendChild(div);
+        setTimeout(() => div.remove(), 5000);
+      }
+    }
+    window.onload = launchConfetti;
   </script>
 </head>
 <body>
@@ -313,6 +371,15 @@
       </div>
     </div>
   </nav>
+
+  <!-- 🌸 Side Garlands -->
+<div class="garland-left">
+  <img src="/image/garland-left.png" alt="Left Garland">
+</div>
+<div class="garland-right">
+  <img src="/image/garland-right.png" alt="Right Garland">
+</div>
+
 
   <!-- Notification -->
   <div class="notification">🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
@@ -372,5 +439,9 @@
       Visit <a href="https://suryanshtechclub.github.io" target="_blank" style="color: #d32f2f; text-decoration: underline;">suryanshtechclub.github.io</a> to learn more.
     </div>
   </footer>
+
+  <!-- 🎉 Confetti -->
+  <div class="confetti" id="confetti"></div>
+
 </body>
 </html>
