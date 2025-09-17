@@ -12,7 +12,7 @@
     :root {
       --primary: #d32f2f;
       --secondary: #fdd835;
-      --bg-dark: #fff8e1;
+      --bg-dark: #fff8e1;   /* pale yellow */
       --text-dark: #212121;
       --text-light: #ffffff;
     }
@@ -20,7 +20,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
+      background-color: var(--bg-dark); /* ✅ fixed pale yellow body */
       color: var(--text-dark);
     }
 
@@ -127,6 +127,12 @@
     h1 {
       margin: 0;
       font-size: 2.5rem;
+    }
+    
+    .ganesh-img {
+      height: 180px;   /* increase or decrease as needed */
+      width: auto;     /* keeps aspect ratio */
+      margin-bottom: 1rem;
     }
 
     main {
@@ -294,7 +300,7 @@
 
   <!-- Header -->
   <header>
-    <img src="/image/ganesha.png" alt="Siddhi Vinayak A-Z Saving Mart" class="brand-logo">
+    <img src="/image/GANESHA.png" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
     <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
     <p>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
   </header>
@@ -307,7 +313,7 @@
     <!-- Catalog Slider -->
     <div class="catalog">
       <div class="catalog-track">
-      <img src="/image/grocery.png" alt="Grocery">
+        <img src="/image/grocery.png" alt="Grocery">
         <img src="/image/stationery.png" alt="Stationery">
         <img src="/image/stationery1.png" alt="Stationery Items">
         <img src="/image/stationery2.png" alt="Stationery Supplies">
