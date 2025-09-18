@@ -113,39 +113,28 @@
       font-size: 1rem;
     }
 
-    /* Keep header relative to place images inside */
-header {
-  position: relative;
-}
+    /* 🌸 Full-width Garland */
+    .garland {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      z-index: 5;
+    }
 
-/* Common styles */
-.header-decor img {
-  position: absolute;
-  top: 40px; /* appear below notification bar */
-  z-index: 5;
-}
+    .garland img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
 
-/* Left image */
-.decor-left {
-  left: 0;
-  width: 160px; /* desktop */
-}
-
-/* Right image */
-.decor-right {
-  right: 0;
-  width: 180px; /* desktop */
-}
-
-/* Mobile view adjustments */
-@media (max-width: 768px) {
-  .decor-left,
-  .decor-right {
-    width: 90px; /* smaller */
-    top: 40px;   /* below notification bar */
-  }
-}
-
+    @media (max-width: 768px) {
+      .garland img {
+        max-height: 140px;
+      }
+    }
 
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -156,6 +145,7 @@ header {
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       border-bottom-left-radius: 60% 20px;
       border-bottom-right-radius: 60% 20px;
+      position: relative;
     }
 
     h1 {
@@ -167,6 +157,7 @@ header {
       height: 300px;
       width: auto;
       margin-bottom: 0.5rem;
+      margin-top: -20px; /* pulls closer to garland */
     }
 
     /* 🔥 Focused CTA Button */
@@ -379,20 +370,18 @@ header {
   <!-- Notification -->
   <div class="notification">🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
 
-  <!-- Decorative PNGs -->
-  <div class="header-decor">
-    <img src="images/az1.webp" alt="Garland Left" class="decor-left">
-    <img src="images/toran.png" alt="Garland Right" class="decor-right">
+  <!-- 🌸 Full Garland -->
+  <div class="garland">
+    <img src= "https://drive.google.com/file/d/1WpsmBr7u8WzDky3Ddc6mhWpTR0j2Kv-v/view?usp=sharing" alt="Festival Garland">
   </div>
 
+  <!-- Header -->
   <header>
-  <img src="/image/ganesh.webp" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
-  <!-- Your existing header content -->
-  <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
+    <img src="/image/ganesh.webp" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
+    <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
     <p>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
-  <a href="login-register.html" class="customer-btn">Become Our Customer</a>
+    <a href="login-register.html" class="customer-btn">Become Our Customer</a>
   </header>
-
 
   <!-- Main Content -->
   <main>
