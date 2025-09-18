@@ -43,7 +43,6 @@
       padding: 0.8rem 1rem;
     }
 
-    /* Logo & Brand */
     .brand-logo {
       height: 65px;
       width: auto;
@@ -56,16 +55,14 @@
       font-weight: 800;
       color: #fff;
       white-space: nowrap;
-      margin-left: -5px; /* ✅ brand name closer to Ganesh ji */
+      margin-left: -5px;
     }
 
-    /* Tablet (≤768px) */
     @media (max-width: 768px) {
       .brand-logo { height: 45px; }
       .brand-name { font-size: 1.2rem; }
     }
 
-    /* Mobile (≤480px) */
     @media (max-width: 480px) {
       .brand-logo { height: 38px; }
       .brand-name { font-size: 1rem; font-weight: 700; }
@@ -116,6 +113,40 @@
       font-size: 1rem;
     }
 
+    /* Keep header relative to place images inside */
+header {
+  position: relative;
+}
+
+/* Common styles */
+.header-decor img {
+  position: absolute;
+  top: 40px; /* appear below notification bar */
+  z-index: 5;
+}
+
+/* Left image */
+.decor-left {
+  left: 0;
+  width: 160px; /* desktop */
+}
+
+/* Right image */
+.decor-right {
+  right: 0;
+  width: 180px; /* desktop */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .decor-left,
+  .decor-right {
+    width: 90px; /* smaller */
+    top: 40px;   /* below notification bar */
+  }
+}
+
+
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: var(--text-light);
@@ -123,7 +154,7 @@
       padding: 2rem 1rem 3rem;
       font-weight: bold;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      border-bottom-left-radius: 60% 20px;  /* ✅ curved bottom */
+      border-bottom-left-radius: 60% 20px;
       border-bottom-right-radius: 60% 20px;
     }
 
@@ -131,27 +162,30 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    
+
     .ganesh-img {
-      height: 300px;   /* ✅ larger Ganesh ji */
+      height: 300px;
       width: auto;
       margin-bottom: 0.5rem;
     }
 
+    /* 🔥 Focused CTA Button */
     .customer-btn {
-      background-color: #1251ff;
-      color: white;
+      background: linear-gradient(45deg, #ff5722, #ff9800);
+      color: #fff;
       text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 6px;
+      padding: 10px 20px;
+      border-radius: 30px;
       font-weight: bold;
-      transition: background 0.3s;
+      font-size: 1rem;
+      margin-top: 15px;
       display: inline-block;
-      margin-top: 15px; /* ✅ pushed button down */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .customer-btn:hover {
-      background-color: #e64a19;
+      transform: scale(1.08);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
 
     main {
@@ -200,12 +234,10 @@
       z-index: 10;
       transition: background 0.3s;
     }
-
     .catalog-btn:hover { background: rgba(0,0,0,0.7); }
     .catalog-btn.left { left: 10px; }
     .catalog-btn.right { right: 10px; }
 
-    /* YouTube Video with Gradient Frame */
     .video-frame {
       display: flex;
       justify-content: center;
@@ -216,7 +248,6 @@
       background: linear-gradient(135deg, #ff512f, #f09819);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%;
@@ -225,7 +256,6 @@
       overflow: hidden;
       background: #000;
     }
-
     .video-wrapper iframe {
       position: absolute;
       top: 0; left: 0;
@@ -246,7 +276,6 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-
     .plackard:hover { transform: scale(1.05); }
 
     footer {
@@ -257,7 +286,6 @@
       font-size: 0.95rem;
       font-weight: 500;
     }
-
     .social-links { margin-bottom: 0.8rem; }
     .social-links a {
       margin: 0 0.6rem;
@@ -266,25 +294,6 @@
       text-decoration: none;
     }
     .social-links a:hover { text-shadow: 0 0 8px rgba(0,0,0,0.4); }
-
-   header {
-  position: relative; /* ✅ so garlands stay with header */
-}
-
-.garland-left, .garland-right {
-  position: absolute;
-  top: 20px; /* adjust vertically */
-  z-index: 5;
-}
-
-.garland-left { left: 0; }
-.garland-right { right: 0; }
-
-.garland-left img, .garland-right img {
-  max-height: 250px; /* adjust size */
-  width: auto;
-}
-
 
     /* 🎉 Confetti */
     .confetti {
@@ -313,27 +322,22 @@
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('active');
     }
-
     document.addEventListener("DOMContentLoaded", function () {
       const track = document.querySelector(".catalog-track");
       const images = document.querySelectorAll(".catalog-track img");
       const prevBtn = document.querySelector(".catalog-btn.left");
       const nextBtn = document.querySelector(".catalog-btn.right");
       let index = 0;
-
       function showSlide(i) {
         index = (i + images.length) % images.length;
         let slideWidth = document.querySelector(".catalog").clientWidth;
         track.style.transform = `translateX(${-index * slideWidth}px)`;
       }
-
       prevBtn.addEventListener("click", () => showSlide(index - 1));
       nextBtn.addEventListener("click", () => showSlide(index + 1));
       setInterval(() => showSlide(index + 1), 4000);
       window.addEventListener("resize", () => showSlide(index));
     });
-
-    /* 🎉 Confetti Burst */
     function launchConfetti() {
       const confetti = document.getElementById("confetti");
       const colors = ["#ff9800", "#ffc107", "#f44336", "#4caf50", "#2196f3"]; 
@@ -356,7 +360,7 @@
   <!-- Navigation Menu -->
   <nav>
     <div class="nav-container">
-      <div class="logo" style="display:flex; align-items:center; gap:8px; flex-wrap:nowrap;">
+      <div class="logo" style="display:flex; align-items:center; gap: 13px; flex-wrap:nowrap;">
         <img src="/image/favicon.png" alt="Siddhi Vinayak A-Z Saving Mart" class="brand-logo">
         <span class="brand-name">Siddhi Vinayak A-Z Saving Mart</span>
       </div>
@@ -367,37 +371,34 @@
         <a href="/products/">Products</a>
         <a href="store.html">Store</a>
         <a href="contact.html">Contact</a>
-        <a href="loginregister.html">Login</a>
+        <a href="login-register.html">Login</a>
       </div>
     </div>
   </nav>
 
-  <!-- 🌸 Side Garlands -->
-<div class="garland-left">
-  <img src="/image/garland-left.png" alt="Left Garland">
-</div>
-<div class="garland-right">
-  <img src="/image/garland-right.png" alt="Right Garland">
-</div>
-
-
   <!-- Notification -->
   <div class="notification">🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
 
-  <!-- Header -->
+  <!-- Decorative PNGs -->
+  <div class="header-decor">
+    <img src="images/az1.webp" alt="Garland Left" class="decor-left">
+    <img src="images/toran.png" alt="Garland Right" class="decor-right">
+  </div>
+
   <header>
-    <img src="/image/ganesh.webp" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
-    <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
+  <img src="/image/ganesh.webp" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
+  <!-- Your existing header content -->
+  <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
     <p>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
-    <a href="login.html" class="customer-btn">Become Our Customer</a>
+  <a href="login-register.html" class="customer-btn">Become Our Customer</a>
   </header>
+
 
   <!-- Main Content -->
   <main>
     <div class="plackard">📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!</div>
     <h2 style="text-align:center; color: var(--primary);">Explore Our Mart</h2>
 
-    <!-- Catalog Slider -->
     <div class="catalog">
       <div class="catalog-track">
         <img src="/image/grocery.png" alt="Grocery">
@@ -416,7 +417,6 @@
       <button class="catalog-btn right">&#10095;</button>
     </div>
 
-    <!-- Video -->
     <div class="video-frame">
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1" allowfullscreen></iframe>
