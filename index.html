@@ -17,22 +17,27 @@
       --text-light: #ffffff;
     }
 
+    /* ---------- Global ---------- */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
+    a { color: inherit; }
 
+    /* ---------- NAV ---------- */
     nav {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: var(--text-light);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 1200;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-
     .nav-container {
       display: flex;
       justify-content: space-between;
@@ -42,68 +47,25 @@
       margin: auto;
       padding: 0.8rem 1rem;
     }
-
-    .brand-logo {
-      height: 65px;
-      width: auto;
-      flex-shrink: 0;
-      border-radius: 8px;
+    .brand-logo { height: 65px; width: auto; flex-shrink: 0; border-radius: 8px; }
+    .brand-name { font-size: 1.5rem; font-weight: 800; color: #fff; white-space: nowrap; margin-left: -5px; }
+    .menu-toggle { font-size: 1.5rem; display: none; cursor: pointer; color: var(--text-light); }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-light);
+      font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 6px;
+      transition: background 0.3s;
     }
-
-    .brand-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      white-space: nowrap;
-      margin-left: -5px;
-    }
-
+    .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
     @media (max-width: 768px) {
       .brand-logo { height: 45px; }
       .brand-name { font-size: 1.2rem; }
-    }
-
-    @media (max-width: 480px) {
-      .brand-logo { height: 38px; }
-      .brand-name { font-size: 1rem; font-weight: 700; }
-    }
-
-    .menu-toggle {
-      font-size: 1.5rem;
-      display: none;
-      cursor: pointer;
-      color: var(--text-light);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 500;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .nav-links a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        margin-top: 1rem;
-      }
+      .nav-links { flex-direction: column; width: 100%; display: none; margin-top: 1rem; }
       .nav-links.active { display: flex; }
       .menu-toggle { display: block; }
     }
 
+    /* ---------- NOTIFICATION ---------- */
     .notification {
       background-color: #fff3cd;
       color: #856404;
@@ -113,29 +75,7 @@
       font-size: 1rem;
     }
 
-    /* 🌸 Full-width Garland */
-    .garland {
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
-      position: relative;
-      z-index: 5;
-    }
-
-    .garland img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 768px) {
-      .garland img {
-        max-height: 140px;
-      }
-    }
-
+    /* ---------- HEADER (with confetti container) ---------- */
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: var(--text-light);
@@ -146,113 +86,34 @@
       border-bottom-left-radius: 60% 20px;
       border-bottom-right-radius: 60% 20px;
       position: relative;
+      overflow: hidden; /* confetti clipped to header */
     }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .ganesh-img {
-      height: 300px;
-      width: auto;
-      margin-bottom: 0.5rem;
-      margin-top: -20px; /* pulls closer to garland */
-    }
-
-    /* 🔥 Focused CTA Button */
-    .customer-btn {
-      background: linear-gradient(45deg, #ff5722, #ff9800);
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-top: 15px;
-      display: inline-block;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .customer-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-
-    main {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    /* Catalog Slider */
-    .catalog {
-      position: relative;
-      width: 90%;
-      max-width: 700px;
-      margin: 2rem auto;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-
-    .catalog-track {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-
-    .catalog-track img {
-      width: 100%;
-      max-height: 400px;
-      flex-shrink: 0;
-      border-radius: 12px;
-      object-fit: contain;
-      background: #fff8e1;
-      padding: 5px;
-    }
-
-    .catalog-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      padding: 0.4rem 0.8rem;
-      border-radius: 50%;
-      z-index: 10;
-      transition: background 0.3s;
-    }
-    .catalog-btn:hover { background: rgba(0,0,0,0.7); }
-    .catalog-btn.left { left: 10px; }
-    .catalog-btn.right { right: 10px; }
-
-    .video-frame {
-      display: flex;
-      justify-content: center;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-radius: 14px;
-      padding: 6px;
-      background: linear-gradient(135deg, #ff512f, #f09819);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-    }
-    .video-wrapper iframe {
+    /* header confetti overlay — will contain confetti pieces */
+    .header-confetti {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9; /* below nav controls, above header visuals */
+      overflow: hidden;
     }
+    h1 { margin: 0; font-size: 2.5rem; position: relative; z-index: 11; }
+    .ganesh-img { height: 300px; width: auto; margin-bottom: 0.5rem; margin-top: -20px; position: relative; z-index: 11; }
+
+    /* CTA button (keeps style) */
+    .customer-btn {
+      background: linear-gradient(45deg, #088F8F );
+      color: #fff; text-decoration: none; padding: 10px 20px;
+      border-radius: 30px; font-weight: bold; font-size: 1rem;
+      margin-top: 15px; display: inline-block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: transform .2s;
+      position: relative; z-index: 11;
+    }
+    .customer-btn:hover { transform: scale(1.08); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+
+    /* ---------- MAIN ---------- */
+    main { padding: 2rem 1rem; max-width: 1100px; margin: auto; }
 
     .plackard {
       margin: 2rem 0;
@@ -269,81 +130,219 @@
     }
     .plackard:hover { transform: scale(1.05); }
 
-    footer {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 500;
+    /* ---------- CATALOG SLIDER (keep) ---------- */
+    .catalog { position: relative; width: 90%; max-width: 700px; margin: 2rem auto; overflow: hidden; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+    .catalog-track { display: flex; transition: transform 0.6s ease-in-out; }
+    .catalog-track img { width: 100%; max-height: 400px; flex-shrink: 0; border-radius: 12px; object-fit: contain; background: #fff8e1; padding: 5px; }
+    .catalog-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 50%; z-index: 10; transition: background 0.3s; }
+    .catalog-btn:hover { background: rgba(0,0,0,0.7); }
+    .catalog-btn.left { left: 10px; } .catalog-btn.right { right: 10px; }
+
+    /* ---------- ZIGZAG SLIDER (single copy only) ---------- */
+    .slider { position: relative; overflow: hidden; max-width: 1000px; margin: 2rem auto; border-radius: 16px; background: linear-gradient(135deg, #ffcc00, #ff5722, #ff9800); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+    .slides { display: flex; transition: transform 0.6s ease-in-out; }
+    .slide { display: flex; flex: 0 0 100%; padding: 2rem; align-items: center; justify-content: space-between; gap: 1.5rem; color: #fff; }
+    /* alternate layout (zigzag) */
+    .slide:nth-child(even) { flex-direction: row-reverse; }
+    .slide-content { flex: 1; min-width: 280px; }
+    .slide-content h2 { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .slide-content p { font-size: 1rem; margin-bottom: 0.8rem; }
+    .slide-content ul { list-style: none; padding: 0; margin: 0; }
+    .slide-content ul li { margin: 0.35rem 0; font-size: 0.95rem; }
+    .slide-media { flex: 1; text-align: center; }
+    .slide-media img, .slide-media video { max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+
+    .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); border: none; color: #fff; font-size: 2rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 50%; z-index: 10; transition: background 0.3s ease; }
+    .nav-btn:hover { background: rgba(0,0,0,0.7); }
+    .nav-btn.prev { left: 15px; } .nav-btn.next { right: 15px; }
+
+    @media (max-width: 768px) {
+      .slide { flex-direction: column !important; text-align: center; }
+      .slide-media { margin-top: 1rem; }
+      .slide-content h2 { font-size: 1.4rem; }
+      .slide-content p { font-size: 0.95rem; }
     }
+
+    /* ---------- VIDEO WRAPPER ---------- */
+    .video-frame { display: flex; justify-content: center; margin: 2rem auto; max-width: 800px; border-radius: 14px; padding: 6px; background: linear-gradient(135deg, #ff512f, #f09819); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+    /* ---------- TESTIMONIAL GRID 3x2 ---------- */
+    #reviews { max-width: 1100px; margin: 2rem auto 3rem; }
+    #reviews h3 { text-align:center; color:#e65100; font-size:1.6rem; margin-bottom:14px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+      gap: 18px;
+      align-items: stretch;
+      margin: 0 auto;
+    }
+    @media (max-width: 992px) {
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    .testimonial-card {
+      background: linear-gradient(180deg,#fff,#fff8e1);
+      color: #333;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid #fdd835;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+    .testimonial-card .stars-score { display: flex; justify-content: space-between; align-items: flex-start; }
+    .testimonial-card .stars { color: #ff9800; font-weight: 800; transition: transform 0.3s ease, text-shadow 0.3s ease; }
+    .testimonial-card:hover .stars { transform: scale(1.1); text-shadow: 0 0 6px rgba(255,152,0,0.6); }
+    .testimonial-card .score { color: #d32f2f; font-weight: 800; }
+    .testimonial-card p { margin: 6px 0 0; line-height: 1.6; }
+    .testimonial-card .profile { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .testimonial-card .profile img { width: 56px; height: 56px; border-radius: 999px; object-fit: cover; border: 2px solid #ffcc80; }
+    .testimonial-card .name { font-weight: 800; }
+    .testimonial-card .role { font-size: 0.9rem; opacity: 0.7; }
+
+    /* ---------- CTA BOX (orange block with Get Directions) ---------- */
+    .cta-box {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg,#ff9800,#fdd835);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+    }
+    .cta-box h4 { margin: 0 0 6px; color: #fff; }
+    .cta-box p { margin: 0; color: #fffde7; }
+    .cta-btn { display: inline-block; padding: 10px 16px; border-radius: 10px; background: #fff; color: #e65100; font-weight: 800; text-decoration: none; transition: all 0.3s ease; }
+    .cta-btn:hover { background: #ffe082; color: #d84315; }
+
+    /* ---------- FOOTER ---------- */
+    footer { background: linear-gradient(to right, var(--primary), var(--secondary)); color: var(--text-light); text-align: center; padding: 1.5rem 1rem; font-size: 0.95rem; font-weight: 500; }
     .social-links { margin-bottom: 0.8rem; }
-    .social-links a {
-      margin: 0 0.6rem;
-      color: var(--text-light);
-      font-size: 1.4rem;
-      text-decoration: none;
-    }
+    .social-links a { margin: 0 0.6rem; color: var(--text-light); font-size: 1.4rem; text-decoration: none; }
     .social-links a:hover { text-shadow: 0 0 8px rgba(0,0,0,0.4); }
 
-    /* 🎉 Confetti */
-    .confetti {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-    }
+    /* ---------- Confetti pieces style & falling animation (header-only) ---------- */
     .confetti-piece {
       position: absolute;
-      width: 12px; height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      opacity: 0.9;
-      animation: fall linear forwards;
+      opacity: 0.95;
+      will-change: transform, opacity;
     }
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(120%) rotate(720deg); opacity: 0; }
     }
   </style>
 
   <script>
+    /* ---------- small helper for nav toggle ---------- */
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('active');
     }
+
+    /* ---------- catalog slider (keeps your original behavior) ---------- */
     document.addEventListener("DOMContentLoaded", function () {
+      // catalog images slider
       const track = document.querySelector(".catalog-track");
       const images = document.querySelectorAll(".catalog-track img");
       const prevBtn = document.querySelector(".catalog-btn.left");
       const nextBtn = document.querySelector(".catalog-btn.right");
-      let index = 0;
-      function showSlide(i) {
-        index = (i + images.length) % images.length;
-        let slideWidth = document.querySelector(".catalog").clientWidth;
-        track.style.transform = `translateX(${-index * slideWidth}px)`;
+      if (track && images.length) {
+        let cIndex = 0;
+        function showSlide(i) {
+          cIndex = (i + images.length) % images.length;
+          let slideWidth = document.querySelector(".catalog").clientWidth;
+          track.style.transform = `translateX(${-cIndex * slideWidth}px)`;
+        }
+        prevBtn && prevBtn.addEventListener("click", () => showSlide(cIndex - 1));
+        nextBtn && nextBtn.addEventListener("click", () => showSlide(cIndex + 1));
+        setInterval(() => showSlide(cIndex + 1), 4000);
+        window.addEventListener("resize", () => showSlide(cIndex));
       }
-      prevBtn.addEventListener("click", () => showSlide(index - 1));
-      nextBtn.addEventListener("click", () => showSlide(index + 1));
-      setInterval(() => showSlide(index + 1), 4000);
-      window.addEventListener("resize", () => showSlide(index));
     });
-    function launchConfetti() {
-      const confetti = document.getElementById("confetti");
-      const colors = ["#ff9800", "#ffc107", "#f44336", "#4caf50", "#2196f3"]; 
-      for (let i = 0; i < 60; i++) {
-        let div = document.createElement("div");
-        div.classList.add("confetti-piece");
-        div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        div.style.left = Math.random() * window.innerWidth + "px";
-        div.style.top = "-10px";
-        div.style.animationDuration = (2 + Math.random() * 3) + "s";
-        confetti.appendChild(div);
-        setTimeout(() => div.remove(), 5000);
+
+    /* ---------- header-only confetti: continuous spawn and fall inside header ---------- */
+    (function setupHeaderConfetti(){
+      // spawn confetti pieces inside header's overlay container
+      function spawnConfettiPiece() {
+        const container = document.querySelector('.header-confetti');
+        if (!container) return;
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+
+        const colors = ["#ff9800", "#ffc107", "#f44336", "#4caf50", "#2196f3", "#ffeb3b"];
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        // position x anywhere across header width
+        const left = Math.random() * (w - 8);
+        el.style.left = left + 'px';
+        // start slightly above header
+        el.style.top = '-12px';
+        // random size
+        const size = 6 + Math.random() * 10;
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        // random animation duration
+        const duration = 1.6 + Math.random() * 2.2;
+        el.style.animation = `confettiFall ${duration}s linear forwards`;
+        // slight horizontal drift using CSS transform will be randomized using translateX
+        // but simplest approach: random horizontal translate added via keyframes is not needed
+        container.appendChild(el);
+        // cleanup after animation
+        setTimeout(() => {
+          el.remove();
+        }, (duration + 0.2) * 1000);
       }
-    }
-    window.onload = launchConfetti;
+
+      // start continuous spawning at ~200ms interval
+      let confettiInterval = null;
+      window.addEventListener('load', () => {
+        // ensure overlay exists and spawn continues
+        const overlay = document.querySelector('.header-confetti');
+        if (!overlay) return;
+        // spawn a few at start
+        for (let i=0;i<8;i++){ setTimeout(spawnConfettiPiece, i * 120); }
+        confettiInterval = setInterval(spawnConfettiPiece, 200);
+        // pause spawning if header is not visible (optional)
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) { clearInterval(confettiInterval); confettiInterval = null; }
+          else { if (!confettiInterval) confettiInterval = setInterval(spawnConfettiPiece, 200); }
+        });
+      });
+      // also clean interval on unload
+      window.addEventListener('beforeunload', () => { if (confettiInterval) clearInterval(confettiInterval); });
+    })();
+
+    /* ---------- single zigzag slider script (no duplicates) ---------- */
+    (function setupZigzagSlider(){
+      let sIndex = 0;
+      const slidesEl = document.getElementById('slides');
+      function moveSlide(step) {
+        const total = slidesEl ? slidesEl.children.length : 0;
+        if (!slidesEl || total === 0) return;
+        sIndex = (sIndex + step + total) % total;
+        slidesEl.style.transform = `translateX(-${sIndex * 100}%)`;
+      }
+      // Expose moveSlide for buttons
+      window.moveSlide = moveSlide;
+      // autoplay
+      setInterval(() => moveSlide(1), 6000);
+    })();
   </script>
 </head>
 <body>
@@ -370,17 +369,16 @@
   <!-- Notification -->
   <div class="notification">🛍️ Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
 
-  <!-- 🌸 Full Garland -->
-  <div class="garland">
-    <img src= "https://drive.google.com/file/d/1WpsmBr7u8WzDky3Ddc6mhWpTR0j2Kv-v/view?usp=sharing" alt="Festival Garland">
-  </div>
-
-  <!-- Header -->
+  <!-- Header (garland removed as requested) -->
   <header>
+    <!-- confetti overlay inside header only -->
+    <div class="header-confetti" aria-hidden="true"></div>
+
     <img src="/image/ganesh.webp" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img">
     <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
-    <p>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
+    <p style="position: relative; z-index:11;">Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
     <a href="login-register.html" class="customer-btn">Become Our Customer</a>
+
   </header>
 
   <!-- Main Content -->
@@ -388,7 +386,8 @@
     <div class="plackard">📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!</div>
     <h2 style="text-align:center; color: var(--primary);">Explore Our Mart</h2>
 
-    <div class="catalog">
+    <!-- Catalog (unchanged) -->
+    <div class="catalog" aria-label="Catalog slider">
       <div class="catalog-track">
         <img src="/image/grocery.png" alt="Grocery">
         <img src="/image/stationery.png" alt="Stationery">
@@ -406,12 +405,190 @@
       <button class="catalog-btn right">&#10095;</button>
     </div>
 
+    <!-- Video -->
     <div class="video-frame">
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1" allowfullscreen></iframe>
       </div>
     </div>
     <div style="text-align: center;">[ This video is for representational purpose only ]</div>
+
+    <!-- Zigzag Sliding Panel (single instance) -->
+    <div class="slider" aria-label="Feature slider">
+      <div class="slides" id="slides">
+        <!-- Slide 1 (text left, image right) -->
+        <div class="slide">
+          <div class="slide-content">
+            <h2>Prompt Boost – Instant Enhancement</h2>
+            <p>No need to craft the perfect question. Just write what you want, hit Enhance Prompt, and get smarter, richer answers.</p>
+            <ul>
+              <li>✔ Turn rough ideas into perfect prompts</li>
+              <li>✔ Get 10x better responses instantly</li>
+              <li>✔ No prompt engineering skills needed</li>
+            </ul>
+          </div>
+          <div class="slide-media">
+            <img src="https://via.placeholder.com/500x300.png?text=Slide+1+Image" alt="Slide 1">
+          </div>
+        </div>
+
+        <!-- Slide 2 (image left, text right) -->
+        <div class="slide">
+          <div class="slide-content">
+            <h2>Festival Savings</h2>
+            <p>Celebrate with us and enjoy amazing discounts on groceries & essentials this festive season.</p>
+            <ul>
+              <li>✔ Fresh fruits & vegetables</li>
+              <li>✔ Daily household needs</li>
+              <li>✔ Exclusive festival offers</li>
+            </ul>
+          </div>
+          <div class="slide-media">
+            <video autoplay muted loop playsinline>
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- Slide 3 (text left, image right) -->
+        <div class="slide">
+          <div class="slide-content">
+            <h2>Smart Shopping</h2>
+            <p>Shop smarter with our all-in-one mart. Save more with exclusive deals and rewards.</p>
+            <ul>
+              <li>✔ Easy online orders</li>
+              <li>✔ Home delivery available</li>
+              <li>✔ Best price guarantee</li>
+            </ul>
+          </div>
+          <div class="slide-media">
+            <img src="https://via.placeholder.com/500x300.png?text=Slide+3+Image" alt="Slide 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <button class="nav-btn prev" onclick="moveSlide(-1)" aria-label="Previous slide">&#10094;</button>
+      <button class="nav-btn next" onclick="moveSlide(1)" aria-label="Next slide">&#10095;</button>
+    </div>
+
+    <!-- Orange CTA block (Get Directions) -->
+    <section aria-label="Contact & Visit" style="margin-bottom:24px;">
+      <div class="cta-box">
+        <div>
+          <h4>Visit Our Store</h4>
+          <p>Telia Kalan, Barhaj, Deoria — Open 9am–9pm daily</p>
+        </div>
+        <div>
+          <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" rel="noreferrer" class="cta-btn">
+             Get Directions
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (3 x 2) -->
+    <section id="reviews" aria-labelledby="reviews-title">
+      <h3 id="reviews-title">What Our Customers Say</h3>
+
+      <div class="testimonials-grid">
+        <!-- 6 cards total -->
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">99</div>
+          </div>
+          <p>Amazing shopping experience at Siddhi Vinayak Mart! Great quality products and warm service. I love their grocery combos and quick billing.</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sudha" />
+            <div>
+              <div class="name">Sudha Choudhary</div>
+              <div class="role">Regular customer • Barhaj</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">98</div>
+          </div>
+          <p>The mart has everything under one roof. Fresh vegetables, groceries, household items — all at reasonable prices. Very convenient for families.</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ramesh" />
+            <div>
+              <div class="name">Ramesh Gupta</div>
+              <div class="role">Shopper • Deoria</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">97</div>
+          </div>
+          <p>Staff is polite and helpful. Billing is super fast and they also give small discounts on combos. Highly recommended for everyone in the area.</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Priya" />
+            <div>
+              <div class="name">Priya Singh</div>
+              <div class="role">Local Teacher • Barhaj</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">99</div>
+          </div>
+          <p>I always get fresh grocery here. The best part is cleanliness and organized racks which make shopping easier. Barhaj needed a mart like this!</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Amit" />
+            <div>
+              <div class="name">Amit Verma</div>
+              <div class="role">Businessman • Deoria</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">96</div>
+          </div>
+          <p>Visiting Siddhi Vinayak Mart saves me time. I don’t need to go to different shops. They maintain good quality and staff treats customers well.</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Neha" />
+            <div>
+              <div class="name">Neha Tiwari</div>
+              <div class="role">Housewife • Barhaj</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="stars-score">
+            <div class="stars">★★★★★</div>
+            <div class="score">98</div>
+          </div>
+          <p>Great offers during festivals and best place to shop for household needs. Very satisfied with the mart. Strongly suggest everyone to visit.</p>
+          <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/53.jpg" alt="Sanjay" />
+            <div>
+              <div class="name">Sanjay Kumar</div>
+              <div class="role">Farmer • Barhaj</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;color:#666;font-size:0.95rem;">
+        These are sample testimonials — replace with real content as needed.
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
@@ -429,8 +606,8 @@
     </div>
   </footer>
 
-  <!-- 🎉 Confetti -->
-  <div class="confetti" id="confetti"></div>
+  <!-- Confetti note: header-confetti overlay inside header contains pieces; no global confetti container here -->
 
 </body>
 </html>
+
