@@ -219,7 +219,14 @@
       position: relative; transition: transform .2s ease, box-shadow .2s ease;
     }
     .frame-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.18); }
-    .frame-card__media { aspect-ratio: 4/3; display:block; width:100%; object-fit: cover; }
+    .frame-card__media {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      height: 340px;
+      min-height: 340px;
+      max-height: 440px;
+    }
     .frame-card__badge { position:absolute; top:10px; left:10px; background:linear-gradient(45deg,var(--primary),var(--accent)); color:#fff; font-size:.8rem; font-weight:800; padding:.35rem .6rem; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.2); }
     .frame-card__body { padding: 12px 14px 16px; }
     .frame-card__title { margin: 0 0 4px; font-size: 1.05rem; font-weight: 800; color:#e65100; }
@@ -438,7 +445,7 @@
     <!-- Zigzag Sliding Panel -->
     <div class="slider" aria-label="Feature slider">
       <div class="slides" id="slides">
-        <!-- Slide 1 (text left, image right) -->
+        <!-- Slide 1 (text left, image right, image sized like video) -->
         <div class="slide">
           <div class="slide-content">
             <h2>Prompt Boost – Instant Enhancement</h2>
@@ -450,7 +457,7 @@
             </ul>
           </div>
           <div class="slide-media">
-            <img src="https://via.placeholder.com/1000x600.png?text=Slide+1+Image" alt="Illustration for prompt boost" width="1000" height="600" loading="lazy">
+            <img src="https://via.placeholder.com/1000x600.png?text=Slide+1+Image" alt="Illustration for prompt boost" style="width:100%;height:600px;object-fit:cover;max-width:1000px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);" loading="lazy">
           </div>
         </div>
 
@@ -466,25 +473,25 @@
             </ul>
           </div>
           <div class="slide-media">
-            <video autoplay muted loop playsinline width="1000" height="600">
+            <video autoplay muted loop playsinline width="1000" height="600" style="width:100%;height:600px;max-width:1000px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
             </video>
           </div>
         </div>
 
-        <!-- Slide 3 (text left, image right) -->
+        <!-- Slide 3 (brand slide, text left, image right) -->
         <div class="slide">
           <div class="slide-content">
-            <h2>Smart Shopping</h2>
-            <p>Shop smarter with our all-in-one mart. Save more with exclusive deals and rewards.</p>
+            <h2>Why Siddhi Vinayak Mart?</h2>
+            <p>Your trusted local mart for groceries, bakery, stationery, and home essentials. Experience quality, savings, and friendly service—every day!</p>
             <ul>
-              <li>✔ Easy online orders</li>
-              <li>✔ Home delivery available</li>
-              <li>✔ Best price guarantee</li>
+              <li>✔ Family-owned, community-focused</li>
+              <li>✔ Wide range of daily essentials</li>
+              <li>✔ Clean, organized, and welcoming store</li>
             </ul>
           </div>
           <div class="slide-media">
-            <img src="https://via.placeholder.com/1000x600.png?text=Slide+3+Image" alt="Smart shopping concept" width="1000" height="600" loading="lazy">
+            <img src="/image/favicon.png" alt="Siddhi Vinayak Mart Logo" style="width:220px;height:220px;object-fit:cover;border-radius:50%;background:#fff8e1;box-shadow:0 4px 12px rgba(0,0,0,0.18);margin:auto;" loading="lazy">
           </div>
         </div>
       </div>
@@ -516,7 +523,7 @@
         </article>
         <article class="frame-card">
           <span class="frame-card__badge">SAVE</span>
-          <img class="frame-card__media" src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/41fd5f79-05e2-4561-873c-440b52cab705._CR0%2C0%2C1500%2C1500_SX750_SY750_.jpg" alt="Home essentials neatly arranged" width="1200" height="900" loading="lazy">
+          <img class="frame-card__media" src="https://www.meijer.com/content/dam/meijer/digital/web-and-graphics/2023/household-essentials/site-assets/D-HHE-Subf1-20220101-1x1.jpg" alt="Home Essentials" width="1200" height="900" loading="lazy">
           <div class="frame-card__body">
             <h3 class="frame-card__title">Home Essentials</h3>
             <p class="frame-card__desc">Daily-use staples, cleaning, and personal care at great prices.</p>
@@ -725,6 +732,32 @@
     </div>
   </footer>
   <!-- Scripts: keep at bottom for performance -->
+  <script>
+    // Catalog slider functionality
+    (function() {
+      const track = document.querySelector('.catalog-track');
+      const images = track ? track.querySelectorAll('img') : [];
+      const leftBtn = document.querySelector('.catalog-btn.left');
+      const rightBtn = document.querySelector('.catalog-btn.right');
+      let current = 0;
+      function updateSlider() {
+        if (!track) return;
+        const imgWidth = images[0]?.clientWidth || 0;
+        track.style.transform = `translateX(-${current * imgWidth}px)`;
+      }
+      function move(n) {
+        if (!images.length) return;
+        current += n;
+        if (current < 0) current = images.length - 1;
+        if (current >= images.length) current = 0;
+        updateSlider();
+      }
+      if (leftBtn) leftBtn.onclick = () => move(-1);
+      if (rightBtn) rightBtn.onclick = () => move(1);
+      window.addEventListener('resize', updateSlider);
+      window.addEventListener('load', updateSlider);
+    })();
+  </script>
   <!-- Confetti: start below notification bar, avoid Ganesh image, fall only in header background -->
   <script>
     (function setConfettiTop() {
