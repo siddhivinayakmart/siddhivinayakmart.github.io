@@ -1,867 +1,1881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- =============================================================
-       Siddhi Vinayak A-Z Saving Mart — Extended Home Page
-       Notes:
-       - Responsive across devices
-       - Performance tweaks (lazy images, dimensions, font-smoothing)
-       - A11y improvements
-       - Confetti only in header (reduced-motion aware)
-       - Catalog slider + Zigzag slider
-       - Added: Framed image collections (3-frame & 2-frame), theme border frames
-       - Added: Themed promotional banner
-       - Length intentionally >800 lines per user requirement
-       ============================================================= -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="google-site-verification" content="Ox-crQA7njlhs9c0A0wjL4pV6LYojUCYvX-T0qntpcQ" />
-  <link rel="icon" href="/image/favicon.png" type="image/png">
-  <title>Siddhi Vinayak Mart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Siddhi Vinayak A-Z Saving Mart - Your trusted local mart for groceries, bakery, stationery, and home essentials in Telia Kalan, Barhaj, Deoria">
+    <title>Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria</title>
+    <link rel="icon" type="image/png" href="/image/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Design System Variables */
+        :root {
+            /* Color Scheme - Modern 2025 Palette */
+            --primary-color: #d32f2f;
+            --primary-dark: #b71c1c;
+            --primary-light: #ff6659;
+            --secondary-color: #fdd835;
+            --secondary-dark: #c6a700;
+            --background-color: #fafafa;
+            --surface-color: #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.85);
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --shadow-color-medium: rgba(0, 0, 0, 0.12);
+            --shadow-color-heavy: rgba(0, 0, 0, 0.16);
+            --gradient-primary: linear-gradient(135deg, #d32f2f 0%, #ff5252 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff6f00 0%, #ffa726 100%);
+            --gradient-accent: linear-gradient(135deg, #7c4dff 0%, #b47cff 100%);
+            
+            /* Typography - Modern Fonts */
+            --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Poppins', 'Inter', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.75rem;
+            --letter-spacing-tight: -0.02em;
+            --letter-spacing-normal: -0.01em;
+            --letter-spacing-wide: 0.02em;
+            
+            /* Spacing - More generous for 2025 */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4.5rem;
+            --space-4xl: 6rem;
+            
+            /* Layout */
+            --max-width: 1400px;
+            --container-padding: 1.25rem;
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --border-radius-lg: 28px;
+            --border-radius-xl: 32px;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 350ms ease;
+            
+            /* Touch Targets */
+            --touch-target: 48px;
+        }
+        
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-base);
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--background-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: var(--space-md);
+            z-index: 10000;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Notification Bar - Modern Glassmorphic */
+        .notification-bar {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: var(--space-md) var(--container-padding);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.15);
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        
+        /* Navigation - Frosted Glass Effect */
+        .navbar {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            color: var(--text-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--primary-color);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .nav-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: var(--space-sm);
+            min-width: var(--touch-target);
+            min-height: var(--touch-target);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 3px;
+            transition: var(--transition-base);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: var(--transition-fast);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius-sm);
+            position: relative;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all var(--transition-base);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: rgba(211, 47, 47, 0.08);
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 80%;
+        }
+        
+        /* Header/Hero Section - Modern Glass Design */
+        .hero {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe0b2 50%, #ffd54f 100%);
+            padding: var(--space-4xl) var(--container-padding) var(--space-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            padding: var(--space-3xl) var(--space-xl);
+            border-radius: var(--border-radius-xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+                        0 8px 25px rgba(0, 0, 0, 0.08),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-image {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto var(--space-xl);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(211, 47, 47, 0.25),
+                        0 4px 12px rgba(0, 0, 0, 0.1);
+            background: white;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            transition: transform var(--transition-base);
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero h1 {
+            font-size: var(--font-size-3xl);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            font-weight: 800;
+            font-family: var(--font-display);
+            letter-spacing: var(--letter-spacing-tight);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+            letter-spacing: var(--letter-spacing-normal);
+            line-height: 1.6;
+        }
+        
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--space-2xl);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-lg) var(--space-2xl);
+            border-radius: var(--border-radius-lg);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.35),
+                        0 4px 12px rgba(211, 47, 47, 0.2);
+            min-height: var(--touch-target);
+            letter-spacing: var(--letter-spacing-wide);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .cta-button:hover,
+        .cta-button:focus {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(211, 47, 47, 0.45),
+                        0 6px 20px rgba(211, 47, 47, 0.3),
+                        0 0 0 4px rgba(211, 47, 47, 0.1);
+        }
+        
 
-  <!-- SEO basics -->
-  <meta name="description" content="Siddhi Vinayak A-Z Saving Mart in Telia Kalan, Barhaj (Deoria) – groceries, stationery, bakery, and household essentials. Open daily 9am–9pm." />
-  <link rel="canonical" href="https://www.example.com/" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Siddhi Vinayak A-Z Saving Mart" />
-  <meta property="og:description" content="Groceries & daily essentials at great prices. Telia Kalan, Barhaj, Deoria. Open 9am–9pm daily." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://www.example.com/image/store1.jpg" />
-  <meta property="og:url" content="https://www.example.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Icons / fonts -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-X" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-
-    :root {
-      /* Theme palette */
-      --primary: #d32f2f;          /* deep red */
-      --secondary: #fdd835;        /* amber */
-      --bg-dark: #fff8e1;          /* pale yellow */
-      --text-dark: #212121;        /* near-black */
-      --text-light: #ffffff;       /* white */
-      --focus: #2962ff;            /* focus blue */
-      --accent: #ff9800;           /* orange */
-      --accent-2: #ff5722;         /* deep orange */
-      --shadow: 0 8px 24px rgba(0,0,0,0.12);
-      --shadow-2: 0 12px 36px rgba(0,0,0,0.15);
-    }
-
-    /* ---------- Global ---------- */
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.5;
-    }
-    a { color: inherit; text-decoration: none; }
-    a:focus, button:focus { outline: none; }
-    img { max-width: 100%; height: auto; display: block; }
-
-    /* ---------- NAV ---------- */
-    nav {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      position: sticky; top: 0; z-index: 1200;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .nav-container {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-      max-width: 1200px; margin: auto; padding: 0.8rem 1rem;
-    }
-    .logo { display: flex; align-items: center; gap: 13px; flex-wrap: nowrap; }
-    .brand-logo { height: 65px; width: auto; flex-shrink: 0; border-radius: 8px; }
-    .brand-name { font-size: 1.5rem; font-weight: 800; color: #fff; white-space: nowrap; margin-left: -5px; }
-    .menu-toggle { font-size: 1.5rem; display: none; cursor: pointer; color: var(--text-light); background: transparent; border: 0; }
-    .menu-toggle[aria-expanded="true"] .fa-bars { transform: rotate(90deg); }
-    .nav-links { display: flex; gap: 1rem; }
-    .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 600; padding: 0.5rem 0.8rem; border-radius: 6px; transition: background 0.3s; }
-    .nav-links a:hover, .nav-links a:focus { background-color: rgba(255,255,255,0.2); }
-    @media (max-width: 768px) {
-      .brand-logo { height: 45px; }
-      .brand-name { font-size: 1.2rem; flex: 1; text-align: left; }
-      .nav-links { flex-direction: column; width: 100%; display: none; margin-top: 1rem; }
-      .nav-links.active { display: flex; }
-      .logo { width: 100%; display: flex; align-items: center; }
-      .menu-toggle { display: inline-flex; align-items: center; gap: .5rem; margin-left: auto; }
-    }
-
-    /* ---------- NOTIFICATION ---------- */
-    .notification { background-color: #fff3cd; color: #856404; padding: 0.7rem 1rem; text-align: center; font-weight: 600; font-size: 1rem; }
-
-    /* ---------- HEADER (with confetti container) ---------- */
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center; padding: 2rem 1rem 3rem; font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      border-bottom-left-radius: 60% 20px; border-bottom-right-radius: 60% 20px;
-      position: relative; overflow: hidden; /* confetti clipped to header */
-    }
-  .header-confetti {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: visible;
-      top: var(--confetti-top, 0);
-      height: auto;
-      width: 100%;
-    }
-
-    h1 { margin: 0; font-size: 2.5rem; position: relative; z-index: 11; }
-    .ganesh-img {
-      height: 300px;
-      width: auto;
-      margin-bottom: 0.5rem;
-      margin-top: -20px;
-      position: relative;
-      z-index: 11;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* CTA button */
-    .customer-btn {
-      background: linear-gradient(45deg, #088F8F, #0fbfbf);
-      color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 30px;
-      font-weight: 800; font-size: 1rem; margin-top: 15px; display: inline-block;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: transform .2s, box-shadow .2s; position: relative; z-index: 11;
-    }
-    .customer-btn:hover { transform: scale(1.08); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
-
-    /* ---------- MAIN ---------- */
-    main { padding: 2rem 1rem; max-width: 1100px; margin: auto; }
-
-    .plackard {
-      margin: 2rem 0; background: linear-gradient(to right, var(--primary), var(--secondary)); color: var(--text-light);
-      padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; text-align: center; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      cursor: pointer; transition: transform 0.3s ease;
-    }
-    .plackard:hover { transform: scale(1.05); }
-
-    /* ---------- CATALOG SLIDER ---------- */
-    .catalog { position: relative; width: 90%; max-width: 700px; margin: 2rem auto; overflow: hidden; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); background:#fff; }
-    .catalog-track { display: flex; transition: transform 0.6s ease-in-out; }
-    .catalog-track img { width: 100%; height: 400px; flex-shrink: 0; border-radius: 12px; object-fit: contain; background: #fff8e1; padding: 5px; }
-    .catalog-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; font-size: 1.8rem; cursor: pointer; padding: 0.4rem 0.8rem; border-radius: 50%; z-index: 10; transition: background 0.3s; }
-    .catalog-btn:hover { background: rgba(0,0,0,0.7); }
-    .catalog-btn.left { left: 10px; } .catalog-btn.right { right: 10px; }
-
-    /* ---------- ZIGZAG SLIDER ---------- */
-    .slider { position: relative; overflow: hidden; max-width: 1000px; margin: 2rem auto; border-radius: 16px; background: linear-gradient(135deg, #ffcc00, #ff5722, #ff9800); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-    .slides { display: flex; transition: transform 0.6s ease-in-out; }
-    .slide { display: flex; flex: 0 0 100%; padding: 2rem; align-items: center; justify-content: space-between; gap: 1.5rem; color: #fff; }
-    .slide:nth-child(even) { flex-direction: row-reverse; }
-    .slide-content { flex: 1; min-width: 280px; }
-    .slide-content h2 { font-size: 1.8rem; margin-bottom: 0.6rem; }
-    .slide-content p { font-size: 1rem; margin-bottom: 0.8rem; }
-    .slide-content ul { list-style: none; padding: 0; margin: 0; }
-    .slide-content ul li { margin: 0.35rem 0; font-size: 0.95rem; }
-    .slide-media { flex: 1; text-align: center; }
-    .slide-media img, .slide-media video { max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-
-    .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); border: none; color: #fff; font-size: 2rem; cursor: pointer; padding: 0.5rem 1rem; border-radius: 50%; z-index: 10; transition: background 0.3s ease; }
-    .nav-btn:hover { background: rgba(0,0,0,0.7); }
-    .nav-btn.prev { left: 15px; } .nav-btn.next { right: 15px; }
-    @media (max-width: 768px) {
-      .slide { flex-direction: column !important; text-align: center; }
-      .slide-media { margin-top: 1rem; }
-      .slide-content h2 { font-size: 1.4rem; }
-      .slide-content p { font-size: 0.95rem; }
-    }
-
-    /* ---------- VIDEO WRAPPER ---------- */
-    .video-frame { display: flex; justify-content: center; margin: 2rem auto; max-width: 800px; border-radius: 14px; padding: 6px; background: linear-gradient(135deg, #ff512f, #f09819); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; width: 100%; border-radius: 12px; overflow: hidden; background: #000; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-    /* ---------- THEMED BANNER (new) ---------- */
-    .promo-banner {
-      position: relative; max-width: 1100px; margin: 2.5rem auto; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-2);
-      background: linear-gradient(120deg, rgba(211,47,47,.95), rgba(253,216,53,.85));
-      min-height: 260px; display: grid; place-items: center;
-    }
-    .promo-banner__bg { position:absolute; inset:0; background:url('/image/store2.jpg') center/cover no-repeat; filter: brightness(.5) saturate(1.1); }
-    .promo-banner__overlay { position:absolute; inset:0; background: linear-gradient(120deg, rgba(211,47,47,.85), rgba(253,216,53,.65)); }
-    .promo-banner__content { position:relative; z-index:2; color:#fff; text-align:center; padding:2rem 1rem; }
-    .promo-banner__title { font-size:2rem; margin:.2rem 0 .5rem; font-weight:900; letter-spacing:.2px; }
-    .promo-banner__sub { font-size:1.05rem; opacity:.95; margin:.25rem 0 1rem; }
-    .promo-banner__cta { display:inline-block; background:#fff; color:#d84315; font-weight:800; padding:.8rem 1.2rem; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.18); transition:transform .2s; }
-    .promo-banner__cta:hover { transform:translateY(-2px); }
-    @media (max-width: 640px) {
-      .promo-banner__title{font-size:1.5rem}
-      .promo-banner{min-height:220px}
-    }
-
-    /* ---------- THEMED FRAMES (new) ---------- */
-    .section-title { text-align:center; color: var(--primary); font-size: 1.8rem; margin: 2.2rem 0 1rem; font-weight: 900; }
-    .frames-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1rem; margin-bottom: 2.5rem; }
-
-    .frame-grid-3 { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-    .frame-grid-2 { display:grid; grid-template-columns: repeat(2,1fr); gap:18px; }
-    @media (max-width: 992px){ .frame-grid-3{ grid-template-columns: repeat(2,1fr);} }
-    @media (max-width: 640px){ .frame-grid-3, .frame-grid-2{ grid-template-columns: 1fr; } }
-
-    .frame-card {
-      background: #fff; border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; border: 4px solid var(--secondary);
-      position: relative; transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .frame-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.18); }
-    .frame-card__media {
-      display: block;
-      width: 100%;
-      object-fit: cover;
-      height: 340px;
-      min-height: 340px;
-      max-height: 440px;
-    }
-    .frame-card__badge { position:absolute; top:10px; left:10px; background:linear-gradient(45deg,var(--primary),var(--accent)); color:#fff; font-size:.8rem; font-weight:800; padding:.35rem .6rem; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.2); }
-    .frame-card__body { padding: 12px 14px 16px; }
-    .frame-card__title { margin: 0 0 4px; font-size: 1.05rem; font-weight: 800; color:#e65100; }
-    .frame-card__desc { margin: 0; font-size: .95rem; color:#555; }
-
-    /* ---------- TESTIMONIAL GRID 3x2 ---------- */
-    #reviews { max-width: 1100px; margin: 2rem 0 3rem; padding: 0 1rem; }
-    #reviews h3 { text-align:center; color:#e65100; font-size:1.6rem; margin-bottom:14px; }
-    .testimonials-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; align-items: stretch; margin: 0 auto; }
-    @media (max-width: 992px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
-    .testimonial-card {
-      background: #fff; color: #333; padding: 18px; border-radius: 14px; border: 1px solid #fdd835; box-shadow: 0 8px 20px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 12px; transition: all 0.3s ease; position: relative;
-    }
-    .testimonial-quote {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 2.2rem;
-      color: #FFD700;
-      opacity: 0.85;
-      pointer-events: none;
-      font-family: serif;
-      line-height: 1;
-      z-index: 2;
-      transform: rotateY(180deg);
-    }
-    .testimonial-card p { margin: 6px 0 0; line-height: 1.6; color: #333; }
-    .testimonial-card .name { font-weight: 800; color: #333; }
-    .testimonial-card .role { font-size: 0.9rem; opacity: 0.7; color: #333; }
-    .testimonial-card .profile img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid #ffcc80; }
-    .testimonial-card .stars { color: #d32f2f; font-weight: 800; transition: transform 0.3s ease, text-shadow 0.3s ease; }
-    .testimonial-card .score { display: none; }
-
-    /* ---------- CTA BOX (Get Directions) ---------- */
-    .cta-box {
-      display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: space-between;
-      background: linear-gradient(90deg,#ff9800,#fdd835); padding: 18px; border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.08);
-      max-width: 1100px; margin: 0 auto 2rem; color:#fff;
-    }
-    .cta-box h4 { margin: 0 0 6px; color: #fff; }
-    .cta-box p { margin: 0; color: #fffde7; }
-    .cta-btn { display: inline-block; padding: 10px 16px; border-radius: 10px; background: #fff; color: #e65100; font-weight: 800; text-decoration: none; transition: all 0.3s ease; }
-    .cta-btn:hover { background: #ffe082; color: #d84315; }
-
-    /* ---------- FOOTER ---------- */
-    footer { background: linear-gradient(to right, var(--primary), var(--secondary)); color: var(--text-light); text-align: center; padding: 1.5rem 1rem; font-size: 0.95rem; font-weight: 500; }
-    .social-links { margin-bottom: 0.8rem; display:flex; justify-content:center; gap:12px; }
-    .social-links a { color: var(--text-light); font-size: 1.4rem; }
-    .social-links a:hover { text-shadow: 0 0 8px rgba(0,0,0,0.4); }
-
-    /* ---------- ZEPTO-LIKE FOOTER (detailed) ---------- */
-    .zepto-footer { background: #fafafa; color: #333; padding: 50px 8% 20px; border-top: 2px solid #f0f0f0; font-family: "Poppins", sans-serif; }
-    .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
-    .footer-section { flex: 1 1 250px; min-width: 220px; }
-    .footer-logo {
-      width: 120px;
-      margin-bottom: 12px;
-      border: 4px solid #d32f2f;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(211,47,47,0.12);
-      background: #fff;
-      padding: 0;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      object-fit: cover;
-      height: 120px;
-    }
-    .footer-about { font-size: 14px; color: #555; margin-bottom: 15px; line-height: 1.6; }
-    .footer-links { flex: 1 1 150px; min-width: 160px; }
-    .footer-links h4 { font-size: 15px; margin-bottom: 12px; color: #fe3930; font-weight: 600; }
-    .footer-links ul { list-style: none; padding-left:0; }
-    .footer-links ul li { margin-bottom: 10px; }
-    .footer-links ul li a { text-decoration: none; font-size: 14px; color: #555; transition: 0.3s; }
-    .footer-links ul li a:hover { color: #fe3930; }
-    .footer-apps { flex: 1 1 200px; min-width: 220px; }
-    .footer-apps h4 { font-size: 15px; margin-bottom: 10px; color: #fe3930; font-weight: 600; }
-    .store-btn { display: inline-flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; margin: 5px 0; text-decoration: none; color: #000; font-size: 14px; transition: 0.3s; }
-    .store-btn:hover { background: #fff3cd; border-color: #fe3930; }
-    .footer-bottom { border-top: 1px solid #eaeaea; text-align: center; margin-top: 40px; padding-top: 20px; font-size: 13px; color: #666; }
-    @media (max-width: 768px) {
-      .footer-container { flex-direction: column; gap: 30px; }
-      .footer-section, .footer-links, .footer-apps { width: 100%; }
-    }
-
-    /* ---------- Confetti pieces style & falling animation (header-only) ---------- */
-    .confetti-piece { position: absolute; width: 10px; height: 10px; border-radius: 50%; opacity: 0.95; will-change: transform, opacity; }
-    @keyframes confettiFall {
-      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-      100% { transform: var(--fall-transform, translateY(120%)) rotate(720deg); opacity: 0; }
-    }
-
-    /* ---------- Reduced motion preferences ---------- */
-    @media (prefers-reduced-motion: reduce) {
-      .slides, .catalog-track { transition: none !important; }
-      .customer-btn { transition: none !important; }
-    }
-
-    /* ---------- Responsive Enhancements ---------- */
-    @media (max-width: 1200px) { main, .frames-wrap, #reviews, .promo-banner, .cta-box { max-width: 98vw; } }
-    @media (max-width: 992px) { .frame-grid-3 { grid-template-columns: repeat(2,1fr); } .promo-banner, .slider, .video-frame, .cta-box, #reviews { max-width: 98vw; } .footer-container { gap: 20px; } }
-    @media (max-width: 820px) { .catalog-track img, .slide-media img, .slide-media video { height: 220px !important; } .promo-banner__content { padding: 1.2rem 0.5rem; } .footer-logo { width: 80px; } }
-    @media (max-width: 768px) { .frame-grid-3, .frame-grid-2 { grid-template-columns: 1fr; } .footer-container { flex-direction: column; gap: 18px; } .footer-section, .footer-links, .footer-apps { width: 100%; min-width: 0; } .promo-banner { min-height: 160px; } .slider, .video-frame, .cta-box, #reviews { padding: 0 2vw; } .slide-content { min-width: 0; } .slide { padding: 1rem; } .catalog { width: 99vw; } }
-    @media (max-width: 600px) { .catalog-track img, .slide-media img, .slide-media video { height: 120px !important; } .promo-banner__title { font-size: 1.1rem; } .footer-logo { width: 54px; } .customer-btn, .cta-btn { font-size: 0.95rem; padding: 8px 12px; } .testimonial-card { padding: 10px; } }
-    @media (min-width: 1400px) { main, .frames-wrap, #reviews, .promo-banner, .cta-box { max-width: 1300px; } .catalog { max-width: 900px; } }
-    /* Touch target improvements */
-    button, .cta-btn, .customer-btn, .store-btn { min-height: 44px; min-width: 44px; font-size: 1rem; }
-    .catalog-btn, .nav-btn { min-width: 44px; min-height: 44px; font-size: 2rem; }
-    /* Ensure images never overflow */
-    img, video { max-width: 100%; height: auto; }
-    /* Prevent horizontal scroll */
-    html, body { max-width: 100vw; overflow-x: hidden; }
-
-    /* ---------- Hand-drawn style underline for headings ---------- */
-    .hand-underline {
-      display: inline-block;
-      position: relative;
-      font-family: 'Caveat', cursive;
-      font-size: 2.1rem;
-      background: url('data:image/svg+xml;utf8,<svg width="100%25" height="18" viewBox="0 0 300 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13 Q50 18 100 13 Q150 8 200 15 Q250 20 295 10" stroke="%23e53935" stroke-width="5" stroke-linecap="round" fill="none"/></svg>') repeat-x left bottom;
-      background-size: 100% 18px;
-      padding-bottom: 6px;
-      color: #d32f2f;
-      letter-spacing: 0.5px;
-    }
-  </style>
+        
+        /* Container */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--container-padding);
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2xl);
+            text-align: center;
+            font-family: var(--font-display);
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: 1.3;
+        }
+        
+        /* Promotional Placard - Floating Card */
+        .placard {
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            color: white;
+            padding: var(--space-2xl);
+            border-radius: var(--border-radius-xl);
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.3),
+                        0 4px 20px rgba(76, 175, 80, 0.15);
+            margin-bottom: var(--space-3xl);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+        
+        .placard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(76, 175, 80, 0.35),
+                        0 8px 30px rgba(76, 175, 80, 0.2);
+        }
+        
+        .placard h2 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-md);
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .placard p {
+            font-size: var(--font-size-lg);
+            opacity: 0.95;
+            line-height: 1.7;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .slider {
+            overflow: hidden;
+            border-radius: var(--border-radius-xl);
+            background: white;
+            box-shadow: 0 8px 30px var(--shadow-color-medium);
+        }
+        
+        .slider-wrapper {
+            display: flex;
+            transition: transform var(--transition-slow);
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--primary-color);
+            border: 1px solid rgba(211, 47, 47, 0.15);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+        }
+        
+        .slider-btn:hover,
+        .slider-btn:focus {
+            background: white;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.25),
+                        0 4px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .slider-btn.prev {
+            left: var(--space-md);
+        }
+        
+        .slider-btn.next {
+            right: var(--space-md);
+        }
+        
+        /* Video Section - Modern Frame */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius-xl);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            margin-bottom: var(--space-3xl);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius-xl);
+        }
+        
+        /* Banner - Floating Glass Card */
+        .banner {
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-3xl) var(--space-2xl);
+            border-radius: var(--border-radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            box-shadow: 0 12px 40px rgba(211, 47, 47, 0.35),
+                        0 4px 20px rgba(211, 47, 47, 0.2);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+        
+        .banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(211, 47, 47, 0.4),
+                        0 8px 30px rgba(211, 47, 47, 0.25);
+        }
+        
+        .banner h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-lg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .banner p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-2xl);
+            opacity: 0.95;
+            line-height: 1.7;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* Zigzag Feature Slider - Glass Cards */
+        .zigzag-slide {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: 0 12px 40px var(--shadow-color-medium);
+            padding: var(--space-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .zigzag-slide.active {
+            display: block;
+        }
+        
+        .zigzag-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        .zigzag-text {
+            flex: 1;
+        }
+        
+        .zigzag-text h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--primary-color);
+            margin-bottom: var(--space-lg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .zigzag-text p {
+            font-size: var(--font-size-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.8;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .zigzag-text ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .zigzag-text ul li {
+            padding: var(--space-sm) 0;
+            padding-left: var(--space-xl);
+            position: relative;
+            font-size: var(--font-size-base);
+        }
+        
+        .zigzag-text ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .zigzag-text ul li::after {
+            content: '✓';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        
+        .zigzag-media {
+            flex: 1;
+            max-width: 100%;
+        }
+        
+        .zigzag-media img,
+        .zigzag-media video {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Collections */
+        .collection-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .collection-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-base);
+            position: relative;
+        }
+        
+        .collection-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                        0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .collection-card.frame-green {
+            border: 4px solid #4caf50;
+        }
+        
+        .collection-card.frame-orange {
+            border: 4px solid #ff9800;
+        }
+        
+        .collection-card.frame-blue {
+            border: 4px solid #2196f3;
+        }
+        
+        .collection-card.frame-red {
+            border: 4px solid var(--primary-color);
+        }
+        
+        .collection-card.frame-purple {
+            border: 4px solid #9c27b0;
+        }
+        
+        .collection-badge {
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            z-index: 1;
+            letter-spacing: var(--letter-spacing-wide);
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+        }
+        
+        .collection-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .collection-content {
+            padding: var(--space-md) var(--space-lg);
+        }
+        
+        .collection-content h3 {
+            font-size: var(--font-size-xl);
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .collection-content p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* CTA Box - Modern Gradient Card */
+        .cta-box {
+            background: var(--gradient-accent);
+            color: white;
+            padding: var(--space-3xl) var(--space-2xl);
+            border-radius: var(--border-radius-xl);
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            box-shadow: 0 12px 40px rgba(103, 58, 183, 0.35),
+                        0 4px 20px rgba(103, 58, 183, 0.2);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+        
+        .cta-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(103, 58, 183, 0.4),
+                        0 8px 30px rgba(103, 58, 183, 0.25);
+        }
+        
+        .cta-box h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-lg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .cta-box p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-2xl);
+            opacity: 0.95;
+            line-height: 1.7;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .cta-box-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #673ab7;
+            padding: var(--space-lg) var(--space-2xl);
+            border-radius: var(--border-radius-lg);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            min-height: var(--touch-target);
+            letter-spacing: var(--letter-spacing-wide);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-box-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(103, 58, 183, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-box-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .cta-box-button:hover,
+        .cta-box-button:focus {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25),
+                        0 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Testimonials - Glass Cards */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-2xl);
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: var(--space-2xl);
+            border-radius: var(--border-radius-xl);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-base);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                        0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+        
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-info h4 {
+            font-size: var(--font-size-lg);
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .testimonial-info p {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .testimonial-rating {
+            display: flex;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+        }
+        
+        .star {
+            color: var(--secondary-color);
+            font-size: var(--font-size-lg);
+        }
+        
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: var(--font-size-base);
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* Footer - Minimal Modern Style */
+        .footer {
+            background: white;
+            color: var(--text-primary);
+            padding: var(--space-3xl) var(--container-padding) var(--space-xl);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-2xl);
+        }
+        
+        .footer-section h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-lg);
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: var(--space-lg);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+        }
+        
+        .footer-section p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(211, 47, 47, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+            font-size: var(--font-size-lg);
+            border: 1px solid rgba(211, 47, 47, 0.15);
+        }
+        
+        .social-link:hover,
+        .social-link:focus {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.35);
+            border-color: transparent;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
+            font-size: var(--font-size-base);
+        }
+        
+        .footer-links a:hover,
+        .footer-links a:focus {
+            color: var(--primary-color);
+            padding-left: var(--space-sm);
+        }
+        
+        .app-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .app-button {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--background-color);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--border-radius-sm);
+            transition: all var(--transition-base);
+            border: 1px solid var(--border-color);
+        }
+        
+        .app-button:hover,
+        .app-button:focus {
+            background: white;
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .app-icon {
+            font-size: var(--font-size-2xl);
+        }
+        
+        .app-text small {
+            display: block;
+            font-size: var(--font-size-xs);
+            opacity: 0.8;
+        }
+        
+        .app-text strong {
+            font-size: var(--font-size-base);
+        }
+        
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: var(--space-2xl) auto 0;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* Responsive Design */
+        
+        /* Mobile First - Base styles above are for mobile */
+        
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) {
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+            :root {
+                --container-padding: 1.5rem;
+            }
+            
+            .nav-container {
+                height: 72px;
+            }
+            
+            .hero {
+                padding: var(--space-3xl) var(--container-padding) var(--space-3xl);
+            }
+            
+            .hero h1 {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .zigzag-content {
+                flex-direction: row;
+            }
+            
+            .zigzag-slide:nth-child(even) .zigzag-content {
+                flex-direction: row-reverse;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Large devices (desktops, 1024px and up) */
+        @media (min-width: 1024px) {
+            :root {
+                --container-padding: 2rem;
+            }
+            
+            .hamburger {
+                display: none;
+            }
+            
+            .nav-links {
+                display: flex !important;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+            
+            .slider-btn {
+                width: 56px;
+                height: 56px;
+            }
+        }
+        
+        /* Extra large devices (large desktops, 1400px and up) */
+        @media (min-width: 1400px) {
+            .container {
+                padding: var(--space-3xl) var(--container-padding);
+            }
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 1023px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                gap: 0;
+                padding: var(--space-lg) 0;
+                display: none;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: var(--space-md) var(--container-padding);
+                border-radius: 0;
+            }
+        }
+        
+        /* Slider Dots Indicators */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+            padding: var(--space-md) 0;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(211, 47, 47, 0.2);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .slider-dot.active {
+            background: var(--gradient-primary);
+            width: 32px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(211, 47, 47, 0.4);
+        }
+        
+        .slider-dot:hover {
+            background: rgba(211, 47, 47, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Modern Focus States */
+        *:focus-visible {
+            outline: 3px solid rgba(211, 47, 47, 0.4);
+            outline-offset: 4px;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(211, 47, 47, 0.4);
+            outline-offset: 4px;
+        }
+        
+        /* Smooth Scrolling Enhancement */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+        
+        /* Touch Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a,
+            .cta-button,
+            .slider-btn,
+            .cta-box-button {
+                min-height: var(--touch-target);
+                min-width: var(--touch-target);
+            }
+        }
+        
+        /* Particle Background Effect */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 111, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(253, 216, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 143, 0, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Navigation Menu -->
-  <nav aria-label="Main navigation">
-    <div class="nav-container">
-      <div class="logo">
-        <img src="/image/favicon.png" width="65" height="65" alt="Siddhi Vinayak Mart logo" class="brand-logo" loading="eager" decoding="async">
-        <span class="brand-name">Siddhi Vinayak A-Z Saving Mart</span>
-        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-links" onclick="toggleMenu(this)">
-          <span class="hamburger" aria-hidden="true" style="display:inline-block;width:28px;height:22px;vertical-align:middle;">
-            <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect y="2" width="28" height="3" rx="1.5" fill="currentColor"/>
-              <rect y="9.5" width="28" height="3" rx="1.5" fill="currentColor"/>
-              <rect y="17" width="28" height="3" rx="1.5" fill="currentColor"/>
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div class="nav-links" id="primary-links" role="menubar">
-        <a role="menuitem" href="index.html">Home</a>
-        <a role="menuitem" href="about.html">About</a>
-        <a role="menuitem" href="/products/">Products</a>
-        <a role="menuitem" href="store.html">Store</a>
-        <a role="menuitem" href="contact.html">Contact</a>
-        <a role="menuitem" href="login-register.html">Login</a>
-      </div>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Notification Bar -->
+    <div class="notification-bar" id="notification-bar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+        Special Festival Offers! Get up to 30% off on groceries &amp; essentials
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:8px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     </div>
-  </nav>
-
-  <!-- Notification -->
-  <div class="notification" role="status" aria-live="polite"> 🛒 Limited-time discounts on groceries & daily essentials. Visit our store today!</div>
-
-  <!-- Header -->
-  <header style="position: relative;">
-    <div class="header-confetti" aria-hidden="true"></div>
-    <div class="header-content" style="position: relative; z-index: 2;">
-      <img src="https://static.vecteezy.com/system/resources/previews/054/247/473/large_2x/transparent-lord-ganesha-statue-for-invitations-and-cards-free-png.png" alt="Siddhi Vinayak A-Z Saving Mart" class="ganesh-img" width="400" height="300" loading="eager">
-      <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
-      <p style="position: relative; z-index:11;">Telia Kalan, Barhaj, Deoria, Uttar Pradesh</p>
-      <a href="login-register.html" class="customer-btn">Become Our Customer</a>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main>
-    <div class="plackard" tabindex="0">📢 Mega Offers This Week Only: Upto 30% OFF on Grocery Combos!</div>
-    <h2 class="section-title">Explore Our Mart</h2>
-
-    <!-- Catalog -->
-    <div class="catalog" aria-label="Catalog slider">
-      <div class="catalog-track">
-        <img src="/image/grocery.png" alt="Grocery staples assortment" width="1280" height="400" loading="lazy">
-        <img src="https://cdn.zeptonow.com/production/tr:w-1280,ar-1292-744,pr-true,f-auto,q-80/inventory/banner/259f887f-fdd1-44d4-8338-51ccd485c819.png" alt="Stationery banner" width="1280" height="400" loading="lazy">
-        <img src="https://cdn.zeptonow.com/production/tr:w-272,ar-1200-624,pr-true,f-auto,q-80/inventory/banner/3ea12c20-c21c-4b17-809f-9d26ed560477.png" alt="Stationery Items" width="1200" height="400" loading="lazy">
-        <img src="https://cdn.zeptonow.com/production/tr:w-1280,ar-2368-528,pr-true,f-auto,q-80/inventory/banner/eaff67d6-aa53-40fe-a6ba-38793acdd518.png" alt="Stationery Supplies" width="1280" height="400" loading="lazy">
-        <img src="/image/bakery.jpg" alt="Bakery fresh breads" width="1280" height="400" loading="lazy">
-        <img src="/image/grocery1.jpeg" alt="Grocery aisle" width="1280" height="400" loading="lazy">
-        <img src="/image/banner.png" alt="Crockery and kitchenware" width="1280" height="400" loading="lazy">
-        <img src="/image/electronics.jpg" alt="Electronics and appliances" width="1280" height="400" loading="lazy">
-        <img src="/image/logo.png" alt="Fresh fruits" width="1280" height="400" loading="lazy">
-        <img src="/image/store1.jpg" alt="Store Interior" width="1280" height="400" loading="lazy">
-        <img src="/image/store2.jpg" alt="Store Aisle" width="1280" height="400" loading="lazy">
-        <img src="/image/store3.webp" alt="Store View" width="1280" height="400" loading="lazy">
-      </div>
-      <button class="catalog-btn left" aria-label="Previous catalog image">&#10094;</button>
-      <button class="catalog-btn right" aria-label="Next catalog image">&#10095;</button>
-    </div>
-
-    <!-- Video -->
-    <div class="video-frame" aria-label="Intro video">
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM?rel=0&modestbranding=1&controls=1" title="Store intro video" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-    <div style="text-align: center;">[ This video is for representational purpose only ]</div>
-
-    <!-- Themed Promotional Banner (new) -->
-    <section class="promo-banner" aria-label="Promotional banner">
-      <div class="promo-banner__bg" aria-hidden="true"></div>
-      <div class="promo-banner__overlay" aria-hidden="true"></div>
-      <div class="promo-banner__content">
-        <div class="promo-banner__title">Festival Bonanza — Save Big This Week!</div>
-        <div class="promo-banner__sub">Combo deals on groceries, bakery, and home essentials. Limited stocks. Hurry!</div>
-        <a class="promo-banner__cta" href="/products/" rel="noopener">Shop Deals</a>
-      </div>
-    </section>
-
-    <!-- Zigzag Sliding Panel -->
-    <div class="slider" aria-label="Feature slider">
-      <div class="slides" id="slides">
-        <!-- Slide 1 (text left, image right, image sized like video) -->
-        <div class="slide">
-          <div class="slide-content">
-            <h2>Prompt Boost – Instant Enhancement</h2>
-            <p>No need to craft the perfect question. Just write what you want, hit Enhance Prompt, and get smarter, richer answers.</p>
-            <ul>
-              <li>✔ Turn rough ideas into perfect prompts</li>
-              <li>✔ Get 10x better responses instantly</li>
-              <li>✔ No prompt engineering skills needed</li>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="nav-logo">🛒</div>
+                <span>Siddhi Vinayak A-Z Saving Mart</span>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="store.html">Store</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login-register.html">Login</a></li>
             </ul>
-          </div>
-          <div class="slide-media">
-            <img src="https://via.placeholder.com/1000x600.png?text=Slide+1+Image" alt="Illustration for prompt boost" style="width:100%;height:600px;object-fit:cover;max-width:1000px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);" loading="lazy">
-          </div>
         </div>
-
-        <!-- Slide 2 (image left, text right) -->
-        <div class="slide">
-          <div class="slide-content">
-            <h2>Festival Savings</h2>
-            <p>Celebrate with us and enjoy amazing discounts on groceries & essentials this festive season.</p>
-            <ul>
-              <li>✔ Fresh fruits & vegetables</li>
-              <li>✔ Daily household needs</li>
-              <li>✔ Exclusive festival offers</li>
-            </ul>
-          </div>
-          <div class="slide-media">
-            <video autoplay muted loop playsinline width="1000" height="600" style="width:100%;height:600px;max-width:1000px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <!-- Slide 3 (brand slide, text left, image right) -->
-        <div class="slide">
-          <div class="slide-content">
-            <h2>Why Siddhi Vinayak Mart?</h2>
-            <p>Your trusted local mart for groceries, bakery, stationery, and home essentials. Experience quality, savings, and friendly service—every day!</p>
-            <ul>
-              <li>✔ Family-owned, community-focused</li>
-              <li>✔ Wide range of daily essentials</li>
-              <li>✔ Clean, organized, and welcoming store</li>
-            </ul>
-          </div>
-          <div class="slide-media">
-            <img src="/image/favicon.png" alt="Siddhi Vinayak Mart Logo" style="width:220px;height:220px;object-fit:cover;border-radius:50%;background:#fff8e1;box-shadow:0 4px 12px rgba(0,0,0,0.18);margin:auto;" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <button class="nav-btn prev" onclick="moveSlide(-1)" aria-label="Previous slide">&#10094;</button>
-      <button class="nav-btn next" onclick="moveSlide(1)" aria-label="Next slide">&#10095;</button>
-    </div>
-
-    <!-- ====== NEW: THEMED FRAMES SECTION (3-frame collection) ====== -->
-    <section aria-label="Featured collections" class="frames-wrap">
-      <h2 class="section-title">Curated Collections — 3 Frame Set</h2>
-      <div class="frame-grid-3">
-        <article class="frame-card">
-          <span class="frame-card__badge">NEW</span>
-          <img class="frame-card__media" src="https://content.jdmagicbox.com/v2/comp/hyderabad/g7/040pxx40.xx40.170118134548.z3g7/catalogue/shekar-organic-agencies-kphb-colony-hyderabad-organic-vegetable-retailers-4a58h.jpg" alt="Fresh vegetables collection" width="1200" height="900" loading="lazy">
-          <div class="frame-card__body">
-            <h3 class="frame-card__title">Farm Fresh Veggies</h3>
-            <p class="frame-card__desc">Green and clean vegetables sourced daily from local farms.</p>
-          </div>
-        </article>
-        <article class="frame-card">
-          <span class="frame-card__badge">HOT</span>
-          <img class="frame-card__media" src="https://bhukkadcompany.com/wp/wp-content/uploads/2024/06/The-Ultimate-List-15-Best-Bakeries-in-Mumbai-for-Dessert-Lovers.png" alt="Assorted bakery breads" width="1200" height="900" loading="lazy">
-          <div class="frame-card__body">
-            <h3 class="frame-card__title">Bakery Delights</h3>
-            <p class="frame-card__desc">Freshly baked breads, cookies, and pastries every morning.</p>
-          </div>
-        </article>
-        <article class="frame-card">
-          <span class="frame-card__badge">SAVE</span>
-          <img class="frame-card__media" src="https://www.meijer.com/content/dam/meijer/digital/web-and-graphics/2023/household-essentials/site-assets/D-HHE-Subf1-20220101-1x1.jpg" alt="Home Essentials" width="1200" height="900" loading="lazy">
-          <div class="frame-card__body">
-            <h3 class="frame-card__title">Home Essentials</h3>
-            <p class="frame-card__desc">Daily-use staples, cleaning, and personal care at great prices.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ====== NEW: THEMED FRAMES SECTION (2-frame collection) ====== -->
-    <section aria-label="Special picks" class="frames-wrap">
-      <h2 class="section-title">Editors' Picks — 2 Frame Set</h2>
-      <div class="frame-grid-2">
-        <article class="frame-card">
-          <span class="frame-card__badge">TOP</span>
-          <img class="frame-card__media" src="https://www.kriparamfruitwala.com/cdn/shop/collections/12_eb71d652-f2e1-432d-8b14-fcbf9729addf.png?v=1739342796" alt="Colorful fruit basket" width="1200" height="900" loading="lazy">
-          <div class="frame-card__body">
-            <h3 class="frame-card__title">Seasonal Fruits</h3>
-            <p class="frame-card__desc">Juicy, handpicked, and delivered fresh to your neighborhood.</p>
-          </div>
-        </article>
-        <article class="frame-card">
-          <span class="frame-card__badge">WOW</span>
-          <img class="frame-card__media" src="https://www.haldiram.com/media/.renditions/wysiwyg/homepage/Savouries_Banner_1_.jpg?auto=webp&format=pjpg&quality=85" alt="Assorted snacks and namkeen" width="1200" height="900" loading="lazy">
-          <div class="frame-card__body">
-            <h3 class="frame-card__title">Snacks & Namkeen</h3>
-            <p class="frame-card__desc">All-time favorites for every tea-time mood and party platter.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Contact & Visit CTA -->
-    <section aria-label="Contact & Visit" style="margin-bottom:24px;">
-      <div class="cta-box">
-        <div>
-          <h4>Visit Our Store</h4>
-          <p>Telia Kalan, Barhaj, Deoria — Open 9am–9pm daily</p>
-        </div>
-        <div>
-          <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" rel="noopener" class="cta-btn">Get Directions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials (3 x 2) -->
-    <section id="reviews" aria-labelledby="reviews-title">
-      <h3 id="reviews-title" class="hand-underline" style="text-align:center;display:block;margin-left:auto;margin-right:auto;">What Our Customers Say</h3>
-
-      <div class="testimonials-grid">
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>Amazing shopping experience at Siddhi Vinayak Mart! Great quality products and warm service. I love their grocery combos and quick billing.</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sudha" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Sudha Choudhary</div>
-              <div class="role">Regular customer • Barhaj</div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="/image/favicon.png" alt="Lord Ganesh - Siddhi Vinayak" loading="eager">
             </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>The mart has everything under one roof. Fresh vegetables, groceries, household items — all at reasonable prices. Very convenient for families.</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ramesh" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Ramesh Gupta</div>
-              <div class="role">Shopper • Deoria</div>
+            <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
+            <p class="hero-subtitle">Your One-Stop Shop for Daily Needs</p>
+            <div class="hero-location">
+                <span>📍</span>
+                <span>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</span>
             </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>Staff is polite and helpful. Billing is super fast and they also give small discounts on combos. Highly recommended for everyone in the area.</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Priya" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Priya Singh</div>
-              <div class="role">Local Teacher • Barhaj</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>I always get fresh grocery here. The best part is cleanliness and organized racks which make shopping easier. Barhaj needed a mart like this!</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Amit" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Amit Verma</div>
-              <div class="role">Businessman • Deoria</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>Visiting Siddhi Vinayak Mart saves me time. I don’t need to go to different shops. They maintain good quality and staff treats customers well.</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Neha" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Neha Tiwari</div>
-              <div class="role">Housewife • Barhaj</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <span class="testimonial-quote">“</span>
-          <div class="stars-score">
-            <div class="stars" aria-label="5 stars">★★★★★</div>
-          </div>
-          <p>Great offers during festivals and best place to shop for household needs. Very satisfied with the mart. Strongly suggest everyone to visit.</p>
-          <div class="profile">
-            <img src="https://randomuser.me/api/portraits/men/53.jpg" alt="Sanjay" width="56" height="56" loading="lazy"/>
-            <div>
-              <div class="name">Sanjay Kumar</div>
-              <div class="role">Farmer • Barhaj</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div style="text-align:center;margin-top:12px;color:#666;font-size:0.95rem;">
-        These are sample testimonials — replace with real content as needed.
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ZEPTO-LIKE FOOTER -->
-  <footer class="zepto-footer" aria-label="Footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <img src="/image/favicon.png" alt="Siddhi Vinayak Mart" class="footer-logo" width="120" height="120" loading="lazy" style="display: block; margin-left: auto; margin-right: auto;" />
+            <a href="#contact" class="cta-button">Become Our Customer</a>
         </div>
-        <p class="footer-about" style="text-align: center;">Siddhi Vinayak Mart — your trusted online marketplace for daily essentials, groceries, and more.</p>
-        <div class="social-links" aria-label="Social links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Promotional Placard -->
+            <div class="placard">
+                <h2>🌟 Fresh Arrivals Daily!</h2>
+                <p>Shop the freshest produce, groceries &amp; essentials at unbeatable prices</p>
+            </div>
+            
+            <!-- Catalog Slider -->
+            <section class="section" aria-label="Product catalog">
+                <h2 class="section-title">Explore Our Collections</h2>
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slider-wrapper" id="catalog-slider">
+                            <div class="slide"><img src="/image/grocery.png" alt="Grocery staples assortment" loading="lazy"></div>
+                            <div class="slide"><img src="https://cdn.zeptonow.com/production/tr:w-1280,ar-1292-744,pr-true,f-auto,q-80/inventory/banner/259f887f-fdd1-44d4-8338-51ccd485c819.png" alt="Stationery banner" loading="lazy"></div>
+                            <div class="slide"><img src="https://cdn.zeptonow.com/production/tr:w-272,ar-1200-624,pr-true,f-auto,q-80/inventory/banner/3ea12c20-c21c-4b17-809f-9d26ed560477.png" alt="Stationery Items" loading="lazy"></div>
+                            <div class="slide"><img src="https://cdn.zeptonow.com/production/tr:w-1280,ar-2368-528,pr-true,f-auto,q-80/inventory/banner/eaff67d6-aa53-40fe-a6ba-38793acdd518.png" alt="Stationery Supplies" loading="lazy"></div>
+                            <div class="slide"><img src="/image/bakery.jpg" alt="Bakery fresh breads" loading="lazy"></div>
+                            <div class="slide"><img src="/image/grocery1.jpeg" alt="Grocery aisle" loading="lazy"></div>
+                            <div class="slide"><img src="/image/banner.png" alt="Crockery and kitchenware" loading="lazy"></div>
+                            <div class="slide"><img src="/image/electronics.jpg" alt="Electronics and appliances" loading="lazy"></div>
+                            <div class="slide"><img src="/image/logo.png" alt="Fresh fruits" loading="lazy"></div>
+                            <div class="slide"><img src="/image/store1.jpg" alt="Store Interior" loading="lazy"></div>
+                            <div class="slide"><img src="/image/store2.jpg" alt="Store Aisle" loading="lazy"></div>
+                            <div class="slide"><img src="/image/store3.webp" alt="Store View" loading="lazy"></div>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" aria-label="Previous slide" onclick="moveCatalog(-1)">‹</button>
+                    <button class="slider-btn next" aria-label="Next slide" onclick="moveCatalog(1)">›</button>
+                </div>
+                <div class="slider-dots" id="catalog-dots"></div>
+            </section>
+            
+            <!-- Embedded Video -->
+            <section class="section" aria-label="Store video">
+                <h2 class="section-title">Watch Our Store in Action</h2>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Siddhi Vinayak A-Z Saving Mart Video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </section>
+            
+            <!-- Promotional Banner -->
+            <div class="banner">
+                <h2>🔥 Mega Deals This Week!</h2>
+                <p>Don't miss out on our special combo offers and festival discounts</p>
+                <a href="#products" class="cta-button">Shop Deals</a>
+            </div>
+            
+            <!-- Zigzag Feature Slider -->
+            <section class="section" aria-label="Store features">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <div class="slider-container">
+                    <div class="slider" style="background: transparent; box-shadow: none;">
+                        <div id="zigzag-slider">
+                            <!-- Slide 1 -->
+                            <div class="zigzag-slide active">
+                                <div class="zigzag-content">
+                                    <div class="zigzag-text">
+                                        <h3>Prompt Boost – Instant Enhancement</h3>
+                                        <p>No need to craft the perfect question. Just write what you want, hit Enhance Prompt, and get smarter, richer answers.</p>
+                                        <ul>
+                                            <li>Turn rough ideas into perfect prompts</li>
+                                            <li>Get 10x better responses instantly</li>
+                                            <li>No prompt engineering skills needed</li>
+                                        </ul>
+                                    </div>
+                                    <div class="zigzag-media">
+                                        <img src="https://via.placeholder.com/1000x600.png?text=Slide+1+Image" alt="Prompt Enhancement Feature" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2 -->
+                            <div class="zigzag-slide">
+                                <div class="zigzag-content">
+                                    <div class="zigzag-text">
+                                        <h3>Festival Savings</h3>
+                                        <p>Celebrate with us and enjoy amazing discounts on groceries &amp; essentials this festive season.</p>
+                                        <ul>
+                                            <li>Fresh fruits &amp; vegetables</li>
+                                            <li>Daily household needs</li>
+                                            <li>Exclusive festival offers</li>
+                                        </ul>
+                                    </div>
+                                    <div class="zigzag-media">
+                                        <video controls preload="metadata" style="width: 100%; border-radius: var(--border-radius);">
+                                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3 -->
+                            <div class="zigzag-slide">
+                                <div class="zigzag-content">
+                                    <div class="zigzag-text">
+                                        <h3>Why Siddhi Vinayak Mart?</h3>
+                                        <p>Your trusted local mart for groceries, bakery, stationery, and home essentials. Experience quality, savings, and friendly service—every day!</p>
+                                        <ul>
+                                            <li>Family-owned, community-focused</li>
+                                            <li>Wide range of daily essentials</li>
+                                            <li>Clean, organized, and welcoming store</li>
+                                        </ul>
+                                    </div>
+                                    <div class="zigzag-media">
+                                        <img src="/image/favicon.png" alt="Siddhi Vinayak Mart" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" aria-label="Previous feature" onclick="moveZigzag(-1)">‹</button>
+                    <button class="slider-btn next" aria-label="Next feature" onclick="moveZigzag(1)">›</button>
+                </div>
+                <div class="slider-dots" id="zigzag-dots"></div>
+            </section>
+            
+            <!-- 3-Frame Collection -->
+            <section class="section" aria-label="Top product collections">
+                <h2 class="section-title">Our Top Categories</h2>
+                <div class="collection-grid">
+                    <div class="collection-card frame-green">
+                        <span class="collection-badge">NEW</span>
+                        <img src="https://content.jdmagicbox.com/v2/comp/hyderabad/g7/040pxx40.xx40.170118134548.z3g7/catalogue/shekar-organic-agencies-kphb-colony-hyderabad-organic-vegetable-retailers-4a58h.jpg" alt="Farm Fresh Veggies" class="collection-image" loading="lazy">
+                        <div class="collection-content">
+                            <h3>Farm Fresh Veggies</h3>
+                            <p>Green and clean vegetables sourced daily from local farms.</p>
+                        </div>
+                    </div>
+                    <div class="collection-card frame-orange">
+                        <span class="collection-badge">HOT</span>
+                        <img src="https://bhukkadcompany.com/wp/wp-content/uploads/2024/06/The-Ultimate-List-15-Best-Bakeries-in-Mumbai-for-Dessert-Lovers.png" alt="Bakery Delights" class="collection-image" loading="lazy">
+                        <div class="collection-content">
+                            <h3>Bakery Delights</h3>
+                            <p>Freshly baked breads, cookies, and pastries every morning.</p>
+                        </div>
+                    </div>
+                    <div class="collection-card frame-blue">
+                        <span class="collection-badge">SAVE</span>
+                        <img src="https://www.meijer.com/content/dam/meijer/digital/web-and-graphics/2023/household-essentials/site-assets/D-HHE-Subf1-20220101-1x1.jpg" alt="Home Essentials" class="collection-image" loading="lazy">
+                        <div class="collection-content">
+                            <h3>Home Essentials</h3>
+                            <p>Daily-use staples, cleaning, and personal care at great prices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 2-Frame Collection -->
+            <section class="section" aria-label="Featured collections">
+                <h2 class="section-title">Customer Favorites</h2>
+                <div class="collection-grid">
+                    <div class="collection-card frame-red">
+                        <span class="collection-badge">TOP</span>
+                        <img src="https://www.kriparamfruitwala.com/cdn/shop/collections/12_eb71d652-f2e1-432d-8b14-fcbf9729addf.png?v=1739342796" alt="Seasonal Fruits" class="collection-image" loading="lazy">
+                        <div class="collection-content">
+                            <h3>Seasonal Fruits</h3>
+                            <p>Juicy, handpicked, and delivered fresh to your neighborhood.</p>
+                        </div>
+                    </div>
+                    <div class="collection-card frame-purple">
+                        <span class="collection-badge">WOW</span>
+                        <img src="https://www.haldiram.com/media/.renditions/wysiwyg/homepage/Savouries_Banner_1_.jpg?auto=webp&format=pjpg&quality=85" alt="Snacks & Namkeen" class="collection-image" loading="lazy">
+                        <div class="collection-content">
+                            <h3>Snacks &amp; Namkeen</h3>
+                            <p>All-time favorites for every tea-time mood and party platter.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Box -->
+            <div class="cta-box" id="contact">
+                <h2>📍 Visit Our Store Today!</h2>
+                <p>Open daily 9am–9pm | Telia Kalan, Barhaj, Deoria</p>
+                <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" rel="noopener noreferrer" class="cta-box-button">Get Directions</a>
+            </div>
+            
+            <!-- Testimonials -->
+            <section class="section" aria-label="Customer testimonials">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sudha Choudhary" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Sudha Choudhary</h4>
+                                <p>Regular customer • Barhaj</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">Amazing shopping experience at Siddhi Vinayak Mart! Great quality products and warm service. I love their grocery combos and quick billing.</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ramesh Gupta" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Ramesh Gupta</h4>
+                                <p>Shopper • Deoria</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">The mart has everything under one roof. Fresh vegetables, groceries, household items — all at reasonable prices. Very convenient for families.</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Priya Singh" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Priya Singh</h4>
+                                <p>Local Teacher • Barhaj</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">Staff is polite and helpful. Billing is super fast and they also give small discounts on combos. Highly recommended for everyone in the area.</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Amit Verma" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Amit Verma</h4>
+                                <p>Businessman • Deoria</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">I always get fresh grocery here. The best part is cleanliness and organized racks which make shopping easier. Barhaj needed a mart like this!</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Neha Tiwari" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Neha Tiwari</h4>
+                                <p>Housewife • Barhaj</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">Visiting Siddhi Vinayak Mart saves me time. I don't need to go to different shops. They maintain good quality and staff treats customers well.</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="https://randomuser.me/api/portraits/men/53.jpg" alt="Sanjay Kumar" class="testimonial-avatar" loading="lazy">
+                            <div class="testimonial-info">
+                                <h4>Sanjay Kumar</h4>
+                                <p>Farmer • Barhaj</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="testimonial-text">Great offers during festivals and best place to shop for household needs. Very satisfied with the mart. Strongly suggest everyone to visit.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-      </div>
-
-      <div class="footer-links">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>Help &amp; Support</h4>
-        <ul>
-          <li><a href="#">Customer Support</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Refund Policy</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>Partner With Us</h4>
-        <ul>
-          <li><a href="#">Sell on SVM</a></li>
-          <li><a href="#">Deliver with SVM</a></li>
-          <li><a href="#">Advertise with Us</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-apps">
-        <h4>Download the App</h4>
-        <a href="#" class="store-btn" aria-label="Google Play">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" width="180" height="54" loading="lazy">
-        </a>
-        <a href="#" class="store-btn" aria-label="App Store">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="App Store logo" style="width:36px;height:36px;margin-right:10px;vertical-align:middle;"> App Store
-        </a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 Siddhi Vinayak Mart Pvt. Ltd. | FSSAI Lic No: 12345678900000</p>
-    </div>
-  </footer>
-  <!-- Scripts: keep at bottom for performance -->
-  <script>
-    // Catalog slider functionality
-    (function() {
-      const track = document.querySelector('.catalog-track');
-      const images = track ? track.querySelectorAll('img') : [];
-      const leftBtn = document.querySelector('.catalog-btn.left');
-      const rightBtn = document.querySelector('.catalog-btn.right');
-      let current = 0;
-      function updateSlider() {
-        if (!track) return;
-        const imgWidth = images[0]?.clientWidth || 0;
-        track.style.transform = `translateX(-${current * imgWidth}px)`;
-      }
-      function move(n) {
-        if (!images.length) return;
-        current += n;
-        if (current < 0) current = images.length - 1;
-        if (current >= images.length) current = 0;
-        updateSlider();
-      }
-      if (leftBtn) leftBtn.onclick = () => move(-1);
-      if (rightBtn) rightBtn.onclick = () => move(1);
-      window.addEventListener('resize', updateSlider);
-      window.addEventListener('load', updateSlider);
-    })();
-  </script>
-  <!-- Confetti: start below notification bar, avoid Ganesh image, fall only in header background -->
-  <script>
-    (function setConfettiTop() {
-      function updateConfettiTop() {
-        const notif = document.querySelector('.notification');
-        const confetti = document.querySelector('.header-confetti');
-        if (notif && confetti) {
-          confetti.style.setProperty('--confetti-top', notif.offsetHeight + 'px');
-        }
-      }
-      window.addEventListener('load', updateConfettiTop);
-      window.addEventListener('resize', updateConfettiTop);
-    })();
-
-    // Improved confetti logic
-    (function setupHeaderConfetti(){
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion) return; // respect user preference
-      let confettiInterval = null;
-      function spawnConfettiPiece() {
-        const container = document.querySelector('.header-confetti');
-        const header = document.querySelector('header');
-        const ganesh = document.querySelector('.ganesh-img');
-        if (!container || !header) return;
-        const w = container.clientWidth;
-        const h = header.offsetHeight;
-        // Calculate Ganesh image horizontal bounds relative to header
-        let ganeshLeft = 0, ganeshRight = 0;
-        if (ganesh) {
-          const rect = ganesh.getBoundingClientRect();
-          const headerRect = header.getBoundingClientRect();
-          ganeshLeft = rect.left - headerRect.left;
-          ganeshRight = rect.right - headerRect.left;
-        }
-        const colors = ['#ff9800', '#ffc107', '#f44336', '#4caf50', '#2196f3', '#ffeb3b'];
-        const el = document.createElement('div');
-        el.className = 'confetti-piece';
-        el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        // Pick a random x that is NOT over the Ganesh image (with a margin)
-        let x, tries = 0;
-        do {
-          x = Math.random() * (w - 8);
-          tries++;
-        } while (
-          ganesh && x + 8 > ganeshLeft - 10 && x < ganeshRight + 10 && tries < 10
-        );
-        el.style.left = x + 'px';
-        // Start just below notification
-        el.style.top = '0px';
-        const size = 6 + Math.random() * 10; el.style.width = size + 'px'; el.style.height = size + 'px';
-        // Animate to the full header height (minus notification)
-        el.style.setProperty('--fall-transform', `translateY(${h - (container.offsetTop || 0) - 10}px)`);
-        const duration = 2.2 + Math.random() * 2.5;
-        el.style.animation = `confettiFall ${duration}s linear forwards`;
-        container.appendChild(el);
-        setTimeout(() => { el.remove(); }, (duration + 0.5) * 1000);
-      }
-      window.addEventListener('load', () => {
-        const overlay = document.querySelector('.header-confetti');
-        if (!overlay) return;
-        for (let i=0;i<8;i++){ setTimeout(spawnConfettiPiece, i * 120); }
-        confettiInterval = setInterval(spawnConfettiPiece, 220);
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) { clearInterval(confettiInterval); confettiInterval = null; }
-          else { if (!confettiInterval) confettiInterval = setInterval(spawnConfettiPiece, 220); }
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- About Section -->
+            <div class="footer-section">
+                <div class="footer-logo">🛒</div>
+                <h3>Siddhi Vinayak Mart</h3>
+                <p>Your trusted neighborhood store for fresh groceries, daily essentials, bakery items, and more. Serving the community with quality products and friendly service since day one.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">f</a>
+                    <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                    <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                    <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+                </div>
+            </div>
+            
+            <!-- Company Links -->
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <!-- Help Links -->
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Customer Support</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <!-- Partner Links & App Download -->
+            <div class="footer-section">
+                <h3>Partner With Us</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Sell on SVM</a></li>
+                    <li><a href="#">Deliver with SVM</a></li>
+                    <li><a href="#">Advertise with Us</a></li>
+                </ul>
+                <div class="app-buttons">
+                    <a href="#" class="app-button">
+                        <span class="app-icon">🍎</span>
+                        <div class="app-text">
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="app-button">
+                        <span class="app-icon">🤖</span>
+                        <div class="app-text">
+                            <small>Get it on</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart. All rights reserved. | Made with ❤️ in Deoria</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
         });
-      });
-      window.addEventListener('beforeunload', () => { if (confettiInterval) clearInterval(confettiInterval); });
-    })();
-  </script>
-
-  <!-- Font Awesome Icons (deferred) -->
-  <script src="https://kit.fontawesome.com/a2d9b2f8b4.js" crossorigin="anonymous" defer></script>
-
-  <!-- LocalBusiness JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "GroceryStore",
-    "name": "Siddhi Vinayak A-Z Saving Mart",
-    "image": "/image/store1.jpg",
-    "@id": "https://www.example.com/",
-    "url": "https://www.example.com/",
-    "telephone": "+91-00000-00000",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Telia Kalan, Barhaj",
-      "addressLocality": "Deoria",
-      "addressRegion": "UP",
-      "postalCode": "274601",
-      "addressCountry": "IN"
-    },
-    "geo": { "@type": "GeoCoordinates", "latitude": 26.431, "longitude": 83.617 },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "09:00", "closes": "21:00" }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/",
-      "https://www.instagram.com/",
-      "https://twitter.com/",
-      "https://www.linkedin.com/"
-    ]
-  }
-  </script>
-
+        
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Catalog Slider with Dots
+        let catalogIndex = 0;
+        const catalogSlider = document.getElementById('catalog-slider');
+        const catalogSlides = catalogSlider.children;
+        const totalCatalogSlides = catalogSlides.length;
+        const catalogDotsContainer = document.getElementById('catalog-dots');
+        
+        // Initialize catalog dots
+        function initCatalogDots() {
+            catalogDotsContainer.innerHTML = '';
+            for (let i = 0; i < totalCatalogSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.onclick = () => goToCatalogSlide(i);
+                catalogDotsContainer.appendChild(dot);
+            }
+        }
+        
+        function updateCatalogDots() {
+            const dots = catalogDotsContainer.children;
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === catalogIndex);
+            }
+        }
+        
+        function goToCatalogSlide(index) {
+            catalogIndex = index;
+            catalogSlider.style.transform = `translateX(-${catalogIndex * 100}%)`;
+            updateCatalogDots();
+        }
+        
+        function moveCatalog(direction) {
+            catalogIndex += direction;
+            
+            if (catalogIndex >= totalCatalogSlides) {
+                catalogIndex = 0;
+            } else if (catalogIndex < 0) {
+                catalogIndex = totalCatalogSlides - 1;
+            }
+            
+            catalogSlider.style.transform = `translateX(-${catalogIndex * 100}%)`;
+            updateCatalogDots();
+        }
+        
+        initCatalogDots();
+        
+        // Zigzag Feature Slider with Dots
+        let zigzagIndex = 0;
+        const zigzagSlides = document.querySelectorAll('.zigzag-slide');
+        const totalZigzagSlides = zigzagSlides.length;
+        const zigzagDotsContainer = document.getElementById('zigzag-dots');
+        
+        // Initialize zigzag dots
+        function initZigzagDots() {
+            zigzagDotsContainer.innerHTML = '';
+            for (let i = 0; i < totalZigzagSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to feature ${i + 1}`);
+                dot.onclick = () => goToZigzagSlide(i);
+                zigzagDotsContainer.appendChild(dot);
+            }
+        }
+        
+        function updateZigzagDots() {
+            const dots = zigzagDotsContainer.children;
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === zigzagIndex);
+            }
+        }
+        
+        function goToZigzagSlide(index) {
+            zigzagSlides[zigzagIndex].classList.remove('active');
+            zigzagIndex = index;
+            zigzagSlides[zigzagIndex].classList.add('active');
+            updateZigzagDots();
+        }
+        
+        function moveZigzag(direction) {
+            zigzagSlides[zigzagIndex].classList.remove('active');
+            
+            zigzagIndex += direction;
+            
+            if (zigzagIndex >= totalZigzagSlides) {
+                zigzagIndex = 0;
+            } else if (zigzagIndex < 0) {
+                zigzagIndex = totalZigzagSlides - 1;
+            }
+            
+            zigzagSlides[zigzagIndex].classList.add('active');
+            updateZigzagDots();
+        }
+        
+        initZigzagDots();
+        
+        // Auto-play catalog slider (optional)
+        let autoPlayCatalog = setInterval(() => {
+            moveCatalog(1);
+        }, 5000);
+        
+        // Pause auto-play on hover
+        catalogSlider.parentElement.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayCatalog);
+        });
+        
+        catalogSlider.parentElement.addEventListener('mouseleave', () => {
+            autoPlayCatalog = setInterval(() => {
+                moveCatalog(1);
+            }, 5000);
+        });
+        
+        // Enhanced Touch Swipe with Momentum
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartTime = 0;
+        let isDragging = false;
+        
+        function handleSwipeEnhanced(slider, moveFunction, sliderName) {
+            let startX = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                animationID = requestAnimationFrame(animation);
+                slider.style.cursor = 'grabbing';
+            });
+            
+            slider.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    const currentX = e.touches[0].clientX;
+                    currentTranslate = prevTranslate + currentX - startX;
+                }
+            });
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                isDragging = false;
+                cancelAnimationFrame(animationID);
+                
+                const movedBy = touchStartX - touchEndX;
+                const touchDuration = Date.now() - touchStartTime;
+                const velocity = Math.abs(movedBy) / touchDuration;
+                
+                // Swipe with momentum detection
+                if (Math.abs(movedBy) > 50 || velocity > 0.3) {
+                    if (movedBy > 0) {
+                        moveFunction(1); // Swipe left
+                    } else {
+                        moveFunction(-1); // Swipe right
+                    }
+                }
+                
+                prevTranslate = 0;
+                currentTranslate = 0;
+                slider.style.cursor = 'grab';
+            });
+            
+            function animation() {
+                if (isDragging) requestAnimationFrame(animation);
+            }
+        }
+        
+        // Enable enhanced swipe for catalog slider
+        handleSwipeEnhanced(catalogSlider.parentElement, moveCatalog, 'catalog');
+        
+        // Enable enhanced swipe for zigzag slider
+        const zigzagSlider = document.getElementById('zigzag-slider');
+        handleSwipeEnhanced(zigzagSlider.parentElement, moveZigzag, 'zigzag');
+    </script>
 </body>
 </html>
