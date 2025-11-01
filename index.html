@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Siddhi Vinayak A-Z Saving Mart - Your trusted local mart for groceries, bakery, stationery, and home essentials in Telia Kalan, Barhaj, Deoria">
+    <meta name="description" content="Siddhi Vinayak A-Z Saving Mart - Your trusted local mart for groceries, bakery, stationery, and home essentials in Telia Kalan, Barhaj, Deoria with online ordering and delivery">
     <title>Siddhi Vinayak A-Z Saving Mart | Telia Kalan, Barhaj, Deoria</title>
     <link rel="icon" type="image/png" href="/image/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,17 +153,23 @@
             letter-spacing: var(--letter-spacing-wide);
         }
         
-        /* Navigation - Frosted Glass Effect */
+        /* UPDATED: Modern Navigation Bar with Glass Morphism and Enhanced Design */
         .navbar {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
             color: var(--text-primary);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(211, 47, 47, 0.1);
+            transition: all var(--transition-base);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
         }
         
         .nav-container {
@@ -173,7 +179,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            height: 80px;
         }
         
         .nav-brand {
@@ -185,42 +191,60 @@
             font-family: var(--font-display);
             color: var(--primary-color);
             letter-spacing: var(--letter-spacing-tight);
+            transition: transform var(--transition-base);
+        }
+
+        .nav-brand:hover {
+            transform: scale(1.05);
         }
         
         .nav-logo {
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+            font-size: 1.75rem;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+            transition: all var(--transition-base);
+        }
+
+        .nav-logo:hover {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 8px 30px rgba(211, 47, 47, 0.5);
         }
         
         .hamburger {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             padding: var(--space-sm);
             min-width: var(--touch-target);
             min-height: var(--touch-target);
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            border-radius: var(--border-radius-sm);
+            transition: background var(--transition-base);
+        }
+
+        .hamburger:hover {
+            background: rgba(211, 47, 47, 0.1);
         }
         
         .hamburger span {
             display: block;
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: var(--text-primary);
             border-radius: 3px;
-            transition: var(--transition-base);
+            transition: all var(--transition-base);
         }
         
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            transform: rotate(45deg) translate(9px, 9px);
         }
         
         .hamburger.active span:nth-child(2) {
@@ -228,47 +252,70 @@
         }
         
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            transform: rotate(-45deg) translate(8px, -8px);
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-            gap: var(--space-xl);
+            gap: var(--space-sm);
+            align-items: center;
         }
         
         .nav-links a {
             color: var(--text-primary);
             font-weight: 500;
-            transition: var(--transition-fast);
+            transition: all var(--transition-fast);
             padding: var(--space-sm) var(--space-lg);
             border-radius: var(--border-radius-sm);
             position: relative;
             letter-spacing: var(--letter-spacing-normal);
+            font-size: var(--font-size-base);
         }
         
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 50%;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--gradient-primary);
             transition: all var(--transition-base);
             transform: translateX(-50%);
-            border-radius: 2px;
+            border-radius: 3px;
         }
         
         .nav-links a:hover,
         .nav-links a:focus {
-            background: rgba(211, 47, 47, 0.08);
+            background: rgba(211, 47, 47, 0.1);
             color: var(--primary-color);
+            transform: translateY(-2px);
         }
         
-        .nav-links a:hover::after,
-        .nav-links a:focus::after {
-            width: 80%;
+        .nav-links a:hover::before,
+        .nav-links a:focus::before {
+            width: 70%;
+        }
+
+        /* NEW: Special CTA button in navigation */
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: white !important;
+            padding: var(--space-sm) var(--space-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+            transition: all var(--transition-base);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+            background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%);
+        }
+
+        .nav-cta::before {
+            display: none;
         }
         
         /* Header/Hero Section - Modern Glass Design */
@@ -297,9 +344,10 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
         
+        /* UPDATED: Fixed image size for hero */
         .hero-image {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto var(--space-xl);
             border-radius: 50%;
             overflow: hidden;
@@ -318,6 +366,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
         }
         
         .hero h1 {
@@ -400,8 +449,6 @@
                         0 0 0 4px rgba(211, 47, 47, 0.1);
         }
         
-
-        
         /* Container */
         .container {
             max-width: var(--max-width);
@@ -482,9 +529,12 @@
             position: relative;
         }
         
+        /* UPDATED: Fixed image sizes for slider */
         .slide img {
             width: 100%;
-            height: auto;
+            height: 400px;
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
         
@@ -527,15 +577,16 @@
             right: var(--space-md);
         }
         
-        /* Video Section - Modern Frame */
+        /* UPDATED: Smaller Video Section - Modern Frame */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 42%; /* Reduced from 56.25% for smaller height */
+            max-width: 900px; /* Limit maximum width */
+            margin: 0 auto var(--space-3xl); /* Center the video */
             height: 0;
             overflow: hidden;
             border-radius: var(--border-radius-xl);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-            margin-bottom: var(--space-3xl);
             border: 1px solid rgba(0, 0, 0, 0.06);
         }
         
@@ -668,12 +719,18 @@
             max-width: 100%;
         }
         
+        /* UPDATED: Fixed sizes for zigzag images */
         .zigzag-media img,
         .zigzag-media video {
             width: 100%;
-            height: auto;
+            max-width: 500px;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
             border-radius: var(--border-radius-lg);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
         }
         
         /* Collections */
@@ -735,10 +792,12 @@
             box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
         }
         
+        /* UPDATED: Fixed collection image sizes */
         .collection-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            object-position: center;
         }
         
         .collection-content {
@@ -759,6 +818,46 @@
             font-size: var(--font-size-base);
             line-height: 1.7;
             letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        /* NEW: Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .feature-box {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--border-radius-xl);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-base);
+            text-align: center;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .feature-box h3 {
+            font-size: var(--font-size-xl);
+            color: var(--primary-color);
+            margin-bottom: var(--space-md);
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
         
         /* CTA Box - Modern Gradient Card */
@@ -869,11 +968,13 @@
             margin-bottom: var(--space-md);
         }
         
+        /* UPDATED: Fixed testimonial avatar size */
         .testimonial-avatar {
             width: 70px;
             height: 70px;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center;
             border: 3px solid rgba(211, 47, 47, 0.2);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -1062,6 +1163,10 @@
             .collection-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         /* Medium devices (tablets, 768px and up) */
@@ -1071,7 +1176,7 @@
             }
             
             .nav-container {
-                height: 72px;
+                height: 80px;
             }
             
             .hero {
@@ -1083,8 +1188,8 @@
             }
             
             .hero-image {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
             }
             
             .zigzag-content {
@@ -1101,6 +1206,10 @@
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .slide img {
+                height: 500px;
             }
         }
         
@@ -1121,6 +1230,10 @@
             .collection-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
             
             .testimonials-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1134,12 +1247,20 @@
                 width: 56px;
                 height: 56px;
             }
+
+            .slide img {
+                height: 550px;
+            }
         }
         
         /* Extra large devices (large desktops, 1400px and up) */
         @media (min-width: 1400px) {
             .container {
                 padding: var(--space-3xl) var(--container-padding);
+            }
+
+            .slide img {
+                height: 600px;
             }
         }
         
@@ -1265,12 +1386,12 @@
     <!-- Notification Bar -->
     <div class="notification-bar" id="notification-bar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-        Special Festival Offers! Get up to 30% off on groceries &amp; essentials
+        🎉 Special Festival Offers! Get up to 30% off on groceries & essentials | Same-Day Delivery Available!
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:8px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     </div>
     
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <!-- UPDATED: Modern Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
                 <div class="nav-logo">🛒</div>
@@ -1287,7 +1408,7 @@
                 <li><a href="/products/">Products</a></li>
                 <li><a href="store.html">Store</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="login-register.html">Login</a></li>
+                <li><a href="login-register.html" class="nav-cta">Order Now</a></li>
             </ul>
         </div>
     </nav>
@@ -1299,12 +1420,12 @@
                 <img src="/image/favicon.png" alt="Lord Ganesh - Siddhi Vinayak" loading="eager">
             </div>
             <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
-            <p class="hero-subtitle">Your One-Stop Shop for Daily Needs</p>
+            <p class="hero-subtitle">Your One-Stop Shop for Daily Needs - Now with Online Ordering!</p>
             <div class="hero-location">
                 <span>📍</span>
                 <span>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</span>
             </div>
-            <a href="#contact" class="cta-button">Become Our Customer</a>
+            <a href="#contact" class="cta-button">Start Shopping Today</a>
         </div>
     </header>
     
@@ -1314,8 +1435,45 @@
             <!-- Promotional Placard -->
             <div class="placard">
                 <h2>🌟 Fresh Arrivals Daily!</h2>
-                <p>Shop the freshest produce, groceries &amp; essentials at unbeatable prices</p>
+                <p>Shop the freshest produce, groceries & essentials at unbeatable prices | Free delivery on orders above ₹500</p>
             </div>
+            
+            <!-- NEW: Features Section -->
+            <section class="section" aria-label="Our features">
+                <h2 class="section-title">Why Shop With Us?</h2>
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Same-Day Delivery</h3>
+                        <p>Order now and get your groceries delivered within hours. Free delivery on orders above ₹500.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">💳</div>
+                        <h3>Multiple Payment Options</h3>
+                        <p>Pay with cash on delivery, UPI, cards, or digital wallets. Your choice, your convenience.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">📱</div>
+                        <h3>Order via WhatsApp</h3>
+                        <p>Simply message us your shopping list on WhatsApp and we'll deliver it to your doorstep.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🎁</div>
+                        <h3>Loyalty Rewards</h3>
+                        <p>Earn points on every purchase and redeem them for exclusive discounts and free items.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🌱</div>
+                        <h3>100% Fresh Products</h3>
+                        <p>We guarantee the freshest vegetables, fruits, and groceries sourced daily from local farms.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">⏰</div>
+                        <h3>Extended Hours</h3>
+                        <p>Open from 7 AM to 10 PM, seven days a week for your shopping convenience.</p>
+                    </div>
+                </div>
+            </section>
             
             <!-- Catalog Slider -->
             <section class="section" aria-label="Product catalog">
@@ -1343,7 +1501,7 @@
                 <div class="slider-dots" id="catalog-dots"></div>
             </section>
             
-            <!-- Embedded Video -->
+            <!-- UPDATED: Smaller Embedded Video -->
             <section class="section" aria-label="Store video">
                 <h2 class="section-title">Watch Our Store in Action</h2>
                 <div class="video-wrapper">
@@ -1360,13 +1518,13 @@
             <!-- Promotional Banner -->
             <div class="banner">
                 <h2>🔥 Mega Deals This Week!</h2>
-                <p>Don't miss out on our special combo offers and festival discounts</p>
-                <a href="#products" class="cta-button">Shop Deals</a>
+                <p>Don't miss out on our special combo offers and festival discounts - Save up to 40%!</p>
+                <a href="#products" class="cta-button">Shop Deals Now</a>
             </div>
             
             <!-- Zigzag Feature Slider -->
             <section class="section" aria-label="Store features">
-                <h2 class="section-title">Why Choose Us?</h2>
+                <h2 class="section-title">What Makes Us Special?</h2>
                 <div class="slider-container">
                     <div class="slider" style="background: transparent; box-shadow: none;">
                         <div id="zigzag-slider">
@@ -1374,16 +1532,17 @@
                             <div class="zigzag-slide active">
                                 <div class="zigzag-content">
                                     <div class="zigzag-text">
-                                        <h3>Prompt Boost – Instant Enhancement</h3>
-                                        <p>No need to craft the perfect question. Just write what you want, hit Enhance Prompt, and get smarter, richer answers.</p>
+                                        <h3>Smart Shopping Experience</h3>
+                                        <p>Shop smarter with our AI-powered product recommendations and personalized offers based on your shopping history.</p>
                                         <ul>
-                                            <li>Turn rough ideas into perfect prompts</li>
-                                            <li>Get 10x better responses instantly</li>
-                                            <li>No prompt engineering skills needed</li>
+                                            <li>Get personalized product suggestions</li>
+                                            <li>Track your order in real-time</li>
+                                            <li>Save your favorite items for quick reorder</li>
+                                            <li>Access exclusive member-only deals</li>
                                         </ul>
                                     </div>
                                     <div class="zigzag-media">
-                                        <img src="https://via.placeholder.com/1000x600.png?text=Slide+1+Image" alt="Prompt Enhancement Feature" loading="lazy">
+                                        <img src="https://via.placeholder.com/500x300.png?text=Smart+Shopping" alt="Smart Shopping Features" loading="lazy">
                                     </div>
                                 </div>
                             </div>
@@ -1392,16 +1551,17 @@
                             <div class="zigzag-slide">
                                 <div class="zigzag-content">
                                     <div class="zigzag-text">
-                                        <h3>Festival Savings</h3>
-                                        <p>Celebrate with us and enjoy amazing discounts on groceries &amp; essentials this festive season.</p>
+                                        <h3>Festival Savings & Combo Offers</h3>
+                                        <p>Celebrate with us and enjoy amazing discounts on groceries & essentials this festive season with our curated combo packs.</p>
                                         <ul>
-                                            <li>Fresh fruits &amp; vegetables</li>
-                                            <li>Daily household needs</li>
-                                            <li>Exclusive festival offers</li>
+                                            <li>Fresh fruits & vegetables daily</li>
+                                            <li>Combo packs at special prices</li>
+                                            <li>Festival-specific product collections</li>
+                                            <li>Weekly flash sales on essential items</li>
                                         </ul>
                                     </div>
                                     <div class="zigzag-media">
-                                        <video controls preload="metadata" style="width: 100%; border-radius: var(--border-radius);">
+                                        <video controls preload="metadata" style="width: 100%; max-width: 500px; height: 300px; object-fit: cover; border-radius: var(--border-radius-lg); display: block; margin: 0 auto;">
                                             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
@@ -1417,8 +1577,9 @@
                                         <p>Your trusted local mart for groceries, bakery, stationery, and home essentials. Experience quality, savings, and friendly service—every day!</p>
                                         <ul>
                                             <li>Family-owned, community-focused</li>
-                                            <li>Wide range of daily essentials</li>
+                                            <li>Wide range of 5000+ daily essentials</li>
                                             <li>Clean, organized, and welcoming store</li>
+                                            <li>Dedicated customer support team</li>
                                         </ul>
                                     </div>
                                     <div class="zigzag-media">
@@ -1443,7 +1604,7 @@
                         <img src="https://content.jdmagicbox.com/v2/comp/hyderabad/g7/040pxx40.xx40.170118134548.z3g7/catalogue/shekar-organic-agencies-kphb-colony-hyderabad-organic-vegetable-retailers-4a58h.jpg" alt="Farm Fresh Veggies" class="collection-image" loading="lazy">
                         <div class="collection-content">
                             <h3>Farm Fresh Veggies</h3>
-                            <p>Green and clean vegetables sourced daily from local farms.</p>
+                            <p>Green and clean vegetables sourced daily from local farms. 100% pesticide-free guarantee.</p>
                         </div>
                     </div>
                     <div class="collection-card frame-orange">
@@ -1451,7 +1612,7 @@
                         <img src="https://bhukkadcompany.com/wp/wp-content/uploads/2024/06/The-Ultimate-List-15-Best-Bakeries-in-Mumbai-for-Dessert-Lovers.png" alt="Bakery Delights" class="collection-image" loading="lazy">
                         <div class="collection-content">
                             <h3>Bakery Delights</h3>
-                            <p>Freshly baked breads, cookies, and pastries every morning.</p>
+                            <p>Freshly baked breads, cookies, and pastries every morning. Order by 8 AM for same-day delivery.</p>
                         </div>
                     </div>
                     <div class="collection-card frame-blue">
@@ -1459,7 +1620,7 @@
                         <img src="https://www.meijer.com/content/dam/meijer/digital/web-and-graphics/2023/household-essentials/site-assets/D-HHE-Subf1-20220101-1x1.jpg" alt="Home Essentials" class="collection-image" loading="lazy">
                         <div class="collection-content">
                             <h3>Home Essentials</h3>
-                            <p>Daily-use staples, cleaning, and personal care at great prices.</p>
+                            <p>Daily-use staples, cleaning, and personal care at great prices. Stock up and save more!</p>
                         </div>
                     </div>
                 </div>
@@ -1474,15 +1635,15 @@
                         <img src="https://www.kriparamfruitwala.com/cdn/shop/collections/12_eb71d652-f2e1-432d-8b14-fcbf9729addf.png?v=1739342796" alt="Seasonal Fruits" class="collection-image" loading="lazy">
                         <div class="collection-content">
                             <h3>Seasonal Fruits</h3>
-                            <p>Juicy, handpicked, and delivered fresh to your neighborhood.</p>
+                            <p>Juicy, handpicked, and delivered fresh to your neighborhood. Check out our fruit subscription plans!</p>
                         </div>
                     </div>
                     <div class="collection-card frame-purple">
                         <span class="collection-badge">WOW</span>
                         <img src="https://www.haldiram.com/media/.renditions/wysiwyg/homepage/Savouries_Banner_1_.jpg?auto=webp&format=pjpg&quality=85" alt="Snacks & Namkeen" class="collection-image" loading="lazy">
                         <div class="collection-content">
-                            <h3>Snacks &amp; Namkeen</h3>
-                            <p>All-time favorites for every tea-time mood and party platter.</p>
+                            <h3>Snacks & Namkeen</h3>
+                            <p>All-time favorites for every tea-time mood and party platter. Over 200 varieties to choose from.</p>
                         </div>
                     </div>
                 </div>
@@ -1491,7 +1652,7 @@
             <!-- CTA Box -->
             <div class="cta-box" id="contact">
                 <h2>📍 Visit Our Store Today!</h2>
-                <p>Open daily 9am–9pm | Telia Kalan, Barhaj, Deoria</p>
+                <p>Open daily 7am–10pm | Telia Kalan, Barhaj, Deoria | Call us: +91 98765 43210</p>
                 <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" rel="noopener noreferrer" class="cta-box-button">Get Directions</a>
             </div>
             
@@ -1514,7 +1675,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">Amazing shopping experience at Siddhi Vinayak Mart! Great quality products and warm service. I love their grocery combos and quick billing.</p>
+                        <p class="testimonial-text">Amazing shopping experience at Siddhi Vinayak Mart! Great quality products and warm service. I love their grocery combos and quick billing. The new home delivery service is a game-changer!</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1532,7 +1693,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">The mart has everything under one roof. Fresh vegetables, groceries, household items — all at reasonable prices. Very convenient for families.</p>
+                        <p class="testimonial-text">The mart has everything under one roof. Fresh vegetables, groceries, household items — all at reasonable prices. Very convenient for families. Their WhatsApp ordering is super convenient!</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1550,7 +1711,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">Staff is polite and helpful. Billing is super fast and they also give small discounts on combos. Highly recommended for everyone in the area.</p>
+                        <p class="testimonial-text">Staff is polite and helpful. Billing is super fast and they also give small discounts on combos. Highly recommended for everyone in the area. The loyalty program gives great rewards!</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1568,7 +1729,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">I always get fresh grocery here. The best part is cleanliness and organized racks which make shopping easier. Barhaj needed a mart like this!</p>
+                        <p class="testimonial-text">I always get fresh grocery here. The best part is cleanliness and organized racks which make shopping easier. Barhaj needed a mart like this! Same-day delivery is very reliable.</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1586,7 +1747,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">Visiting Siddhi Vinayak Mart saves me time. I don't need to go to different shops. They maintain good quality and staff treats customers well.</p>
+                        <p class="testimonial-text">Visiting Siddhi Vinayak Mart saves me time. I don't need to go to different shops. They maintain good quality and staff treats customers well. Love the mobile app for easy ordering!</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1604,7 +1765,7 @@
                             <span class="star">★</span>
                             <span class="star">★</span>
                         </div>
-                        <p class="testimonial-text">Great offers during festivals and best place to shop for household needs. Very satisfied with the mart. Strongly suggest everyone to visit.</p>
+                        <p class="testimonial-text">Great offers during festivals and best place to shop for household needs. Very satisfied with the mart. Strongly suggest everyone to visit. The quality-to-price ratio is unbeatable!</p>
                     </div>
                 </div>
             </section>
@@ -1618,7 +1779,7 @@
             <div class="footer-section">
                 <div class="footer-logo">🛒</div>
                 <h3>Siddhi Vinayak Mart</h3>
-                <p>Your trusted neighborhood store for fresh groceries, daily essentials, bakery items, and more. Serving the community with quality products and friendly service since day one.</p>
+                <p>Your trusted neighborhood store for fresh groceries, daily essentials, bakery items, and more. Serving the community with quality products and friendly service since 2020. Now with online ordering and home delivery!</p>
                 <div class="social-links">
                     <a href="#" class="social-link" aria-label="Facebook">f</a>
                     <a href="#" class="social-link" aria-label="Instagram">📷</a>
@@ -1632,18 +1793,21 @@
                 <h3>Company</h3>
                 <ul class="footer-links">
                     <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Story</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
                     <li><a href="#">Blog</a></li>
+                    <li><a href="#">Sustainability</a></li>
                 </ul>
             </div>
             
             <!-- Help Links -->
             <div class="footer-section">
-                <h3>Help</h3>
+                <h3>Help & Support</h3>
                 <ul class="footer-links">
                     <li><a href="#">Customer Support</a></li>
+                    <li><a href="#">Track Order</a></li>
                     <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Delivery Info</a></li>
                     <li><a href="#">Refund Policy</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
@@ -1654,8 +1818,9 @@
                 <h3>Partner With Us</h3>
                 <ul class="footer-links">
                     <li><a href="#">Sell on SVM</a></li>
-                    <li><a href="#">Deliver with SVM</a></li>
+                    <li><a href="#">Delivery Partners</a></li>
                     <li><a href="#">Advertise with Us</a></li>
+                    <li><a href="#">Supplier Portal</a></li>
                 </ul>
                 <div class="app-buttons">
                     <a href="#" class="app-button">
@@ -1677,11 +1842,21 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart. All rights reserved. | Made with ❤️ in Deoria</p>
+            <p>&copy; 2025 Siddhi Vinayak A-Z Saving Mart. All rights reserved. | Made with ❤️ in Deoria | Open 7 AM - 10 PM Daily</p>
         </div>
     </footer>
     
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
