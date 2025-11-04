@@ -131,17 +131,7 @@
       signInWithPopup,
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD5BXtGVmpV38HpBKGWY4VBa_biwfkRqBc",
-      authDomain: "siddhivinayakmart-login-signup.firebaseapp.com",
-      projectId: "siddhivinayakmart-login-signup",
-      storageBucket: "siddhivinayakmart-login-signup.firebasestorage.app",
-      messagingSenderId: "173213379434",
-      appId: "1:173213379434:web:fa314ea655888eeb7ed313",
-      measurementId: "G-82T71HQNJZ",
-    };
-
-    const app = initializeApp(firebaseConfig);
+import firebaseConfig from './js/config.js';    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
