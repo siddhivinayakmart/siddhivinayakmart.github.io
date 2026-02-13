@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/image/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Design System Variables */
         :root {
@@ -18,7 +18,7 @@
             --primary-light: #ff6659;
             --secondary-color: #fdd835;
             --secondary-dark: #c6a700;
-            --background-color: #fafafa;
+            --background-color: #f7f3ee;
             --surface-color: #ffffff;
             --surface-glass: rgba(255, 255, 255, 0.85);
             --text-primary: #1a1a1a;
@@ -28,12 +28,12 @@
             --shadow-color-medium: rgba(0, 0, 0, 0.12);
             --shadow-color-heavy: rgba(0, 0, 0, 0.16);
             --gradient-primary: linear-gradient(135deg, #d32f2f 0%, #ff5252 100%);
-            --gradient-secondary: linear-gradient(135deg, #ff6f00 0%, #ffa726 100%);
-            --gradient-accent: linear-gradient(135deg, #7c4dff 0%, #b47cff 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff8f00 0%, #ffd54f 100%);
+            --gradient-accent: linear-gradient(135deg, #00695c 0%, #26a69a 100%);
             
             /* Typography - Modern Fonts */
-            --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-display: 'Poppins', 'Inter', sans-serif;
+            --font-base: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Fraunces', 'Sora', serif;
             --font-size-xs: 0.75rem;
             --font-size-sm: 0.875rem;
             --font-size-base: 1rem;
@@ -155,21 +155,21 @@
         
         /* UPDATED: Modern Navigation Bar with Glass Morphism and Enhanced Design */
         .navbar {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(28px) saturate(160%);
+            -webkit-backdrop-filter: blur(28px) saturate(160%);
             color: var(--text-primary);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(211, 47, 47, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             transition: all var(--transition-base);
         }
 
         .navbar.scrolled {
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
         
         .nav-container {
@@ -179,7 +179,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 80px;
+            height: 76px;
         }
         
         .nav-brand {
@@ -191,7 +191,7 @@
             font-family: var(--font-display);
             color: var(--primary-color);
             letter-spacing: var(--letter-spacing-tight);
-            transition: transform var(--transition-base);
+            transition: transform var(--transition-base), color var(--transition-base);
         }
 
         .nav-brand:hover {
@@ -199,21 +199,28 @@
         }
         
         .nav-logo {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
-            transition: all var(--transition-base);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            overflow: hidden;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .nav-logo:hover {
-            transform: rotate(360deg) scale(1.1);
-            box-shadow: 0 8px 30px rgba(211, 47, 47, 0.5);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
         }
         
         .hamburger {
@@ -266,11 +273,11 @@
             color: var(--text-primary);
             font-weight: 500;
             transition: all var(--transition-fast);
-            padding: var(--space-sm) var(--space-lg);
-            border-radius: var(--border-radius-sm);
+            padding: 0.55rem 1.05rem;
+            border-radius: 999px;
             position: relative;
             letter-spacing: var(--letter-spacing-normal);
-            font-size: var(--font-size-base);
+            font-size: 0.95rem;
         }
         
         .nav-links a::before {
@@ -288,9 +295,10 @@
         
         .nav-links a:hover,
         .nav-links a:focus {
-            background: rgba(211, 47, 47, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--primary-color);
             transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
         }
         
         .nav-links a:hover::before,
@@ -302,15 +310,15 @@
         .nav-cta {
             background: var(--gradient-primary);
             color: white !important;
-            padding: var(--space-sm) var(--space-xl);
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            box-shadow: 0 8px 22px rgba(211, 47, 47, 0.3);
             transition: all var(--transition-base);
         }
 
         .nav-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+            box-shadow: 0 12px 30px rgba(211, 47, 47, 0.4);
             background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%);
         }
 
@@ -318,37 +326,144 @@
             display: none;
         }
         
-        /* Header/Hero Section - Modern Glass Design */
+        /* Header/Hero Section - Modern Split Layout */
         .hero {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe0b2 50%, #ffd54f 100%);
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 143, 0, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 85% 15%, rgba(253, 216, 53, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(76, 175, 80, 0.2) 0%, transparent 45%),
+                linear-gradient(135deg, #fff8ec 0%, #ffe9c7 55%, #ffe082 100%);
             padding: var(--space-4xl) var(--container-padding) var(--space-3xl);
-            text-align: center;
+            text-align: left;
             position: relative;
             overflow: hidden;
             border-radius: 0;
         }
+
+        .hero-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            gap: var(--space-3xl);
+            align-items: center;
+        }
         
         .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            padding: var(--space-3xl) var(--space-xl);
-            border-radius: var(--border-radius-xl);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
-                        0 8px 25px rgba(0, 0, 0, 0.08),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            max-width: 640px;
+        }
+
+        .hero-kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .ghost-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(211, 47, 47, 0.18);
+            color: var(--primary-dark);
+            padding: var(--space-lg) var(--space-2xl);
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            min-height: var(--touch-target);
+            transition: all var(--transition-base);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            letter-spacing: 0.02em;
+        }
+
+        .ghost-button:hover,
+        .ghost-button:focus {
+            transform: translateY(-3px);
+            border-color: rgba(211, 47, 47, 0.5);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+            color: var(--primary-color);
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--gradient-primary);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.12);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-md);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+
+        .hero-visual {
+            display: grid;
+            gap: var(--space-xl);
+            justify-items: center;
+            align-items: center;
         }
         
         /* UPDATED: Fixed image size for hero */
         .hero-image {
             width: 150px;
             height: 150px;
-            margin: 0 auto var(--space-xl);
+            margin: 0;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 12px 40px rgba(211, 47, 47, 0.25),
@@ -383,10 +498,69 @@
         .hero-subtitle {
             font-size: var(--font-size-lg);
             color: var(--text-secondary);
-            margin-bottom: var(--space-lg);
             font-weight: 500;
             letter-spacing: var(--letter-spacing-normal);
             line-height: 1.6;
+        }
+
+        .hero-card {
+            width: min(380px, 100%);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(18px);
+            border-radius: var(--border-radius-xl);
+            padding: var(--space-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .hero-card h3 {
+            font-size: var(--font-size-xl);
+            font-family: var(--font-display);
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+
+        .hero-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero-card-list {
+            list-style: none;
+            display: grid;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero-card-list li {
+            position: relative;
+            padding-left: 28px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .hero-card-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .hero-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-weight: 600;
+            color: var(--primary-color);
         }
         
         .hero-location {
@@ -397,7 +571,6 @@
             backdrop-filter: blur(10px);
             padding: var(--space-md) var(--space-xl);
             border-radius: var(--border-radius-lg);
-            margin-bottom: var(--space-2xl);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.5);
             font-weight: 500;
@@ -868,15 +1041,15 @@
             border-radius: var(--border-radius-xl);
             text-align: center;
             margin-bottom: var(--space-3xl);
-            box-shadow: 0 12px 40px rgba(103, 58, 183, 0.35),
-                        0 4px 20px rgba(103, 58, 183, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 105, 92, 0.35),
+                        0 4px 20px rgba(0, 105, 92, 0.2);
             transition: transform var(--transition-base), box-shadow var(--transition-base);
         }
         
         .cta-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(103, 58, 183, 0.4),
-                        0 8px 30px rgba(103, 58, 183, 0.25);
+            box-shadow: 0 20px 60px rgba(0, 105, 92, 0.4),
+                        0 8px 30px rgba(0, 105, 92, 0.25);
         }
         
         .cta-box h2 {
@@ -900,7 +1073,7 @@
             align-items: center;
             justify-content: center;
             background: white;
-            color: #673ab7;
+            color: #00695c;
             padding: var(--space-lg) var(--space-2xl);
             border-radius: var(--border-radius-lg);
             font-size: var(--font-size-lg);
@@ -921,7 +1094,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(103, 58, 183, 0.1);
+            background: rgba(0, 105, 92, 0.1);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -1226,6 +1399,11 @@
             .nav-links {
                 display: flex !important;
             }
+
+            .hero-grid {
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+                gap: var(--space-2xl);
+            }
             
             .collection-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1297,6 +1475,24 @@
                 display: block;
                 padding: var(--space-md) var(--container-padding);
                 border-radius: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-badges {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -1393,10 +1589,12 @@
     <!-- UPDATED: Modern Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation" id="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
-                <div class="nav-logo">🛒</div>
+            <a class="nav-brand" href="index.html" aria-label="Siddhi Vinayak Mart home">
+                <div class="nav-logo">
+                    <img src="/image/favicon.png" alt="Siddhi Vinayak Mart logo" loading="eager">
+                </div>
                 <span>Siddhi Vinayak A-Z Saving Mart</span>
-            </div>
+            </a>
             <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
                 <span></span>
                 <span></span>
@@ -1415,17 +1613,54 @@
     
     <!-- Hero Section -->
     <header class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-image">
-                <img src="/image/favicon.png" alt="Lord Ganesh - Siddhi Vinayak" loading="eager">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <p class="hero-kicker">Local since 2020</p>
+                <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
+                <p class="hero-subtitle">Your One-Stop Shop for daily needs with quick delivery, WhatsApp ordering, and fresh arrivals every morning.</p>
+                <div class="hero-location">
+                    <span>📍</span>
+                    <span>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="#contact" class="cta-button">Start Shopping Today</a>
+                    <a href="/products/" class="ghost-button">Browse Categories</a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">Same-day delivery</span>
+                    <span class="badge">WhatsApp ordering</span>
+                    <span class="badge">Fresh every day</span>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">5k+</div>
+                        <div class="stat-label">Daily essentials</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7 AM–10 PM</div>
+                        <div class="stat-label">Open every day</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">30 mins</div>
+                        <div class="stat-label">Avg delivery time</div>
+                    </div>
+                </div>
             </div>
-            <h1>सिद्धि विनायक A-Z बचत बाजार</h1>
-            <p class="hero-subtitle">Your One-Stop Shop for Daily Needs - Now with Online Ordering!</p>
-            <div class="hero-location">
-                <span>📍</span>
-                <span>Telia Kalan, Barhaj, Deoria, Uttar Pradesh</span>
+            <div class="hero-visual">
+                <div class="hero-image">
+                    <img src="/image/favicon.png" alt="Lord Ganesh - Siddhi Vinayak" loading="eager">
+                </div>
+                <div class="hero-card">
+                    <h3>Today’s fast lane</h3>
+                    <p>Order in minutes and get the essentials at your doorstep.</p>
+                    <ul class="hero-card-list">
+                        <li>Fresh produce arrivals</li>
+                        <li>Bakery baked this morning</li>
+                        <li>Stationery & school kits</li>
+                    </ul>
+                    <a href="login-register.html" class="hero-card-link">Order in 60 seconds →</a>
+                </div>
             </div>
-            <a href="#contact" class="cta-button">Start Shopping Today</a>
         </div>
     </header>
     
@@ -1519,7 +1754,7 @@
             <div class="banner">
                 <h2>🔥 Mega Deals This Week!</h2>
                 <p>Don't miss out on our special combo offers and festival discounts - Save up to 40%!</p>
-                <a href="#products" class="cta-button">Shop Deals Now</a>
+                <a href="/products/" class="cta-button">Shop Deals Now</a>
             </div>
             
             <!-- Zigzag Feature Slider -->
