@@ -2,291 +2,341 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Store Details - SVM Mart</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Store location, timings and details for Siddhi Vinayak A-Z Saving Mart in Barhaj." />
+  <title>Store Details | Siddhi Vinayak A-Z Saving Mart</title>
+  <link rel="icon" type="image/png" href="/image/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #d32f2f;
-      --secondary: #fdd835;
-      --bg-dark: #fffef7;
-      --text-dark: #212121;
-      --text-light: #ffffff;
+      --primary-dark: #b71c1c;
+      --bg: #fff8ef;
+      --surface: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666666;
+      --border: #ece2d8;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --container: 1160px;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    img { display: block; width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(var(--container), 92%); margin: 0 auto; }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--primary), #ef5350);
+      color: #fff;
+      text-align: center;
+      font-size: 0.92rem;
+      padding: 0.55rem 1rem;
+      font-weight: 500;
     }
 
-    nav {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
+    .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-container {
+    .nav-inner {
+      height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: auto;
-      padding: 0.8rem 1rem;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--text-light);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 0;
     }
 
-    .menu-toggle {
-      font-size: 1.5rem;
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .brand span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .menu-btn {
       display: none;
-      cursor: pointer;
-      color: var(--text-light);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.45rem 0.7rem;
+      font-size: 1rem;
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
     }
 
     .nav-links a {
-      text-decoration: none;
-      color: var(--text-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.5rem 0.95rem;
       font-weight: 500;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
+      color: #303030;
+      transition: 0.2s ease;
     }
 
-    .nav-links a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        margin-top: 1rem;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .store-details {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .store-section {
-      background-color: #f3f4f6;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .store-section h2 {
+    .nav-links a:hover,
+    .nav-links .active {
+      background: #fff2f2;
       color: var(--primary);
-      margin-bottom: 0.8rem;
     }
 
-    .store-section p {
-      margin: 0.4rem 0;
-      line-height: 1.6;
+    .nav-links .cta { background: var(--primary); color: #fff; }
+    .nav-links .cta:hover { background: var(--primary-dark); color: #fff; }
+
+    .hero { padding: 2.2rem 0 1.2rem; }
+    .hero-box {
+      background: linear-gradient(130deg, #fff 0%, #fff7e8 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: grid;
+      gap: 0.8rem;
     }
 
-    .map iframe {
+    .kicker {
+      width: fit-content;
+      background: #ffe9b0;
+      color: #7a4f00;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.2; }
+    .hero-box p { color: var(--muted); max-width: 70ch; }
+
+    .section { padding: 1.2rem 0 2.8rem; }
+    .section-title { font-size: clamp(1.35rem, 2.5vw, 1.95rem); margin-bottom: 0.35rem; }
+    .section-subtitle { color: var(--muted); margin-bottom: 1.25rem; }
+
+    .grid { display: grid; gap: 1rem; }
+    .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.05rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 { margin-bottom: 0.45rem; color: #232323; font-size: 1.02rem; }
+    .card p,
+    .card li { color: var(--muted); font-size: 0.93rem; }
+    .card ul { margin-left: 1rem; display: grid; gap: 0.35rem; }
+
+    .map-wrap {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.8rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      margin-top: 1rem;
+    }
+
+    .map-wrap iframe {
       width: 100%;
-      height: 300px;
-      border: none;
-      border-radius: 8px;
+      height: 340px;
+      border: 0;
+      border-radius: 12px;
     }
 
-    .store-photo img {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      background: #fff;
     }
 
-    footer {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      margin-top: 3rem;
+    .gallery-item img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+    .footer {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      background: #fff;
     }
 
-    .social-links {
-      margin-bottom: 0.8rem;
+    .footer-inner {
+      min-height: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1rem 0;
+      color: #5b5b5b;
+      font-size: 0.9rem;
     }
 
-    .social-links a {
-      margin: 0 0.6rem;
-      color: var(--text-light);
-      font-size: 1.4rem;
-      text-decoration: none;
+    .footer-nav { display: flex; gap: 0.9rem; flex-wrap: wrap; font-weight: 500; }
+    .footer-nav a:hover { color: var(--primary); }
+
+    @media (max-width: 960px) {
+      .info-grid,
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .map-wrap iframe { height: 290px; }
     }
 
-    .social-links a:hover {
-      text-shadow: 0 0 8px rgba(0,0,0,0.4);
+    @media (max-width: 760px) {
+      .menu-btn { display: inline-flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 84px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 0.6rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { border-radius: 10px; justify-content: flex-start; }
+      .hero-box { padding: 1.35rem; }
+      .info-grid,
+      .gallery { grid-template-columns: 1fr; }
+      .map-wrap iframe { height: 240px; }
     }
   </style>
-
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('active');
-    }
-  </script>
 </head>
 <body>
+  <div class="topbar">Fast local delivery · WhatsApp ordering · Open daily 7:00 AM to 10:00 PM</div>
 
-  <!-- Navigation Menu -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">SVM Mart</div>
-      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="/products/">Products</a>
-        <a href="store.html">Store</a>
-        <a href="contact.html">Contact</a>
-      </div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Go to homepage">
+        <span class="brand-logo"><img src="image/logo.png" alt="Siddhi Vinayak Mart logo" /></span>
+        <span>Siddhi Vinayak A-Z Saving Mart</span>
+      </a>
+
+      <button class="menu-btn" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰</button>
+
+      <ul class="nav-links" id="site-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products/index.html">Products</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="store.html" class="active">Store</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login-register.html" class="cta">Order Now</a></li>
+      </ul>
     </div>
-  </nav>
-
-  <!-- Header -->
-  <header>
-    <h1>Our Store</h1>
-    <p>Welcome to Siddhi Vinayak A-Z Bachat Bazaar</p>
   </header>
 
-  <!-- Main Content -->
   <main>
-    <div class="store-details">
-
-      <!-- Address Section -->
-      <div class="store-section">
-        <h2><i class="fas fa-map-marker-alt"></i> Location</h2>
-        <p>📍 तेलिया-कलां, बरहज रोड, देवरिया, उत्तर प्रदेश, India</p>
-        <p><a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank">View on Google Maps</a></p>
+    <section class="hero">
+      <div class="container hero-box">
+        <span class="kicker">Store details</span>
+        <h1>Welcome to our Barhaj store</h1>
+        <p>Find us at Telia Kalan, Barhaj, Deoria. We keep daily essentials, grocery, bakery, stationery, and home items under one roof with easy payment and quick support.</p>
       </div>
+    </section>
 
-      <!-- Hours Section -->
-      <div class="store-section">
-        <h2><i class="fas fa-clock"></i> Store Hours</h2>
-        <p>🕘 Monday to Sunday: 8:00 AM – 9:00 PM</p>
-        <p>🚫 No Weekly Off</p>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Store information</h2>
+        <p class="section-subtitle">Plan your visit with location, timings, and contact details.</p>
+
+        <div class="grid info-grid">
+          <article class="card">
+            <h3>Location</h3>
+            <p>Telia Kalan, Barhaj Road, Deoria, Uttar Pradesh, India.</p>
+            <p><a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" rel="noopener" style="color:#d32f2f;font-weight:600;">Open in Google Maps →</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Opening hours</h3>
+            <ul>
+              <li>Monday to Sunday: 8:00 AM - 9:00 PM</li>
+              <li>No weekly off</li>
+              <li>Fast billing and local support</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Contact</h3>
+            <ul>
+              <li>Phone: <a href="tel:+919453678641" style="color:#d32f2f;">+91 9453678641</a></li>
+              <li>Email: <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" style="color:#d32f2f;">siddhivinayakmart.ashoksingh@gmail.com</a></li>
+              <li>WhatsApp orders accepted</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps?q=telia+kala+deoria+up&output=embed" title="Siddhi Vinayak Mart map"></iframe>
+        </div>
+
+        <div class="grid gallery">
+          <div class="gallery-item"><img src="image/store1.jpg" alt="Storefront" loading="lazy" /></div>
+          <div class="gallery-item"><img src="image/store2.jpg" alt="Inside store shelves" loading="lazy" /></div>
+          <div class="gallery-item"><img src="image/store3.webp" alt="Store products display" loading="lazy" /></div>
+        </div>
       </div>
-
-      <!-- Contact Section -->
-      <div class="store-section">
-        <h2><i class="fas fa-phone"></i> Contact Us</h2>
-        <p>📞 Phone: <a href="tel:+919453678641">+91 9453678641</a></p>
-        <p>📧 Email: <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com">siddhivinayakmart.ashoksingh@gmail.com</a></p>
-      </div>
-
-      <!-- Store Map -->
-      <div class="store-section map">
-        <h2><i class="fas fa-map"></i> Find Us</h2>
-        <iframe src="https://www.google.com/maps?q=telia+kala+deoria+up&output=embed"></iframe>
-      </div>
-
-      <!-- Store Photo -->
-      <div class="store-section store-photo">
-        <h2><i class="fas fa-store"></i> Storefront</h2>
-        <img src="store1.jpg" alt="Store Image"/>
-      </div>
-
-    </div>
+    </section>
   </main>
 
-
-
-  <!-- 🔥 Red–Yellow–Orange Gradient Image Frame -->
-<div class="image-frame">
-  <img src="https://via.placeholder.com/300" alt="Siddhi Vinayak Mart Product">
-</div>
-
-<style>
-.image-frame {
-  width: 300px;
-  height: 300px;
-  padding: 6px; /* Thickness of gradient border */
-  background: linear-gradient(135deg, #fe3930, #fff3cd, #e16831);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  margin: 20px auto;
-}
-
-.image-frame:hover {
-  transform: scale(1.05);
-}
-
-.image-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 14px;
-  background-color: #fff;
-}
-</style>
-
-
-
-  <!-- Footer -->
-  <footer>
-    <div class="social-links">
-      <a href="https://wa.me/919453678641" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
-      <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://instagram.com/yourinstagramhandle" target="_blank"><i class="fab fa-instagram"></i></a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Siddhi Vinayak A-Z Saving Mart</p>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="products/index.html">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश</p>
   </footer>
 
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('site-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -2,123 +2,458 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Firebase Auth - Siddhi Vinayak A-Z Saving Mart</title>
-  <link rel="icon" href="/image/favicon.png" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login or register to Siddhi Vinayak A-Z Saving Mart for easy order management." />
+  <title>Login / Register | Siddhi Vinayak A-Z Saving Mart</title>
+  <link rel="icon" type="image/png" href="/image/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdf6e3; /* light cream */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    :root {
+      --primary: #d32f2f;
+      --primary-dark: #b71c1c;
+      --bg: #fff8ef;
+      --surface: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666666;
+      --border: #ece2d8;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --container: 1160px;
     }
 
-    .auth-wrapper {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(233, 78, 27, 0.15); /* soft orange shadow */
-      width: 320px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: min(var(--container), 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--primary), #ef5350);
+      color: #fff;
       text-align: center;
-      position: relative; /* fix layering issue */
-      z-index: 10; /* above other page elements */
+      font-size: 0.92rem;
+      padding: 0.55rem 1rem;
+      font-weight: 500;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 0;
     }
 
     .brand-logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #f44336; /* logo red accent */
-      margin-bottom: 16px;
-      box-shadow: 0 4px 8px rgba(244, 67, 54, 0.14);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .brand span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.45rem 0.7rem;
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.5rem 0.95rem;
+      font-weight: 500;
+      color: #303030;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      background: #fff2f2;
+      color: var(--primary);
+    }
+
+    .nav-links .cta {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .nav-links .cta:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    .auth-section {
+      padding: 2.2rem 0 3rem;
+    }
+
+    .auth-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .auth-info,
+    .auth-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .auth-info {
+      padding: 2rem;
+      background: linear-gradient(130deg, #fff 0%, #fff7e8 100%);
+      display: grid;
+      gap: 0.8rem;
+      align-content: center;
+    }
+
+    .kicker {
+      width: fit-content;
+      background: #ffe9b0;
+      color: #7a4f00;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      line-height: 1.2;
+    }
+
+    .auth-info p {
+      color: var(--muted);
+      max-width: 46ch;
+    }
+
+    .auth-points {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    .auth-points li {
+      font-size: 0.93rem;
+      color: #3f3f3f;
+    }
+
+    .auth-card {
+      padding: 1.3rem;
+      max-width: 420px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .card-head {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      margin: 0 auto 0.6rem;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .auth-form {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.85rem;
+    }
+
+    .auth-input {
+      width: 100%;
+      border: 1px solid #ddd4c8;
+      border-radius: 12px;
+      padding: 0.72rem 0.8rem;
+      font: inherit;
+      color: #222;
       background: #fff;
     }
-    
-    .mart-name {
-    font-weight: bold;
-    margin: 0 0 20px 0;
-    font-size: 1.25rem;
-    color: #e94e1b; /* orange-red brand color */
-    text-align: center;
-    text-decoration: underline; /* adds underline */
-    text-underline-position: under; /* places underline nicely below baseline */
-}
 
-    input {
+    .btn {
       width: 100%;
-      padding: 0.85rem;
-      margin: 0.5rem 0;
-      border: 1px solid #e94e1b;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    button {
-      width: 100%;
-      padding: 0.85rem;
-      background: linear-gradient(90deg, #e94e1b, #f6d365); /* orange-yellow gradient */
-      color: white;
-      border: none;
-      border-radius: 6px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 0.72rem 0.9rem;
+      font: inherit;
+      font-weight: 600;
       cursor: pointer;
-      font-weight: bold;
-      margin-top: 0.3rem;
-      transition: background 0.2s;
-      font-size: 1rem;
+      transition: 0.2s ease;
     }
 
-    button:hover {
-      background: #e94e1b; /* solid orange */
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
     }
 
-    .google-btn {
-      background: rgb(255, 255, 255);
-      color: rgb(10, 62, 232);
-      border: 1px solid #e94e1b;
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-google {
+      background: #fff;
+      color: #333;
+      border-color: #ddd4c8;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 0.5rem;
-      font-weight: normal;
-      font-size: 1rem;
     }
 
-    .google-btn img {
-      filter: none;
-      width: 20px;
-      height: 20px;
+    .btn-google:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-google img {
+      width: 18px;
+      height: 18px;
     }
 
     .toggle {
-      margin-top: 1rem;
-      cursor: pointer;
-      color: #e94e1b;
+      margin-top: 0.7rem;
+      text-align: center;
       font-size: 0.9rem;
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .footer-inner {
+      min-height: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1rem 0;
+      color: #5b5b5b;
+      font-size: 0.9rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-weight: 500;
+    }
+
+    .footer-nav a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 960px) {
+      .auth-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-card {
+        justify-self: stretch;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 84px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 0.6rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        border-radius: 10px;
+        justify-content: flex-start;
+      }
+
+      .auth-info,
+      .auth-card {
+        border-radius: 18px;
+      }
+
+      .auth-info {
+        padding: 1.35rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="auth-wrapper">
-    <img src="/image/favicon.png" alt="Brand Logo" class="brand-logo" />
-    <h3 class="mart-name">Siddhi Vinayak A-Z Saving Mart</h3> <!-- added mart name -->
-    <h2 id="form-title">Login</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
+  <div class="topbar">Fast local delivery · WhatsApp ordering · Open daily 7:00 AM to 10:00 PM</div>
 
-    <button id="authBtn">Login</button>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Go to homepage">
+        <span class="brand-logo"><img src="image/logo.png" alt="Siddhi Vinayak Mart logo" /></span>
+        <span>Siddhi Vinayak A-Z Saving Mart</span>
+      </a>
 
-    <button class="google-btn" id="googleBtn">
-      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
-      Sign in with Google
-    </button>
+      <button class="menu-btn" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰</button>
 
-    <div class="toggle" id="toggleForm">Don't have an account? Sign up</div>
-  </div>
+      <ul class="nav-links" id="site-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products/index.html">Products</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login-register.html" class="cta active">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="auth-section">
+    <div class="container auth-layout">
+      <section class="auth-info">
+        <span class="kicker">Secure account access</span>
+        <h1>Login or create your account in seconds</h1>
+        <p>Sign in to place orders faster, track your requests, and get better support from Siddhi Vinayak Mart.</p>
+        <ul class="auth-points">
+          <li>• Quick email login and registration</li>
+          <li>• Google sign-in supported</li>
+          <li>• Easy access to order support on WhatsApp</li>
+        </ul>
+      </section>
+
+      <section class="auth-card" aria-label="Authentication form">
+        <div class="card-head">
+          <div class="card-logo"><img src="image/favicon.png" alt="Siddhi Vinayak Mart icon" /></div>
+          <h2 class="card-title" id="form-title">Login</h2>
+          <p class="card-subtitle">Use your account credentials to continue</p>
+        </div>
+
+        <div class="auth-form">
+          <input class="auth-input" type="email" id="email" placeholder="Email" required />
+          <input class="auth-input" type="password" id="password" placeholder="Password" required />
+
+          <button class="btn btn-primary" id="authBtn">Login</button>
+
+          <button class="btn btn-google" id="googleBtn" type="button">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
+            Sign in with Google
+          </button>
+
+          <div class="toggle" id="toggleForm">Don't have an account? Sign up</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Siddhi Vinayak A-Z Saving Mart</p>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="products/index.html">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -128,10 +463,11 @@
       signInWithEmailAndPassword,
       sendEmailVerification,
       GoogleAuthProvider,
-      signInWithPopup,
+      signInWithPopup
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import firebaseConfig from "./js/config.js";
 
-import firebaseConfig from './js/config.js';    const app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
@@ -140,6 +476,14 @@ import firebaseConfig from './js/config.js';    const app = initializeApp(fireba
     const formTitle = document.getElementById("form-title");
     const authBtn = document.getElementById("authBtn");
     const toggleForm = document.getElementById("toggleForm");
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("site-menu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
 
     toggleForm.addEventListener("click", () => {
       isLogin = !isLogin;
@@ -151,13 +495,14 @@ import firebaseConfig from './js/config.js';    const app = initializeApp(fireba
     authBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+
       try {
         if (isLogin) {
           await signInWithEmailAndPassword(auth, email, password);
           alert("Logged in successfully!");
         } else {
-          const userCred = await createUserWithEmailAndPassword(auth, email, password);
-          await sendEmailVerification(userCred.user);
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await sendEmailVerification(userCredential.user);
           alert("Registered! Please verify your email.");
         }
       } catch (error) {
@@ -173,6 +518,8 @@ import firebaseConfig from './js/config.js';    const app = initializeApp(fireba
         alert(error.message);
       }
     });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

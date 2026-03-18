@@ -2,296 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Groceries - SVM Mart</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grocery essentials at Siddhi Vinayak A-Z Saving Mart." />
+  <title>Grocery | Siddhi Vinayak A-Z Saving Mart</title>
+  <link rel="icon" type="image/png" href="../image/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #d32f2f;
-      --secondary: #fdd835;
-      --bg-dark: #fff8e1;
-      --text-dark: #212121;
-      --text-light: #ffffff;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    nav {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: auto;
-      padding: 0.8rem 1rem;
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--text-light);
-    }
-
-    .menu-toggle {
-      font-size: 1.5rem;
-      display: none;
-      cursor: pointer;
-      color: var(--text-light);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 500;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .nav-links a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        margin-top: 1rem;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 2rem 1rem 1.5rem;
-      font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    main {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .product-card {
-      background: #fdf7e2;
-      padding: 1rem;
-      border-radius: 10px;
-      margin: 1rem 0;
-      display: flex;
-      gap: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      align-items: center;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: scale(1.02);
-    }
-
-    .product-card img {
-      width: 120px;
-      border-radius: 8px;
-    }
-
-    .product-info h3 {
-      color: var(--primary);
-      margin: 0 0 0.5rem;
-    }
-
-    footer {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .social-links {
-      margin-bottom: 0.8rem;
-    }
-
-    .social-links a {
-      margin: 0 0.6rem;
-      color: var(--text-light);
-      font-size: 1.4rem;
-      text-decoration: none;
-    }
-
-    .social-links a:hover {
-      text-shadow: 0 0 8px rgba(0,0,0,0.4);
-    }
+    :root { --primary:#d32f2f; --primary-dark:#b71c1c; --bg:#fff8ef; --surface:#fff; --text:#1f1f1f; --muted:#666; --border:#ece2d8; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --container:1160px; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    img{display:block;width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--container),92%);margin:0 auto}
+    .topbar{background:linear-gradient(90deg,var(--primary),#ef5350);color:#fff;text-align:center;font-size:.92rem;padding:.55rem 1rem;font-weight:500}
+    .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:700;color:var(--primary);min-width:0}
+    .brand-logo{width:48px;height:48px;border-radius:12px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}
+    .brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .menu-btn{display:none;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:.45rem .7rem;font-size:1rem}
+    .nav-links{display:flex;align-items:center;gap:.35rem;list-style:none}
+    .nav-links a{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:.5rem .95rem;font-weight:500;color:#303030;transition:.2s ease}
+    .nav-links a:hover,.nav-links .active{background:#fff2f2;color:var(--primary)}
+    .nav-links .cta{background:var(--primary);color:#fff}.nav-links .cta:hover{background:var(--primary-dark);color:#fff}
+    .hero{padding:2.2rem 0 1.2rem}
+    .hero-box{background:linear-gradient(130deg,#fff 0%,#fff7e8 100%);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);padding:2rem;display:grid;gap:.8rem}
+    .kicker{width:fit-content;background:#ffe9b0;color:#7a4f00;border-radius:999px;padding:.35rem .75rem;font-size:.78rem;font-weight:600}
+    h1{font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.2}.hero-box p{color:var(--muted);max-width:70ch}
+    .section{padding:1.2rem 0 2.8rem}.section-title{font-size:clamp(1.35rem,2.5vw,1.95rem);margin-bottom:.35rem}.section-subtitle{color:var(--muted);margin-bottom:1.25rem}
+    .grid{display:grid;gap:1rem;grid-template-columns:repeat(3,minmax(0,1fr))}
+    .product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06);transition:transform .2s ease,box-shadow .2s ease}
+    .product-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.1)}
+    .product-card img{aspect-ratio:4/3;object-fit:cover}
+    .product-body{padding:1rem;display:grid;gap:.4rem}.product-body h3{font-size:1.04rem;color:#232323}.product-body p{color:var(--muted);font-size:.92rem}
+    .contact-strip{margin-top:1.1rem;background:linear-gradient(120deg,var(--primary),#f44336);color:#fff;border-radius:18px;padding:1.25rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;align-items:center}
+    .contact-strip p{font-size:.95rem;line-height:1.4;opacity:.97}
+    .strip-actions{display:flex;flex-wrap:wrap;gap:.6rem}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:.68rem 1rem;font-weight:600;border:1px solid transparent;background:#fff;color:var(--primary-dark);transition:.2s ease}.btn:hover{background:#fff4f4}
+    .footer{margin-top:2rem;border-top:1px solid var(--border);background:#fff}
+    .footer-inner{min-height:80px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.7rem;padding:1rem 0;color:#5b5b5b;font-size:.9rem}
+    .footer-nav{display:flex;gap:.9rem;flex-wrap:wrap;font-weight:500}.footer-nav a:hover{color:var(--primary)}
+    @media (max-width:960px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:760px){.menu-btn{display:inline-flex}.nav-links{display:none;position:absolute;left:4%;right:4%;top:84px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:.6rem;flex-direction:column;align-items:stretch}.nav-links.open{display:flex}.nav-links a{border-radius:10px;justify-content:flex-start}.hero-box{padding:1.35rem}.grid{grid-template-columns:1fr}.footer-inner{flex-direction:column;align-items:flex-start}}
   </style>
-
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('active');
-    }
-  </script>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">SVM Mart</div>
-      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="products/index.html">Products</a>
-        <a href="store.html">Store</a>
-        <a href="contact.html">Contact</a>
-      </div>
+  <div class="topbar">Fast local delivery · WhatsApp ordering · Open daily 7:00 AM to 10:00 PM</div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand" aria-label="Go to homepage"><span class="brand-logo"><img src="../image/logo.png" alt="Siddhi Vinayak Mart logo" /></span><span>Siddhi Vinayak A-Z Saving Mart</span></a>
+      <button class="menu-btn" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰</button>
+      <ul class="nav-links" id="site-menu">
+        <li><a href="../index.html">Home</a></li><li><a href="index.html" class="active">Products</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../store.html">Store</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../login-register.html" class="cta">Order Now</a></li>
+      </ul>
     </div>
-  </nav>
-
-  <!-- Header -->
-  <header>
-    <h1>Groceries</h1>
-    <p>Everyday essentials at unbeatable prices</p>
   </header>
-
-  <!-- Product Listing -->
   <main>
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Fortune Soya Health Oil">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
+    <section class="hero"><div class="container hero-box"><span class="kicker">Grocery essentials</span><h1>Daily kitchen needs in one place</h1><p>From rice and atta to oils and sugar, explore our grocery range and order quickly for home delivery.</p></div></section>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Popular grocery items</h2><p class="section-subtitle">Prices may vary by stock and offer availability.</p>
+        <div class="grid">
+          <article class="product-card"><img src="../image/grocery1.jpeg" alt="Basmati rice pack" loading="lazy" /><div class="product-body"><h3>Basmati Rice</h3><p>5kg Pack | ₹350</p><p>Aromatic and long-grained premium rice for daily cooking.</p></div></article>
+          <article class="product-card"><img src="../image/grocery.png" alt="Wheat flour and grains" loading="lazy" /><div class="product-body"><h3>Wheat Flour (Atta)</h3><p>10kg Pack | ₹420</p><p>Fresh chakki atta suitable for soft rotis and regular use.</p></div></article>
+          <article class="product-card"><img src="../image/Fruit and Vegetable2.png" alt="Daily grocery assortment" loading="lazy" /><div class="product-body"><h3>Cooking Essentials Combo</h3><p>Oil + Sugar + Pulses</p><p>Everyday essentials available as value packs for families.</p></div></article>
+        </div>
+        <div class="contact-strip"><div><h3>Need a full month ration list?</h3><p>Send your list on WhatsApp and we’ll help you prepare your grocery order quickly.</p></div><div class="strip-actions"><a href="https://wa.me/919453678641" target="_blank" rel="noopener" class="btn">WhatsApp Order</a><a href="index.html" class="btn">All Categories</a></div></div>
       </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Bail Kolhu Kachi Ghani Mustard Oil">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Basmati Rice">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Basmati Rice">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Basmati Rice">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?rice" alt="Basmati Rice">
-      <div class="product-info">
-        <h3>Basmati Rice</h3>
-        <p>5kg Pack | ₹350</p>
-        <p>Aromatic and long-grained premium rice.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?wheat" alt="Wheat Flour">
-      <div class="product-info">
-        <h3>Wheat Flour</h3>
-        <p>10kg Pack | ₹420</p>
-        <p>Stone-ground, fresh chakki atta.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?oil" alt="Sunflower Oil">
-      <div class="product-info">
-        <h3>Sunflower Oil</h3>
-        <p>1L Bottle | ₹110</p>
-        <p>Healthy, light refined oil for everyday use.</p>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <img src="https://source.unsplash.com/120x120/?sugar" alt="Sugar">
-      <div class="product-info">
-        <h3>Refined Sugar</h3>
-        <p>1kg Pack | ₹45</p>
-        <p>Pure and crystal-clear sugar for kitchen needs.</p>
-      </div>
-    </div>
+    </section>
   </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="social-links">
-      <a href="https://wa.me/919453678641" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
-      <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
-  </footer>
-
+  <footer class="footer"><div class="container footer-inner"><p>© <span id="year"></span> Siddhi Vinayak A-Z Saving Mart</p><nav class="footer-nav" aria-label="Footer links"><a href="../about.html">About</a><a href="index.html">Products</a><a href="../store.html">Store</a><a href="../contact.html">Contact</a></nav></div></footer>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('site-menu');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -2,288 +2,337 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us | Siddhi Vinayak Mart</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Siddhi Vinayak A-Z Saving Mart in Telia Kalan, Barhaj, Deoria." />
+  <title>About Us | Siddhi Vinayak A-Z Saving Mart</title>
+  <link rel="icon" type="image/png" href="/image/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #d32f2f;
-      --secondary: #fdd835;
-      --bg-dark: #fff8e1;
-      --text-dark: #212121;
-      --text-light: #ffffff;
+      --primary-dark: #b71c1c;
+      --accent: #fdd835;
+      --bg: #fff8ef;
+      --surface: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666666;
+      --border: #ece2d8;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --container: 1160px;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    img { display: block; width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(var(--container), 92%); margin: 0 auto; }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--primary), #ef5350);
+      color: #fff;
+      text-align: center;
+      font-size: 0.92rem;
+      padding: 0.55rem 1rem;
+      font-weight: 500;
     }
 
-    nav {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
+    .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-container {
+    .nav-inner {
+      height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: auto;
-      padding: 0.8rem 1rem;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--text-light);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 0;
     }
 
-    .menu-toggle {
-      font-size: 1.5rem;
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .brand span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .menu-btn {
       display: none;
-      cursor: pointer;
-      color: var(--text-light);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.45rem 0.7rem;
+      font-size: 1rem;
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
     }
 
     .nav-links a {
-      text-decoration: none;
-      color: var(--text-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.5rem 0.95rem;
       font-weight: 500;
-      padding: 0.5rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
+      color: #303030;
+      transition: 0.2s ease;
     }
 
-    .nav-links a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        margin-top: 1rem;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    main {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .about-section {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
-
-    .about-section h2 {
+    .nav-links a:hover,
+    .nav-links .active {
+      background: #fff2f2;
       color: var(--primary);
-      margin-bottom: 1rem;
     }
 
-    .about-section p {
-      line-height: 1.7;
-      font-size: 1.05rem;
-      margin-bottom: 1.2rem;
+    .nav-links .cta { background: var(--primary); color: #fff; }
+    .nav-links .cta:hover { background: var(--primary-dark); color: #fff; }
+
+    .hero { padding: 2.2rem 0 1.2rem; }
+    .hero-box {
+      background: linear-gradient(130deg, #fff 0%, #fff7e8 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: grid;
+      gap: 0.8rem;
     }
 
-    .image-frame {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      margin: 2rem 0;
-      padding: 0.5rem;
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: all 1s ease;
+    .kicker {
+      width: fit-content;
+      background: #ffe9b0;
+      color: #7a4f00;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
     }
 
-    .image-frame.visible {
-      opacity: 1;
-      transform: translateX(0);
+    h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.2; }
+    .hero-box p { color: var(--muted); max-width: 70ch; }
+
+    .section { padding: 1.2rem 0 2.8rem; }
+    .section-title { font-size: clamp(1.35rem, 2.5vw, 1.95rem); margin-bottom: 0.35rem; }
+    .section-subtitle { color: var(--muted); margin-bottom: 1.25rem; }
+
+    .grid { display: grid; gap: 1rem; }
+    .story-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.05rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     }
 
-    .image-frame img {
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      max-height: 200px;
+    .card h3 { margin-bottom: 0.45rem; color: #232323; font-size: 1.02rem; }
+    .card p { color: var(--muted); font-size: 0.93rem; }
+
+    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    }
+    .gallery-item img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+    .video-wrap {
+      margin-top: 1rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.8rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
 
-    .intro-video {
+    .video-wrap iframe {
       width: 100%;
-      max-width: 600px;
-      margin: 2rem auto;
-      display: block;
-      border: 4px solid var(--primary);
+      height: 360px;
+      border: 0;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
     }
 
-    .intro-video.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .video-note { color: var(--muted); font-size: 0.88rem; margin-top: 0.45rem; }
+
+    .footer {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      background: #fff;
     }
 
-    footer {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--text-light);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 500;
+    .footer-inner {
+      min-height: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1rem 0;
+      color: #5b5b5b;
+      font-size: 0.9rem;
     }
 
-    .social-links {
-      margin-bottom: 0.8rem;
+    .footer-nav { display: flex; gap: 0.9rem; flex-wrap: wrap; font-weight: 500; }
+    .footer-nav a:hover { color: var(--primary); }
+
+    @media (max-width: 900px) {
+      .story-grid,
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .video-wrap iframe { height: 300px; }
     }
 
-    .social-links a {
-      margin: 0 0.6rem;
-      color: var(--text-light);
-      font-size: 1.4rem;
-      text-decoration: none;
-    }
+    @media (max-width: 760px) {
+      .menu-btn { display: inline-flex; }
 
-    .social-links a:hover {
-      text-shadow: 0 0 8px rgba(0,0,0,0.4);
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 84px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 0.6rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { border-radius: 10px; justify-content: flex-start; }
+      .hero-box { padding: 1.35rem; }
+      .story-grid,
+      .gallery { grid-template-columns: 1fr; }
+      .video-wrap iframe { height: 230px; }
     }
   </style>
-
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('active');
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-
-      const targets = document.querySelectorAll('.image-frame, .intro-video');
-      targets.forEach(el => observer.observe(el));
-    });
-  </script>
 </head>
 <body>
+  <div class="topbar">Fast local delivery · WhatsApp ordering · Open daily 7:00 AM to 10:00 PM</div>
 
-  <!-- Navigation Menu -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">SVM Mart</div>
-      <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="products/">Products</a>
-        <a href="store.html">Store</a>
-        <a href="contact.html">Contact</a>
-      </div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Go to homepage">
+        <span class="brand-logo"><img src="image/logo.png" alt="Siddhi Vinayak Mart logo" /></span>
+        <span>Siddhi Vinayak A-Z Saving Mart</span>
+      </a>
+
+      <button class="menu-btn" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰</button>
+
+      <ul class="nav-links" id="site-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products/index.html">Products</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login-register.html" class="cta">Order Now</a></li>
+      </ul>
     </div>
-  </nav>
-
-  <!-- Header -->
-  <header>
-    <h1>About Siddhi Vinayak Mart</h1>
-    <p>Serving Trust & Value Since 2021</p>
   </header>
 
-  <!-- Main Content -->
   <main>
-    <div class="about-section">
-      <h2>Who We Are</h2>
-      <p>Siddhi Vinayak A-Z बचत बाजार is your neighborhood mart delivering savings with every product. Located at Telia Kalan, Barhaj, we serve our local community with grocery, stationery, and household essentials at affordable prices.</p>
+    <section class="hero">
+      <div class="container hero-box">
+        <span class="kicker">About our store</span>
+        <h1>Local mart built on trust, value, and daily convenience</h1>
+        <p>Siddhi Vinayak A-Z Saving Mart is your neighborhood store in Telia Kalan, Barhaj, Deoria. Since 2021, we have served local families with groceries, household goods, stationery, and bakery items at affordable prices.</p>
+      </div>
+    </section>
 
-      <h2>Our Vision</h2>
-      <p>To make everyday shopping budget-friendly, joyful, and convenient for every household. We believe in community, trust, and honesty — and that reflects in everything we do.</p>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Our story</h2>
+        <p class="section-subtitle">Simple values that guide our service every day.</p>
 
-      <h2>Our Values</h2>
-      <p>✅ Affordable pricing<br>✅ Fresh and local products<br>✅ Friendly service<br>✅ Weekly deals<br>✅ Easy digital payment options</p>
-    </div>
+        <div class="grid story-grid">
+          <article class="card">
+            <h3>Who we are</h3>
+            <p>A family-focused local mart that makes everyday shopping easy and budget-friendly for the Barhaj community.</p>
+          </article>
+          <article class="card">
+            <h3>Our vision</h3>
+            <p>To offer fresh quality products, fair pricing, and dependable service so households can shop with confidence.</p>
+          </article>
+          <article class="card">
+            <h3>Our values</h3>
+            <p>Affordable pricing, fresh stock, friendly service, weekly deals, and easy payment options including UPI and cash.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <h2 style="text-align:center; color: var(--primary);">📸 Life at Our Store</h2>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Life at our store</h2>
+        <p class="section-subtitle">A quick look at our shelves, products, and in-store experience.</p>
 
-    <!-- Image Frame -->
-    <div class="image-frame">
-      <img src="store1.jpg" alt="Storefront">
-      <img src="banner.png" alt="banner">
-      <img src="banner2.png" alt="banner2">
-      <img src="store1.jpg" alt="store">
-    </div>
+        <div class="grid gallery">
+          <div class="gallery-item"><img src="image/store1.jpg" alt="Storefront view" loading="lazy" /></div>
+          <div class="gallery-item"><img src="image/store2.jpg" alt="Store interior" loading="lazy" /></div>
+          <div class="gallery-item"><img src="image/store3.webp" alt="Products inside the store" loading="lazy" /></div>
+        </div>
 
-    <!-- Intro Video -->
-    <iframe class="intro-video" 
-        width="100%" 
-        height="315" 
-        src="https://www.youtube.com/embed/kyIMJ0H34jM"
-        title="Intro Video" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-
-<div style="text-align: center;">[ This video is for representational purpose only ]</div>
-
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/kyIMJ0H34jM" title="Siddhi Vinayak Mart intro video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <p class="video-note">Video is for representational purpose only.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social-links">
-      <a href="https://wa.me/919453678641" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://maps.app.goo.gl/SxjqLDN538XPiSgu7" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
-      <a href="mailto:siddhivinayakmart.ashoksingh@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://instagram.com/yourinstagramhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Siddhi Vinayak A-Z Saving Mart</p>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="products/index.html">Products</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-    <p>&copy; 2025 सिद्धि विनायक A-Z बचत बाजार | तेलिया-कलां, बरहज, देवरिया, उत्तर प्रदेश, भारत</p>
   </footer>
 
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('site-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
