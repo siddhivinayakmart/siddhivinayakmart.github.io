@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cart.css" />
   <style>
     :root { --primary:#d32f2f; --primary-dark:#b71c1c; --bg:#fff8ef; --surface:#fff; --text:#1f1f1f; --muted:#666; --border:#ece2d8; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --container:1160px; }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -62,11 +63,14 @@
     <section class="hero"><div class="container hero-box"><span class="kicker">Stationery essentials</span><h1>Smart supplies for school and office</h1><p>Find notebooks, pens, files, and daily stationery items for students, teachers, and working professionals.</p></div></section>
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Popular stationery items</h2><p class="section-subtitle">Bulk school and office orders are available on request.</p>
+        <h2 class="section-title">Popular stationery items</h2><p class="section-subtitle">Bulk school and office orders are available on request. Add items to cart and place order on WhatsApp.</p>
         <div class="grid">
-          <article class="product-card"><img src="../image/crockery.jpg" alt="Notebook and pen supplies" loading="lazy" /><div class="product-body"><h3>Classmate Notebook</h3><p>200 Pages | ₹35</p><p>High-quality ruled pages ideal for classes and daily writing.</p></div></article>
-          <article class="product-card"><img src="../image/electronics1.png" alt="Pens and writing tools" loading="lazy" /><div class="product-body"><h3>Ball Pen Pack</h3><p>Pack of 5 | ₹25</p><p>Smooth writing pens suitable for school and office work.</p></div></article>
-          <article class="product-card"><img src="../image/electronics.png" alt="Office desk supplies" loading="lazy" /><div class="product-body"><h3>Mini Office Kit</h3><p>Stapler + Pins + Marker</p><p>Compact starter combo for school projects and desk use.</p></div></article>
+          <article class="product-card"><img src="../image/crockery.jpg" alt="Notebook and pen supplies" loading="lazy" /><div class="product-body"><h3>Classmate Notebook</h3><p>200 Pages | ₹35</p><p>High-quality ruled pages ideal for classes and daily writing.</p><button class="add-to-cart" type="button" data-id="stationery-notebook" data-name="Classmate Notebook 200 Pages" data-price="35">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/electronics1.png" alt="Pens and writing tools" loading="lazy" /><div class="product-body"><h3>Ball Pen Pack</h3><p>Pack of 5 | ₹25</p><p>Smooth writing pens suitable for school and office work.</p><button class="add-to-cart" type="button" data-id="stationery-pen-pack" data-name="Ball Pen Pack of 5" data-price="25">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/electronics.png" alt="Office desk supplies" loading="lazy" /><div class="product-body"><h3>Mini Office Kit</h3><p>Stapler + Pins + Marker | ₹99</p><p>Compact starter combo for school projects and desk use.</p><button class="add-to-cart" type="button" data-id="stationery-office-kit" data-name="Mini Office Kit" data-price="99">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/electronics1.png" alt="Geometry box for students" loading="lazy" /><div class="product-body"><h3>Geometry Box</h3><p>Student Set | ₹85</p><p>Compass, divider, ruler, and protractor combo for school.</p><button class="add-to-cart" type="button" data-id="stationery-geometry-box" data-name="Geometry Box Student Set" data-price="85">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/electronics.png" alt="A4 paper bundle" loading="lazy" /><div class="product-body"><h3>A4 Paper Ream</h3><p>500 Sheets | ₹280</p><p>Multipurpose printing paper for office and home documents.</p><button class="add-to-cart" type="button" data-id="stationery-a4-ream" data-name="A4 Paper Ream 500 Sheets" data-price="280">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/crockery.jpg" alt="Marker and highlighter set" loading="lazy" /><div class="product-body"><h3>Marker & Highlighter Set</h3><p>Pack of 6 | ₹120</p><p>Bright and smooth inks for notes, projects, and office use.</p><button class="add-to-cart" type="button" data-id="stationery-marker-set" data-name="Marker and Highlighter Set Pack of 6" data-price="120">Add to Cart</button></div></article>
         </div>
         <div class="contact-strip"><div><h3>Need bulk stationery for school?</h3><p>Send your requirement list on WhatsApp for quick pricing and availability.</p></div><div class="strip-actions"><a href="https://wa.me/919453678641" target="_blank" rel="noopener" class="btn">WhatsApp Order</a><a href="index.html" class="btn">All Categories</a></div></div>
       </div>
@@ -83,5 +87,6 @@
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="cart.js"></script>
 </body>
 </html>

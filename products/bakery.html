@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cart.css" />
   <style>
     :root { --primary:#d32f2f; --primary-dark:#b71c1c; --bg:#fff8ef; --surface:#fff; --text:#1f1f1f; --muted:#666; --border:#ece2d8; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --container:1160px; }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -62,11 +63,14 @@
     <section class="hero"><div class="container hero-box"><span class="kicker">Bakery delights</span><h1>Freshly baked items your family will love</h1><p>Enjoy bread, cookies, cakes, and daily bakery favorites prepared for freshness and taste.</p></div></section>
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Popular bakery items</h2><p class="section-subtitle">Fresh batches are prepared regularly; availability may vary by time.</p>
+        <h2 class="section-title">Popular bakery items</h2><p class="section-subtitle">Fresh batches are prepared regularly; availability may vary by time. Add items to cart and place order on WhatsApp.</p>
         <div class="grid">
-          <article class="product-card"><img src="../image/bakery.jpg" alt="Fresh multigrain bread" loading="lazy" /><div class="product-body"><h3>Multigrain Bread</h3><p>400g Loaf | ₹50</p><p>Soft and healthy daily bread option for breakfast and snacks.</p></div></article>
-          <article class="product-card"><img src="../image/banner2.png" alt="Chocolate cake display" loading="lazy" /><div class="product-body"><h3>Chocolate Cake</h3><p>500g | ₹280</p><p>Rich chocolate cake perfect for birthdays and celebrations.</p></div></article>
-          <article class="product-card"><img src="../image/banner.png" alt="Bakery biscuits and snacks" loading="lazy" /><div class="product-body"><h3>Cookies & Snacks Pack</h3><p>Family Combo</p><p>Tea-time cookies and baked snacks available in assorted packs.</p></div></article>
+          <article class="product-card"><img src="../image/bakery.jpg" alt="Fresh multigrain bread" loading="lazy" /><div class="product-body"><h3>Multigrain Bread</h3><p>400g Loaf | ₹50</p><p>Soft and healthy daily bread option for breakfast and snacks.</p><button class="add-to-cart" type="button" data-id="bakery-multigrain-bread" data-name="Multigrain Bread 400g" data-price="50">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/banner2.png" alt="Chocolate cake display" loading="lazy" /><div class="product-body"><h3>Chocolate Cake</h3><p>500g | ₹280</p><p>Rich chocolate cake perfect for birthdays and celebrations.</p><button class="add-to-cart" type="button" data-id="bakery-chocolate-cake" data-name="Chocolate Cake 500g" data-price="280">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/banner.png" alt="Bakery biscuits and snacks" loading="lazy" /><div class="product-body"><h3>Cookies & Snacks Pack</h3><p>Family Combo | ₹120</p><p>Tea-time cookies and baked snacks available in assorted packs.</p><button class="add-to-cart" type="button" data-id="bakery-cookies-combo" data-name="Cookies & Snacks Pack" data-price="120">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/bakery.jpg" alt="Fresh burger buns" loading="lazy" /><div class="product-body"><h3>Burger Buns</h3><p>Pack of 4 | ₹45</p><p>Soft and fresh buns perfect for homemade burgers and snacks.</p><button class="add-to-cart" type="button" data-id="bakery-burger-buns" data-name="Burger Buns Pack of 4" data-price="45">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/banner.png" alt="Rusk and tea toast" loading="lazy" /><div class="product-body"><h3>Premium Rusk</h3><p>400g Pack | ₹90</p><p>Crunchy tea-time toast made for daily family use.</p><button class="add-to-cart" type="button" data-id="bakery-premium-rusk" data-name="Premium Rusk 400g" data-price="90">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/banner2.png" alt="Cupcake assortment" loading="lazy" /><div class="product-body"><h3>Cupcake Box</h3><p>Box of 6 | ₹180</p><p>Soft assorted cupcakes for parties, birthdays, and gifting.</p><button class="add-to-cart" type="button" data-id="bakery-cupcake-box" data-name="Cupcake Box of 6" data-price="180">Add to Cart</button></div></article>
         </div>
         <div class="contact-strip"><div><h3>Planning a small celebration?</h3><p>Message us for cake and bakery order support with pickup or delivery options.</p></div><div class="strip-actions"><a href="https://wa.me/919453678641" target="_blank" rel="noopener" class="btn">WhatsApp Order</a><a href="index.html" class="btn">All Categories</a></div></div>
       </div>
@@ -83,5 +87,6 @@
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="cart.js"></script>
 </body>
 </html>

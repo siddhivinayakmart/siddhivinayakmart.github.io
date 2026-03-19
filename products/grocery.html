@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cart.css" />
   <style>
     :root { --primary:#d32f2f; --primary-dark:#b71c1c; --bg:#fff8ef; --surface:#fff; --text:#1f1f1f; --muted:#666; --border:#ece2d8; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --container:1160px; }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -62,11 +63,14 @@
     <section class="hero"><div class="container hero-box"><span class="kicker">Grocery essentials</span><h1>Daily kitchen needs in one place</h1><p>From rice and atta to oils and sugar, explore our grocery range and order quickly for home delivery.</p></div></section>
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Popular grocery items</h2><p class="section-subtitle">Prices may vary by stock and offer availability.</p>
+        <h2 class="section-title">Popular grocery items</h2><p class="section-subtitle">Prices may vary by stock and offer availability. Add items to cart and place order on WhatsApp.</p>
         <div class="grid">
-          <article class="product-card"><img src="../image/grocery1.jpeg" alt="Basmati rice pack" loading="lazy" /><div class="product-body"><h3>Basmati Rice</h3><p>5kg Pack | ₹350</p><p>Aromatic and long-grained premium rice for daily cooking.</p></div></article>
-          <article class="product-card"><img src="../image/grocery.png" alt="Wheat flour and grains" loading="lazy" /><div class="product-body"><h3>Wheat Flour (Atta)</h3><p>10kg Pack | ₹420</p><p>Fresh chakki atta suitable for soft rotis and regular use.</p></div></article>
-          <article class="product-card"><img src="../image/Fruit and Vegetable2.png" alt="Daily grocery assortment" loading="lazy" /><div class="product-body"><h3>Cooking Essentials Combo</h3><p>Oil + Sugar + Pulses</p><p>Everyday essentials available as value packs for families.</p></div></article>
+          <article class="product-card"><img src="../image/grocery1.jpeg" alt="Basmati rice pack" loading="lazy" /><div class="product-body"><h3>Basmati Rice</h3><p>5kg Pack | ₹350</p><p>Aromatic and long-grained premium rice for daily cooking.</p><button class="add-to-cart" type="button" data-id="grocery-basmati-rice" data-name="Basmati Rice 5kg" data-price="350">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/grocery.png" alt="Wheat flour and grains" loading="lazy" /><div class="product-body"><h3>Wheat Flour (Atta)</h3><p>10kg Pack | ₹420</p><p>Fresh chakki atta suitable for soft rotis and regular use.</p><button class="add-to-cart" type="button" data-id="grocery-wheat-flour" data-name="Wheat Flour (Atta) 10kg" data-price="420">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/Fruit and Vegetable2.png" alt="Daily grocery assortment" loading="lazy" /><div class="product-body"><h3>Cooking Essentials Combo</h3><p>Oil + Sugar + Pulses | ₹299</p><p>Everyday essentials available as value packs for families.</p><button class="add-to-cart" type="button" data-id="grocery-essentials-combo" data-name="Cooking Essentials Combo" data-price="299">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/grocery.png" alt="Toor dal and lentils" loading="lazy" /><div class="product-body"><h3>Toor Dal</h3><p>1kg Pack | ₹145</p><p>Cleaned and polished lentils for daily home cooking.</p><button class="add-to-cart" type="button" data-id="grocery-toor-dal" data-name="Toor Dal 1kg" data-price="145">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/Fruit and Vegetable.jpg" alt="Fresh sugar pack" loading="lazy" /><div class="product-body"><h3>Refined Sugar</h3><p>1kg Pack | ₹48</p><p>Fine crystal sugar for tea, sweets, and baking needs.</p><button class="add-to-cart" type="button" data-id="grocery-refined-sugar" data-name="Refined Sugar 1kg" data-price="48">Add to Cart</button></div></article>
+          <article class="product-card"><img src="../image/grocery1.jpeg" alt="Mustard oil bottle" loading="lazy" /><div class="product-body"><h3>Mustard Oil</h3><p>1L Bottle | ₹170</p><p>Traditional cooking oil ideal for Indian household recipes.</p><button class="add-to-cart" type="button" data-id="grocery-mustard-oil" data-name="Mustard Oil 1L" data-price="170">Add to Cart</button></div></article>
         </div>
         <div class="contact-strip"><div><h3>Need a full month ration list?</h3><p>Send your list on WhatsApp and we’ll help you prepare your grocery order quickly.</p></div><div class="strip-actions"><a href="https://wa.me/919453678641" target="_blank" rel="noopener" class="btn">WhatsApp Order</a><a href="index.html" class="btn">All Categories</a></div></div>
       </div>
@@ -83,5 +87,6 @@
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="cart.js"></script>
 </body>
 </html>
