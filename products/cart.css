@@ -74,6 +74,67 @@
   justify-content: space-between;
 }
 
+.cart-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0e6dc;
+  background: #fffaf5;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  color: #9b8575;
+  min-width: 64px;
+}
+
+.progress-step span {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid #d8c7b9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #fff;
+}
+
+.progress-step small {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.progress-step.active {
+  color: #d32f2f;
+}
+
+.progress-step.active span {
+  background: #d32f2f;
+  border-color: #d32f2f;
+  color: #fff;
+}
+
+.progress-step.done {
+  color: #2f7d32;
+}
+
+.progress-step.done span {
+  border-color: #2f7d32;
+  color: #2f7d32;
+}
+
+.progress-line {
+  flex: 1;
+  height: 2px;
+  background: #e4d8cc;
+}
+
 .cart-close {
   border: 1px solid #ece2d8;
   border-radius: 8px;
@@ -86,6 +147,15 @@
   padding: 1rem;
   overflow: auto;
   flex: 1;
+}
+
+.checkout-pane {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.cart-drawer [hidden] {
+  display: none !important;
 }
 
 .cart-empty {
@@ -159,11 +229,30 @@
   gap: 0.65rem;
 }
 
+.checkout-step {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.step-note {
+  font-size: 0.85rem;
+  color: #6b6b6b;
+  margin-bottom: 0.15rem;
+}
+
 .cart-total {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
+}
+
+.customer-block {
+  border: 1px solid #ece2d8;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.45rem;
 }
 
 .payment-block {
@@ -229,8 +318,12 @@
 
 .cart-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.6rem;
+}
+
+.cart-actions.split-2 {
+  grid-template-columns: 1fr 1fr;
 }
 
 .cart-btn {
@@ -246,6 +339,21 @@
   background: #fff;
   border-color: #e6ddd3;
   color: #333;
+}
+
+.cart-btn-bill {
+  background: #fff7ef;
+  border-color: #f4d2bd;
+  color: #7e3f1f;
+}
+
+.cart-btn-next {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.cart-btn-next:hover {
+  background: #b71c1c;
 }
 
 .cart-btn-send {
