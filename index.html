@@ -361,6 +361,59 @@
       grid-template-columns: 1fr;
     }
 
+    .video-promo {
+      background: linear-gradient(140deg, #fff 0%, #fff3de 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .video-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      gap: 0.8rem;
+      padding-bottom: 0.9rem;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+
+    .video-content {
+      padding: 0 0.9rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .video-content h3 {
+      font-size: 1.02rem;
+      color: #232323;
+    }
+
+    .video-content p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .video-link {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      width: fit-content;
+    }
+
     .blog-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -513,6 +566,10 @@
       .blog-card {
         grid-template-columns: 1fr;
       }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -618,6 +675,47 @@
 
     <section class="section" id="categories">
       <div class="container">
+        <div class="video-promo" id="featured-videos">
+          <h2 class="section-title">Customer awareness videos</h2>
+          <p class="section-subtitle">These videos help customers understand ad manipulation and choose better products with confidence.</p>
+
+          <div class="grid video-grid">
+            <article class="video-card">
+              <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/byJNWVj7cPY"
+                title="Featured video 1 from Siddhi Vinayak Mart"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+              <div class="video-content">
+                <h3>How ads influence buying decisions</h3>
+                <p>Learn how marketing can shape choices and what to check before trusting a product claim.</p>
+                <a class="video-link" href="https://youtu.be/byJNWVj7cPY?si=-pPRCyX_6gG2JZs3" target="_blank" rel="noopener">Watch on YouTube →</a>
+              </div>
+            </article>
+
+            <article class="video-card">
+              <iframe
+                class="video-frame"
+                src="https://www.youtube.com/embed/8sVegs8qQTI"
+                title="Featured video 2 from Siddhi Vinayak Mart"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+              <div class="video-content">
+                <h3>How to select good products smartly</h3>
+                <p>Use practical tips from this video to compare quality, value, and labels before you buy.</p>
+                <a class="video-link" href="https://youtu.be/8sVegs8qQTI?si=uCkzjCXefxTwI0Xd" target="_blank" rel="noopener">Watch on YouTube →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
         <h2 class="section-title">Shop by category</h2>
         <p class="section-subtitle">Everything you need for home, school, and kitchen in one place.</p>
 
@@ -668,7 +766,7 @@
 
         <div class="grid blog-feature">
           <article class="blog-card">
-            <img src="image/printer.svg" alt="Printer service announcement" loading="lazy" />
+            <img src="image/printer-photo.jpg" alt="Printer service announcement" loading="lazy" />
             <div class="blog-body">
               <h3>Custom printing service now available</h3>
               <p>We now offer affordable printing service for forms, school, and office use.</p>
